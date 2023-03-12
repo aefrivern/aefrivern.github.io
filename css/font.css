@@ -1,0 +1,15 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">@font-face {
+  font-family: "JetBrains Mono";
+  font-display: swap;
+  src: url("/source/font/JetBrainsMono-Bold.ttf") format("truetype");
+  src: url("/source/font/JetBrainsMono-SemiBold.ttf") format("truetype");
+  src: url("/source/font/JetBrainsMono-Thin.ttf") format("truetype");
+  src: url("/source/font/JetBrainsMono-Regular.ttf") format("truetype");
+  src: url("/source/font/JetBrainsMono-Regular.ttf") format("truetype");
+  src: url("/source/font/JetBrainsMono-ThinItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "XHei";
+  font-display: swap;
+  src: url("/source/font/XHei.ttf") format("truetype");
+}
