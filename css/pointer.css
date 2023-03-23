@@ -1,8 +1,1 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">/* 修改鼠标指针样式 */
-body {
-  cursor: url(/illustration/pointer.cur), default;
-}
-a,
-img {
-  cursor: url(/illustration/pointer_link.cur), default;
-}
+a,img{cursor:url(/illustration/pointer_link.cur),default}
