@@ -6,7 +6,7 @@
   <link href="https://old-driver-zero.github.io/atom.xml" rel="self"/>
   
   <link href="https://old-driver-zero.github.io/"/>
-  <updated>2023-04-20T08:17:01.713Z</updated>
+  <updated>2023-04-21T11:32:35.432Z</updated>
   <id>https://old-driver-zero.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://old-driver-zero.github.io/posts/8207aa48.html"/>
     <id>https://old-driver-zero.github.io/posts/8207aa48.html</id>
     <published>2023-04-20T05:36:31.875Z</published>
-    <updated>2023-04-20T08:17:01.713Z</updated>
+    <updated>2023-04-21T11:32:35.432Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="流程图">流程图</h1><h2 id="流程图是什么">流程图是什么</h2><p>流程图 = 流程 + 图<del>废话</del></p><blockquote><p>所谓流程，IS09000系列国际标准中将流程定义为一组将输入转化为输出的相互群或相互作用的活动。</p></blockquote><p>流程六个要素构成</p><ul><li>流程的输入资源</li><li>流程中的若干活动</li><li>活动的相互作用</li><li>输出结果</li><li>顾客</li><li>最终流程创造的价值</li></ul><p>类型：</p><ul><li>页面流程图，呈现的是页面跳转顺序</li><li>数据流程图，用于表达数据的流转</li></ul><h2 id="符号规范">符号规范</h2><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  graph LRid1([开始&#x2F;结束]) --- id2[流程] --- id3{判定} --- id4[[子流程]] --- id5[&#x2F;数据&#x2F;] --- id6((接点))  </pre></div><h2 id="结构规范">结构规范</h2><p><strong>顺序结构</strong></p><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  graph TBA[步骤 A] --&gt; B[步骤 B] --&gt; C[步骤 C]  </pre></div><p><strong>选择结构</strong></p><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  flowchart TBA{条件 A} --是--&gt; B[步骤 B]A --否--&gt; C[步骤 C]C &amp; B --&gt; D[流程出口]  </pre></div><p><strong>循环结构</strong></p><div class="mermaid-wrap"><pre class="mermaid-src" hidden>  flowchart TBA{条件 A} --是--&gt; B[步骤 B]A --否--&gt; C[流程出口]B ---&gt; A  </pre></div><h1 id="序列图">序列图</h1><h2 id="定义和作用">定义和作用</h2><p>时序图，也叫序列图、顺序图，是 UML中常用的动态视图，用于描述多个对象参与实现业务目标时，彼此之间按时间顺序进行交互的过程。</p><p>能让我们看到业务内部的运作、系统之间的互动，从而搞清楚业务规则、系统逻辑。</p><h2 id="构成">构成</h2><ul><li>对象：指与业务、产品或系统相关的人、事、物，可以是人、部门、系统等</li><li>生命线：每个对象下有一条垂直的虚线，从上往下，代表时间的先后顺序</li><li>会话：也叫激活框，它代表在对象生命线上某个阶段执行的操作，以一个偏窄的矩形表示</li><li>消息：表示对象之间发送的信息或做的事情</li><li>组合框：分支、循环、并行等</li></ul><h1 id="甘特图">甘特图</h1><h2 id="什么是甘特图">什么是甘特图？</h2><p>「甘特图」又称横道图、条状图，是一种随时间推移而对项目进行把控的直观视图，以图示的方式形象展示项目列表和时间刻度，清晰地标识出每一个项目的起始与结束时间。</p><p>仅仅一张图，我们就可以非常直观地看到：</p><ul><li>任务计划的持续时间；</li><li>任务具体的开始时间和结束时间；</li><li>该任务在整个项目计划中所处的位置；</li><li>整体项目计划的工作量和节奏。</li></ul>]]></content>
     
@@ -269,9 +269,9 @@
       <category term="工具" scheme="https://old-driver-zero.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="C++" scheme="https://old-driver-zero.github.io/tags/C/"/>
-    
       <category term="Qt" scheme="https://old-driver-zero.github.io/tags/Qt/"/>
+    
+      <category term="C++" scheme="https://old-driver-zero.github.io/tags/C/"/>
     
       <category term="GUI" scheme="https://old-driver-zero.github.io/tags/GUI/"/>
     
