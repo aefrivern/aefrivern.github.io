@@ -1,1 +1,22 @@
-@font-face{font-family:XHei;font-display:swap;src:url(/source/font/XHei.woff2) format("truetype")}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">/* 自定义字体为JetBrains Mono和XHei */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-display: swap;
+  src: url("/source/font/JetBrainsMono-Bold.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-BoldItalic.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-Italic.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-Light.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-LightItalic.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-Medium.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-MediumItalic.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-Regular.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-SemiBold.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-SemiBoldItalic.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-Thin.woff2") format("truetype");
+  src: url("/source/font/JetBrainsMono-ThinItalic.woff2") format("truetype");
+}
+@font-face {
+  font-family: "XHei";
+  font-display: swap;
+  src: url("/source/font/XHei.woff2") format("truetype");
+}
