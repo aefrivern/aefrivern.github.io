@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ETH Zurich：数字设计与计算机体系结构 | old-driver-zeroの小屋</title><meta name="author" content="old_driver_zero"><meta name="copyright" content="old_driver_zero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="引言与基础 Introduction and Basics 当前的四大方向：  安全 节省能源 低延时和可预期 AI&#x2F;ML，生物，医疗，健康等的专属硬件  课程高层次目标：  了解基础 原则 惯例  基于此：  了解计算机工作 权衡不同的设计和思想 实现基于原则的硬件 在越来越复杂的系统中 debug 开发新颖的、开箱即用的设计  这些 DDCA 的原">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ETH Zurich：数字设计与计算机体系结构 | old-driver-zeroの小屋</title><meta name="author" content="old_driver_zero"><meta name="copyright" content="old_driver_zero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="引言与基础 Introduction and Basics 当前的四大方向：  安全 节省能源 低延时和可预测 AI&#x2F;ML，生物，医疗，健康等的专属硬件  课程高层次目标：  了解基础 原则 惯例  基于此：  了解计算机工作 权衡不同的设计和思想 实现基于原则的硬件 在越来越复杂的系统中 debug 开发新颖的、开箱即用的设计  这些 DDCA 的原">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ETH Zurich：数字设计与计算机体系结构">
 <meta property="og:url" content="https://old-driver-zero.github.io/posts/f1252f66.html">
 <meta property="og:site_name" content="old-driver-zeroの小屋">
-<meta property="og:description" content="引言与基础 Introduction and Basics 当前的四大方向：  安全 节省能源 低延时和可预期 AI&#x2F;ML，生物，医疗，健康等的专属硬件  课程高层次目标：  了解基础 原则 惯例  基于此：  了解计算机工作 权衡不同的设计和思想 实现基于原则的硬件 在越来越复杂的系统中 debug 开发新颖的、开箱即用的设计  这些 DDCA 的原">
+<meta property="og:description" content="引言与基础 Introduction and Basics 当前的四大方向：  安全 节省能源 低延时和可预测 AI&#x2F;ML，生物，医疗，健康等的专属硬件  课程高层次目标：  了解基础 原则 惯例  基于此：  了解计算机工作 权衡不同的设计和思想 实现基于原则的硬件 在越来越复杂的系统中 debug 开发新颖的、开箱即用的设计  这些 DDCA 的原">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://old-driver-zero.github.io/gallery/cover/ETH%20Zurich%EF%BC%9A%E6%95%B0%E5%AD%97%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.webp">
 <meta property="article:published_time" content="2023-10-25T00:32:28.742Z">
-<meta property="article:modified_time" content="2023-11-10T07:29:37.343Z">
+<meta property="article:modified_time" content="2023-11-12T03:06:18.993Z">
 <meta property="article:author" content="old_driver_zero">
 <meta property="article:tag" content="体系结构">
 <meta property="article:tag" content="计算机科学">
@@ -66,7 +66,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-11-10 15:29:37'
+  postUpdate: '2023-11-12 11:06:18'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -293,13 +293,13 @@ mjx-container[display="true"] + br {
 document.addEventListener('pjax:send', () => {
   Pace.restart()
 })
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">94</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">150</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/gallery/cover/ETH%20Zurich%EF%BC%9A%E6%95%B0%E5%AD%97%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ETH Zurich：数字设计与计算机体系结构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-25T00:32:28.742Z" title="发表于 2023-10-25 08:32:28">2023-10-25</time><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-10T07:29:37.343Z" title="更新于 2023-11-10 15:29:37">2023-11-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><a class="faa-parent animated-hover"></a><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-word"/></svg><span class="post-meta-label">字数总计:</span><span class="word-count">8330</span><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-shizhong"/></svg><span class="post-meta-label">阅读时长:</span><span>26分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="引言与基础-introduction-and-basics">引言与基础 Introduction and
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">94</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">150</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/gallery/cover/ETH%20Zurich%EF%BC%9A%E6%95%B0%E5%AD%97%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ETH Zurich：数字设计与计算机体系结构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-25T00:32:28.742Z" title="发表于 2023-10-25 08:32:28">2023-10-25</time><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-12T03:06:18.993Z" title="更新于 2023-11-12 11:06:18">2023-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><a class="faa-parent animated-hover"></a><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-word"/></svg><span class="post-meta-label">字数总计:</span><span class="word-count">9810</span><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-shizhong"/></svg><span class="post-meta-label">阅读时长:</span><span>31分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="引言与基础-introduction-and-basics">引言与基础 Introduction and
 Basics</h1>
 <p>当前的四大方向：</p>
 <ul>
 <li>安全</li>
 <li>节省能源</li>
-<li>低延时和可预期</li>
+<li>低延时和可预测</li>
 <li>AI/ML，生物，医疗，健康等的专属硬件</li>
 </ul>
 <p>课程高层次目标：</p>
@@ -1591,8 +1591,8 @@ Execution</h1>
 <p>优化方法：编译器提前预测两个分支执行的可能性，将概率高的放在顺序位置</p>
 <p>摆脱控制流指令：</p>
 <ul>
-<li>摆脱不必要的控制流指令——组合预期并检测一次</li>
-<li>把控制依赖转化为数据依赖——预期执行（也叫做 if 转换）</li>
+<li>摆脱不必要的控制流指令——组合预测并检测一次</li>
+<li>把控制依赖转化为数据依赖——预测执行（也叫做 if 转换）</li>
 </ul>
 <p><strong>分布预测 Branch Prediction</strong></p>
 <p>思想：预测下一条获取的地址</p>
@@ -1609,6 +1609,170 @@ Execution</h1>
 <li>总是选择：对于循环来说非常有优势</li>
 <li>这两者的优点可以兼顾，即<strong>后向选择，前向不选择（BTFN）</strong>，即循环总是选择，条件分支总是不选择</li>
 </ul>
+<p><strong>基于剖析
+profile-based</strong>：编译器使用剖析运行决定每个分支的可能的方向</p>
+<p>缺点：</p>
+<ul>
+<li>需要在分支指令格式上有提示位</li>
+<li>准确性依赖于动态分支表现</li>
+<li>准确性依赖于剖析输入数据的代表性</li>
+</ul>
+<h1 id="进阶分支预测-advanced-branch-prediction">进阶分支预测 Advanced
+Branch Prediction</h1>
+<p><strong>基于程序
+program-based</strong>：使用基于程序分析的启发式决定静态预测方向，例如预测循环总是选择，异常处理总是不选择</p>
+<p>缺点：</p>
+<ul>
+<li>启发式可能不具有代表性</li>
+<li>需要编译器分析和 ISA 支持</li>
+</ul>
+<p><strong>基于程序员
+programmer-based</strong>：程序员提供静态预测方向，通过在编程语言中使用
+<strong>pragmas</strong> 实现</p>
+<p>缺点：需要程序员、编程语言、编译器、ISA 支持</p>
+<p>pragmas：使程序员能够向低层次表达提示的关键词，如
+<code>if(likely(x))</code>,<code>#pragma omp parallel</code></p>
+<p>这三种静态技术的缺点都是无法适应<strong>动态</strong>改变</p>
+<p><strong>上次预测 last time
+predictor</strong>：猜测分支和其上次一样，需要在 BTB 中存储一个位</p>
+<p>优点在于对于较大的 K 的循环，准确率非常高</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/上次预测1.webp"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/上次预测2.webp"></p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/上次预测状态机.webp" alt="上次预测状态机">
+<figcaption aria-hidden="true">上次预测状态机</figcaption>
+</figure>
+<p>可以观察到这种方法改变地太快了，只看到一次改变就改变了自己的看法</p>
+<p><strong>基于两位计时器的预测 tow-bit counter based
+prediction</strong>：每个分支和两位计时器关联，即提供了滞后</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/两位计时器滞后.webp" alt="两位计时器滞后">
+<figcaption aria-hidden="true">两位计时器滞后</figcaption>
+</figure>
+<p><strong>两级预测 two-level
+Prediction</strong>：前两者都探索了<strong>上次</strong>预测，还可以从其他维度观察：</p>
+<ul>
+<li>一个分支的结果可能而后其他分支的结果有关——全局分支关联</li>
+<li>一个分支的结果可能和相同分支的过去结果有关（注意不是<strong>上次</strong>）——局部分支关联</li>
+</ul>
+<p><strong>全局分支关联 global branch
+correlation</strong>将分支结果和<strong>所有分支的全局历史</strong>关联，基于上次相同全局分支历史出现的分支结果预测分支</p>
+<p>实现：</p>
+<ul>
+<li>所有分支的全局历史——全局历史寄存器（GHR）</li>
+<li>使用 GHR 索引记录结果的表</li>
+</ul>
+<p>两级历史——GHR + GHR 处的历史</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/两级全局分支预测.webp" alt="两级全局分支预测">
+<figcaption aria-hidden="true">两级全局分支预测</figcaption>
+</figure>
+<p>改进：向全局预测器添加正在选择的分支的上下文</p>
+<p>Gshare 预测器：用分支 PC 哈希 GHR</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/Gshare预测器.webp" alt="Gshare预测器">
+<figcaption aria-hidden="true">Gshare预测器</figcaption>
+</figure>
+<p><strong>局部分支关联 local Branch
+correlation</strong>：有每个分支历史寄存器，基于上次相同局部分支历史出现的分支结果预测分支</p>
+<p>两级历史——每个分支历史寄存器 + 历史寄存器值处的历史</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/两级局部分支预测.webp" alt="两级局部分支预测">
+<figcaption aria-hidden="true">两级局部分支预测</figcaption>
+</figure>
+<p>两级预测器分类：</p>
+<ul>
+<li>BHR 可以是全局的，每个分支集的，每个分支的</li>
+<li>PHT 可以是全局的，每个分支集的，每个分支的</li>
+</ul>
+<p>这些方法各有适用的分支类型，无法对所有分支都适用</p>
+<p><strong>混合分支预测器 hybrid branch
+predictors</strong>：使用不止一个预测器，选择最佳的预测</p>
+<ul>
+<li>有偏向分支：许多分支都偏向于一个方向</li>
+<li>这些分支污染了分支预测结构</li>
+<li>检测这些有偏向的分支，使用更简单的预测器预测他们</li>
+</ul>
+<p>其他分支预测器类型：</p>
+<ul>
+<li>循环分支检测器和预测器：计数循环迭代次数</li>
+<li>感知机分支预测器：使用简单的机器学习算法赋权值</li>
+<li>基于混合历史长度的预测器：使用不同历史长度的不同表</li>
+</ul>
+<p><strong>感知机 perceptron</strong>
+是一个简化的神经元模型，也叫做二项分类器</p>
+<ul>
+<li>输入向量 X，X 为历史寄存器的每个位</li>
+<li>感知机学习向量的每个元素如何影响输出，并存储在内部的加权向量中</li>
+<li>输出 Weight @ X + Bias &gt; 0，即当前分支的预测结果</li>
+</ul>
+<p><strong>使用多重历史长度的预测器</strong>：有多个用不同的历史长度的
+GHR 索引的 PHT</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/使用多重历史长度的预测器.webp" alt="使用多重历史长度的预测器">
+<figcaption aria-hidden="true">使用多重历史长度的预测器</figcaption>
+</figure>
+<p><strong>分支自信度估计 branch confidence
+estimation</strong>：估计预测正确的可能性</p>
+<p>实现：</p>
+<ul>
+<li>记录过去 N 个分支的实例的正确/错误结果</li>
+<li>基于这些匹配，猜测当前预测是否正确</li>
+</ul>
+<p><strong>延迟分支 delayed branch</strong>：延迟分支执行，在分支后的 N
+条指令不管分支方向，总是执行</p>
+<ul>
+<li>份额只必须和延迟槽指令独立</li>
+</ul>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/延迟分支.webp" alt="延迟分支">
+<figcaption aria-hidden="true">延迟分支</figcaption>
+</figure>
+<p><strong>带压扁的延迟分支 delayed branch with squashing</strong>：在
+ISA 中的语法：如果分支未选择，则延迟槽中的指令不执行</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/带压扁的延迟分支.webp" alt="带压扁的延迟分支">
+<figcaption aria-hidden="true">带压扁的延迟分支</figcaption>
+</figure>
+<p>缺点：延迟槽难以填满</p>
+<h1 id="vliw-结构">VLIW 结构</h1>
+<p><strong>VLIW（Very Long Instruction
+Word）</strong>：编译器把独立的指令打包到一起，硬件同时获取和执行这些指令</p>
+<p>不需要硬件上的依赖性检查</p>
+<p>Lock-step 执行：如果有一个 VLIW
+指令中的任何操作暂停，则所有同时的操作暂停</p>
+<p>所以 VLIW 的问题在于操作延迟可能是可变的</p>
+<p>可以发现 VLIW 在嵌入式，DSP，一些 GPU
+中比较成功，其原因是容易找到平行操作</p>
+<p><strong>超级块
+superblock</strong>：将频繁执行的基础块组合，形成一个<strong>单入口多出口</strong>的大块，就像直线的代码一样</p>
+<p>缺点：</p>
+<ul>
+<li>增加代码大小</li>
+<li>需要重新编译</li>
+<li>依赖剖析</li>
+</ul>
+<p>其可用于编译器优化：</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/超级块代码优化.webp" alt="超级块代码优化">
+<figcaption aria-hidden="true">超级块代码优化</figcaption>
+</figure>
+<h1 id="脉动阵列结构-systolic-array-architectures">脉动阵列结构 Systolic
+Array Architectures</h1>
+<p>特定目的的加速器，现在常用于机器学习加速器</p>
+<p>思想：用 PE 的阵列替代一个执行单元（PE）并小心地协调 PE
+间的数据流</p>
+<p>这种做法的好处：最大化在一个从内存中出来的数据上的计算</p>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/脉冲计算卷积.webp" alt="脉冲计算卷积">
+<figcaption aria-hidden="true">脉冲计算卷积</figcaption>
+</figure>
+<figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/ETH%20Zurich：数字设计与计算机体系结构/2D脉冲阵列计算.webp" alt="2D脉冲阵列计算">
+<figcaption aria-hidden="true">2D脉冲阵列计算</figcaption>
+</figure>
+<p>优点：I/O 带宽大</p>
+<p>也可以使用流水线，把计算划分成多个阶段：</p>
 </article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">体系结构</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a><a class="post-meta__tags" href="/tags/ETH-Zurich/">ETH Zurich</a></div><div class="post_share"><div class="social-share" data-image="/gallery/cover/ETH%20Zurich%EF%BC%9A%E6%95%B0%E5%AD%97%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/12e06b11.html" title="她善写月亮，却并不圆满"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">她善写月亮，却并不圆满</div></div></a></div><div class="next-post pull-right"><a href="/posts/518e2799.html" title="UCB CS61C：计算机架构的伟大思想"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/UCB%20CS61C%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BC%9F%E5%A4%A7%E6%80%9D%E6%83%B3.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UCB CS61C：计算机架构的伟大思想</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="iconfont icon-tuijian"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/518e2799.html" title="UCB CS61C：计算机架构的伟大思想"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/UCB%20CS61C%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BC%9F%E5%A4%A7%E6%80%9D%E6%83%B3.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-24</div><div class="title">UCB CS61C：计算机架构的伟大思想</div></div></a></div><div><a href="/posts/fb3794ef.html" title="Coursera Nand2Tetris：依据基本原理构建现代计算机：从与非门到俄罗斯方块"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Coursera%20Nand2Tetris%EF%BC%9A%E4%BE%9D%E6%8D%AE%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%9E%84%E5%BB%BA%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%EF%BC%9A%E4%BB%8E%E4%B8%8E%E9%9D%9E%E9%97%A8%E5%88%B0%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-28</div><div class="title">Coursera Nand2Tetris：依据基本原理构建现代计算机：从与非门到俄罗斯方块</div></div></a></div><div><a href="/posts/e7a99a5e.html" title="UCB CS61A：计算机程序的构造与解释"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/UCB%20CS61A%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E4%B8%8E%E8%A7%A3%E9%87%8A.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">UCB CS61A：计算机程序的构造与解释</div></div></a></div><div><a href="/posts/7ea0cbe4.html" title="UCB CS61B：数据结构与算法"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/UCB%20CS61B%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-30</div><div class="title">UCB CS61B：数据结构与算法</div></div></a></div><div><a href="/posts/dcdf88c8.html" title="计算机科学速成课"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E9%80%9F%E6%88%90%E8%AF%BE.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-19</div><div class="title">计算机科学速成课</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">old_driver_zero</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">94</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">150</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-RSS_flat"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/old-driver-zero" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"/></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" target="_blank" title="QQ邮箱" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" target="_blank" title="Steam" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"/></svg></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-mulu"/></svg></a><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%E4%B8%8E%E5%9F%BA%E7%A1%80-introduction-and-basics"><span class="toc-number">1.</span> <span class="toc-text">引言与基础 Introduction and
 Basics</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%83%E8%A1%A1%E6%8C%87%E6%A0%87-tradeoffs-metrics"><span class="toc-number">2.</span> <span class="toc-text">权衡，指标 Tradeoffs, Metrics</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF-combinational-logic"><span class="toc-number">3.</span> <span class="toc-text">组合逻辑电路 Combinational
 Logic</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1-sequential-logic-design"><span class="toc-number">4.</span> <span class="toc-text">时序逻辑设计 Sequential
@@ -1620,7 +1784,9 @@ Set Architectures</span></a></li><li class="toc-item toc-level-1"><a class="toc-
 Multi-Cycle Microarchitecture Design</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-pipelining"><span class="toc-number">11.</span> <span class="toc-text">流水线 Pipelining</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%A4%84%E7%90%86%E5%99%A8%E8%AE%BE%E8%AE%A1-pipelined-processor-design"><span class="toc-number">12.</span> <span class="toc-text">流水线处理器设计
 Pipelined Processor Design</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E5%BC%82%E5%B8%B8-precise-exceptions"><span class="toc-number">13.</span> <span class="toc-text">精确异常 Precise Exceptions</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%B1%E5%BA%8F%E6%89%A7%E8%A1%8C-out-of-order-execution"><span class="toc-number">14.</span> <span class="toc-text">乱序执行 Out-of-Order
 Execution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%85%E6%A0%87%E9%87%8F%E6%89%A7%E8%A1%8C-superscalar-execution"><span class="toc-number">15.</span> <span class="toc-text">超标量执行 Superscalar
-Execution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B-branch-prediction"><span class="toc-number">16.</span> <span class="toc-text">分支预测 Branch Prediction</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright"><span><b>&copy;2022 - 2023</b></span><span><b>&nbsp;&nbsp;By old_driver_zero</b></span></div><div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" title="博客框架为Hexo_v6.4.0" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Frame-Hexo-blue.svg" alt></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" title="主题版本Butterfly_v4.8.1" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Theme-Butterfly-6513df.svg" alt></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" title="本站采用多线部署，主线路托管于Vercel" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Hosted-Vercel-brightgreen.svg" alt></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本网站源码由Github提供存储仓库" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src=" https://sourcebucket.s3.ladydaily.com/badge/Source-Github-d021d6.svg" alt></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+Execution</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B-branch-prediction"><span class="toc-number">16.</span> <span class="toc-text">分支预测 Branch Prediction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B-advanced-branch-prediction"><span class="toc-number">17.</span> <span class="toc-text">进阶分支预测 Advanced
+Branch Prediction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vliw-%E7%BB%93%E6%9E%84"><span class="toc-number">18.</span> <span class="toc-text">VLIW 结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%84%89%E5%8A%A8%E9%98%B5%E5%88%97%E7%BB%93%E6%9E%84-systolic-array-architectures"><span class="toc-number">19.</span> <span class="toc-text">脉动阵列结构 Systolic
+Array Architectures</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright"><span><b>&copy;2022 - 2023</b></span><span><b>&nbsp;&nbsp;By old_driver_zero</b></span></div><div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" title="博客框架为Hexo_v6.4.0" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Frame-Hexo-blue.svg" alt></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" title="主题版本Butterfly_v4.8.1" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Theme-Butterfly-6513df.svg" alt></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" title="本站采用多线部署，主线路托管于Vercel" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Hosted-Vercel-brightgreen.svg" alt></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本网站源码由Github提供存储仓库" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src=" https://sourcebucket.s3.ladydaily.com/badge/Source-Github-d021d6.svg" alt></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
   const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
   if ($mermaidWrap.length) {
     window.runMermaid = () => {
