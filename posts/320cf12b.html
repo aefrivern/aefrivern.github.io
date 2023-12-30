@@ -1,0 +1,465 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>全栈公开课 | old-driver-zeroの小屋</title><meta name="author" content="old_driver_zero"><meta name="copyright" content="old_driver_zero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Web app 基础 web 开发第一原则：始终打开控制台 可以在控制台查看网络信息 传统 web 应用：获取 html，获取 css，获取 JavaScript html 是树状的结构（DOM） 可以从控制台操作 DOM 接下来是 AJAX Asynchronous JavaScript and XML 时代 React 入门 React 简介 先安装 Node.js 创建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全栈公开课">
+<meta property="og:url" content="https://old-driver-zero.github.io/posts/320cf12b.html">
+<meta property="og:site_name" content="old-driver-zeroの小屋">
+<meta property="og:description" content="Web app 基础 web 开发第一原则：始终打开控制台 可以在控制台查看网络信息 传统 web 应用：获取 html，获取 css，获取 JavaScript html 是树状的结构（DOM） 可以从控制台操作 DOM 接下来是 AJAX Asynchronous JavaScript and XML 时代 React 入门 React 简介 先安装 Node.js 创建">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://old-driver-zero.github.io/gallery/cover/%E5%85%A8%E6%A0%88%E5%85%AC%E5%BC%80%E8%AF%BE.webp">
+<meta property="article:published_time" content="2023-12-27T06:24:40.653Z">
+<meta property="article:modified_time" content="2023-12-30T06:58:17.960Z">
+<meta property="article:author" content="old_driver_zero">
+<meta property="article:tag" content="赫尔辛基大学">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://old-driver-zero.github.io/gallery/cover/%E5%85%A8%E6%A0%88%E5%85%AC%E5%BC%80%E8%AF%BE.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://old-driver-zero.github.io/posts/320cf12b.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//hm.baidu.com"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?da75f0595ffd5e578744142f5a6a471e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '全栈公开课',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-30 14:58:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_8r6cr7hwlv.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/scrollbar.css"><link rel="stylesheet" href="/css/barber-shop.css"><link rel="stylesheet" href="/css/navigation bar.css"><link rel="stylesheet" href="/css/article title.css"><link rel="stylesheet" href="/css/card author.css"><link rel="stylesheet" href="/css/transpancy.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css">
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="old-driver-zeroの小屋" type="application/atom+xml">
+</head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">156</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/gallery/cover/%E5%85%A8%E6%A0%88%E5%85%AC%E5%BC%80%E8%AF%BE.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">全栈公开课</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-27T06:24:40.653Z" title="发表于 2023-12-27 14:24:40">2023-12-27</time><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-30T06:58:17.960Z" title="更新于 2023-12-30 14:58:17">2023-12-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><a class="faa-parent animated-hover"></a><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-word"/></svg><span class="post-meta-label">字数总计:</span><span class="word-count">1899</span><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-shizhong"/></svg><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="web-app-基础">Web app 基础</h1>
+<p>web 开发第一原则：<strong>始终打开控制台</strong></p>
+<p>可以在控制台查看网络信息</p>
+<p>传统 web 应用：获取 html，获取 css，获取 JavaScript</p>
+<p>html 是树状的结构（<strong>DOM</strong>）</p>
+<p>可以从控制台操作 DOM</p>
+<p>接下来是 <strong>AJAX Asynchronous JavaScript and XML</strong>
+时代</p>
+<h1 id="react-入门">React 入门</h1>
+<h2 id="react-简介">React 简介</h2>
+<p>先安装 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://nodejs.org/en">Node.js</a></p>
+<p>创建应用：<code>npx create-react-app part1</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const App = () =&gt; (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p&gt;Hello world&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>.jsx 文件看起来返回的是 HTML 标记，实际上底层转化为了 JavaScript</p>
+<p>注意 JSX 的每个标签都必须关闭，即写成 <code>&lt;br /&gt;</code></p>
+<p>使用 <code>props</code> 向组件传递数据</p>
+<p>React 组件名称必须大写</p>
+<p>React 组件内容需要包含一个根元素，故返回值的最外层通常要加上
+<code>&lt;div&gt;&lt;/div&gt;</code> 或
+<code>&lt;&gt;&lt;/&gt;</code></p>
+<h2 id="组件状态事件处理">组件状态，事件处理</h2>
+<p>可以在组件内部定义助手函数</p>
+<p>结构可用于参数传递时，如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const Hello = (&#123; name, age &#125;) =&gt; &#123;</span><br></pre></td></tr></table></figure>
+<p>状态钩子的用法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import &#123; useState &#125; from &#x27;react&#x27;</span><br><span class="line"></span><br><span class="line">const App = () =&gt; &#123;</span><br><span class="line">  const [ counter, setCounter ] = useState(0)</span><br><span class="line">  setTimeout(</span><br><span class="line">    () =&gt; setCounter(counter + 1),</span><br><span class="line">    1000</span><br><span class="line">  )</span><br><span class="line">  return &lt;div&gt;&#123;counter&#125;&lt;/div&gt;</span><br><span class="line">&#125;</span><br><span class="line">export default App</span><br></pre></td></tr></table></figure>
+<p>事件处理：注意要求的事件处理器是对函数的引用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const App = () =&gt; &#123;</span><br><span class="line">  const [ counter, setCounter ] = useState(0)</span><br><span class="line">  const handleClick = () =&gt; &#123;</span><br><span class="line">    console.log(&#x27;clicked&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;div&gt;&#123;counter&#125;&lt;/div&gt;</span><br><span class="line">      &lt;button onClick=&#123;handleClick&#125;&gt;</span><br><span class="line">        plus</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="深入-react-应用调试">深入 React 应用调试</h2>
+<p>复杂状态：可以使用对象或数组作为状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const App = () =&gt; &#123;</span><br><span class="line">  const [clicks, setClicks] = useState(&#123;</span><br><span class="line">    left: 0, right: 0</span><br><span class="line">  &#125;)</span><br><span class="line">  const handleLeftClick = () =&gt;</span><br><span class="line">  	setClicks(&#123; ...clicks, left: clicks.left + 1 &#125;);</span><br><span class="line"></span><br><span class="line">  const handleRightClick = () =&gt;</span><br><span class="line">  	setClicks(&#123; ...clicks, right: clicks.right + 1 &#125;);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &#123;clicks.left&#125;</span><br><span class="line">      &lt;button onClick=&#123;handleLeftClick&#125;&gt;left&lt;/button&gt;</span><br><span class="line">      &lt;button onClick=&#123;handleRightClick&#125;&gt;right&lt;/button&gt;</span><br><span class="line">      &#123;clicks.right&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>useState</code> 函数<strong>只能</strong>直接在 component
+中定义</p>
+<h1 id="与服务端通信">与服务端通信</h1>
+<h2 id="从渲染集合到模块学习">从渲染集合到模块学习</h2>
+<p>可以使用 <code>map</code> 函数从数组中生成渲染对象，注意要有 key
+属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;notes.map(note =&gt;</span><br><span class="line">          &lt;li key=&#123;note.id&#125;&gt;</span><br><span class="line">            &#123;note.content&#125;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        )&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="表单">表单</h2>
+<p>输入框处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const App = (props) =&gt; &#123;</span><br><span class="line">  const [newNote, setNewNote] = useState(&#x27;a new note...&#x27;)</span><br><span class="line">  const handleNoteChange = (event) =&gt; &#123;</span><br><span class="line">    console.log(event.target.value)</span><br><span class="line">    setNewNote(event.target.value)</span><br><span class="line">  &#125;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;form onSubmit=&#123;addNote&#125;&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          value=&#123;newNote&#125;</span><br><span class="line">          onChange=&#123;handleNoteChange&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;button type=&quot;submit&quot;&gt;save&lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<h2 id="从服务器获取数据">从服务器获取数据</h2>
+<p>使用 <code>json-server</code></p>
+<p>安装为开发依赖项：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install json-server --save-dev</span><br></pre></td></tr></table></figure>
+<p>在 <code>package.json</code> 文件的 <code>scripts</code>
+部分做一个小小的补充：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;server&quot;</span>: <span class="string">&quot;json-server -p3001 --watch db.json&quot;</span></span><br></pre></td></tr></table></figure>
+<p>数据存储在 <code>db.json</code> 中</p>
+<p>使用 <code>axion</code> 库来代替浏览器和服务器之间的通信</p>
+<p>effect hook 可以对函数组件进行副作用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">useEffect(() =&gt; &#123;</span><br><span class="line">  console.log(&#x27;effect&#x27;)</span><br><span class="line">  axios</span><br><span class="line">    .get(&#x27;http://localhost:3001/notes&#x27;).then(response =&gt; &#123;</span><br><span class="line">      console.log(&#x27;promise fulfilled&#x27;)</span><br><span class="line">      setNotes(response.data)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;, [])</span><br></pre></td></tr></table></figure>
+<p><code>useEffect</code> 第二个参数用于指定效果的运行频率，这里使用
+<code>[]</code> 表示只在第一次渲染时运行</p>
+<h2 id="在服务端将数据-alert-出来">在服务端将数据 Alert 出来</h2>
+<p>json-server 比较接近 RESTful 的 API</p>
+<p>在 REST 中，把单个数据对象称作资源，可以通过 <code>note/3</code>
+找到一个单独的笔记，其中 <code>3</code> 表示该笔记的 id</p>
+<p>json-server 的所有数据用 json 格式发送</p>
+<p>向服务器发送数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">addNote = event =&gt; &#123;</span><br><span class="line">  event.preventDefault()</span><br><span class="line">  const noteObject = &#123;</span><br><span class="line">    content: newNote,</span><br><span class="line">    date: new Date(),</span><br><span class="line">    important: Math.random() &gt; 0.5,</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  axios</span><br><span class="line">    .post(&#x27;http://localhost:3001/notes&#x27;, noteObject)</span><br><span class="line">    .then(response =&gt; &#123;</span><br><span class="line">      setNotes(notes.concat(response.data))</span><br><span class="line">      setNewNote(&#x27;&#x27;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 HTTP PUT 请求来替换整个笔记：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const toggleImportanceOf = id =&gt; &#123;</span><br><span class="line">  const url = `http://localhost:3001/notes/$&#123;id&#125;`</span><br><span class="line">  const note = notes.find(n =&gt; n.id === id)</span><br><span class="line">  const changedNote = &#123; ...note, important: !note.important &#125;</span><br><span class="line"></span><br><span class="line">  axios.put(url, changedNote).then(response =&gt; &#123;</span><br><span class="line">    setNotes(notes.map(note =&gt; note.id !== id ? note : response.data))</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将其分离成一个单独的模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import axios from &#x27;axios&#x27;</span><br><span class="line">const baseUrl = &#x27;http://localhost:3001/notes&#x27;</span><br><span class="line"></span><br><span class="line">const getAll = () =&gt; &#123;</span><br><span class="line">  const request = axios.get(baseUrl)</span><br><span class="line">  return request.then(response =&gt; response.data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const create = newObject =&gt; &#123;</span><br><span class="line">  const request = axios.post(baseUrl, newObject)</span><br><span class="line">  return request.then(response =&gt; response.data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const update = (id, newObject) =&gt; &#123;</span><br><span class="line">  const request = axios.put(`$&#123;baseUrl&#125;/$&#123;id&#125;`, newObject)</span><br><span class="line">  return request.then(response =&gt; response.data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default &#123; getAll, create, update &#125;</span><br></pre></td></tr></table></figure>
+<p>直接调用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">const App = () =&gt; &#123;</span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    noteService</span><br><span class="line">      .getAll()</span><br><span class="line">      .then(initialNotes =&gt; &#123;</span><br><span class="line">        setNotes(initialNotes)</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;, [])</span><br><span class="line"></span><br><span class="line">  const toggleImportanceOf = id =&gt; &#123;</span><br><span class="line">    const note = notes.find(n =&gt; n.id === id)</span><br><span class="line">    const changedNote = &#123; ...note, important: !note.important &#125;</span><br><span class="line">    noteService</span><br><span class="line">      .update(id, changedNote)</span><br><span class="line">      .then(returnedNote =&gt; &#123;</span><br><span class="line">        setNotes(notes.map(note =&gt; note.id !== id ? note : returnedNote))</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const addNote = (event) =&gt; &#123;</span><br><span class="line">    event.preventDefault()</span><br><span class="line">    const noteObject = &#123;</span><br><span class="line">      content: newNote,</span><br><span class="line">      date: new Date().toISOString(),</span><br><span class="line">      important: Math.random() &gt; 0.5</span><br><span class="line">    &#125;</span><br><span class="line">    noteService</span><br><span class="line">      .create(noteObject)</span><br><span class="line">      .then(returnedNote =&gt; &#123;</span><br><span class="line">        setNotes(notes.concat(returnedNote))</span><br><span class="line">        setNewNote(&#x27;&#x27;)</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="给-react-应用加点样式">给 React 应用加点样式</h2>
+<p>除了定义另外一个 css 文件并引入的方法外，还支持内联样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const Footer = () =&gt; &#123;</span><br><span class="line">  const footerStyle = &#123;</span><br><span class="line">    color: &#x27;green&#x27;,</span><br><span class="line">    fontStyle: &#x27;italic&#x27;,</span><br><span class="line">    fontSize: 16</span><br><span class="line">  &#125;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div style=&#123;footerStyle&#125;&gt;</span><br><span class="line">      &lt;br /&gt;</span><br><span class="line">      &lt;em&gt;Note app, Department of Computer Science, University of Helsinki 2022&lt;/em&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="用-nodejs-和-express-写服务端程序">用 NodeJS 和 Express
+写服务端程序</h1>
+<h2 id="node.js-与-express">Node.js 与 Express</h2>
+<p>可以在 package.json 文件中写脚本，并 <code>npm run 脚本名</code>
+运行</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node index.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<p>这里使用 express 库的接口：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> notes = [</span><br><span class="line">  ...</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span><br><span class="line">  response.<span class="title function_">send</span>(<span class="string">&#x27;&lt;h1&gt;Hello World!&lt;/h1&gt;&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/api/notes&#x27;</span>, <span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span><br><span class="line">  response.<span class="title function_">json</span>(notes)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PORT</span> = <span class="number">3001</span></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="variable constant_">PORT</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server running on port <span class="subst">$&#123;PORT&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>使用 nodemon 可以在代码修改后自动重启服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev nodemon</span><br></pre></td></tr></table></figure>
+<p>REST API：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">URL</th>
+<th style="text-align: left;">动作</th>
+<th style="text-align: left;">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">notes/10</td>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;">获取一个资源</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">notes</td>
+<td style="text-align: left;">GET</td>
+<td style="text-align: left;">获取集合中所有的资源</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">notes</td>
+<td style="text-align: left;">POST</td>
+<td style="text-align: left;">基于 request data 创建新的资源</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">notes/10</td>
+<td style="text-align: left;">DELETE</td>
+<td style="text-align: left;">移除该资源</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">notes/10</td>
+<td style="text-align: left;">PUT</td>
+<td style="text-align: left;">用 request data 替代该资源</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">notes/10</td>
+<td style="text-align: left;">PATCH</td>
+<td style="text-align: left;">用 request data 替代该资源的一部分</td>
+</tr>
+</tbody>
+</table>
+<p>获取单独的资源：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/api/notes/:id&#x27;</span>, <span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> id = <span class="title class_">Number</span>(request.<span class="property">params</span>.<span class="property">id</span>)</span><br><span class="line">  <span class="keyword">const</span> note = notes.<span class="title function_">find</span>(<span class="function"><span class="params">note</span> =&gt;</span> note.<span class="property">id</span> === id)</span><br><span class="line">  response.<span class="title function_">json</span>(note)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>删除资源：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">delete</span>(<span class="string">&#x27;/api/notes/:id&#x27;</span>, <span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> id = <span class="title class_">Number</span>(request.<span class="property">params</span>.<span class="property">id</span>)</span><br><span class="line">  notes = notes.<span class="title function_">filter</span>(<span class="function"><span class="params">note</span> =&gt;</span> note.<span class="property">id</span> !== id)</span><br><span class="line">  response.<span class="title function_">status</span>(<span class="number">204</span>).<span class="title function_">end</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>vscode 可以装 REST client 插件测试</p>
+<p>接收数据要加入 json 解释器：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>()) <span class="comment">// 加入 json 解释器</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">generateId</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> maxId = notes.<span class="property">length</span> &gt; <span class="number">0</span> ? <span class="title class_">Math</span>.<span class="title function_">max</span>(...notes.<span class="title function_">map</span>(<span class="function"><span class="params">n</span> =&gt;</span> n.<span class="property">id</span>)) : <span class="number">0</span></span><br><span class="line">  <span class="keyword">return</span> maxId + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">post</span>(<span class="string">&#x27;/api/notes&#x27;</span>, <span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> body = request.<span class="property">body</span></span><br><span class="line">  <span class="keyword">if</span> (!body.<span class="property">content</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> response.<span class="title function_">status</span>(<span class="number">400</span>).<span class="title function_">json</span>(&#123;</span><br><span class="line">      <span class="attr">error</span>: <span class="string">&#x27;content missing&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> note = &#123;</span><br><span class="line">    <span class="attr">content</span>: body.<span class="property">content</span>,</span><br><span class="line">    <span class="attr">important</span>: body.<span class="property">important</span> || <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">date</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(),</span><br><span class="line">    <span class="attr">id</span>: <span class="title function_">generateId</span>(),</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  notes = notes.<span class="title function_">concat</span>(note)</span><br><span class="line">  response.<span class="title function_">json</span>(note)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>注意 REST 测试时要指明数据类型：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">http://localhost:3001/api/notes/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">content-type</span><span class="punctuation">: </span>application/json</span><br><span class="line"></span><br><span class="line"><span class="language-json"><span class="punctuation">&#123;</span></span></span><br><span class="line"><span class="language-json">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sample&quot;</span><span class="punctuation">,</span></span></span><br><span class="line"><span class="language-json">    <span class="attr">&quot;time&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Wed, 21 Oct 2015 18:27:50 GMT&quot;</span></span></span><br><span class="line"><span class="language-json"><span class="punctuation">&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>json-parser 是一个<strong>中间件</strong>，可以用来处理 request 和
+response 的函数</p>
+<h2 id="把应用部署到网上">把应用部署到网上</h2>
+<p>因为一些跨域请求默认是被禁止的，故可以使用 cors
+中间件来运行其他来源的请求</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">&#x27;cors&#x27;</span>)</span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>())</span><br></pre></td></tr></table></figure>
+<p>部署后端</p>
+<p>部署前端：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;build:ui&quot;</span><span class="punctuation">:</span> <span class="string">&quot;rm -rf build &amp;&amp; cd ../part2-notes/ &amp;&amp; npm run build &amp;&amp; cp -r build ../notes-backend&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;deploy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;git push heroku main&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;deploy:full&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npm run build:ui &amp;&amp; git add . &amp;&amp; git commit -m uibuild &amp;&amp; npm run deploy&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;logs:prod&quot;</span><span class="punctuation">:</span> <span class="string">&quot;heroku logs --tail&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>因为前端修改为了相对路径（前端和后端部署在了一起），故无法在本地调试前端，可以在本地添加一个代理：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;proxy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http://localhost:3001&quot;</span></span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%B5%AB%E5%B0%94%E8%BE%9B%E5%9F%BA%E5%A4%A7%E5%AD%A6/">赫尔辛基大学</a><a class="post-meta__tags" href="/tags/web/">web</a></div><div class="post_share"><div class="social-share" data-image="/gallery/cover/%E5%85%A8%E6%A0%88%E5%85%AC%E5%BC%80%E8%AF%BE.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/cc1b9611.html" title="JavaScript"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/JavaScript.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JavaScript</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="iconfont icon-tuijian"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/cc1b9611.html" title="JavaScript"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/JavaScript.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-25</div><div class="title">JavaScript</div></div></a></div><div><a href="/posts/5dc45f0c.html" title="Jupyter Notebook 学习笔记"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Jupyter%20Notebook%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-16</div><div class="title">Jupyter Notebook 学习笔记</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">old_driver_zero</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">156</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-RSS_flat"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/old-driver-zero" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"/></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" target="_blank" title="QQ邮箱" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" target="_blank" title="Steam" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"/></svg></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-mulu"/></svg></a><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#web-app-%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">Web app 基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#react-%E5%85%A5%E9%97%A8"><span class="toc-number">2.</span> <span class="toc-text">React 入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#react-%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">React 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-number">2.2.</span> <span class="toc-text">组件状态，事件处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%85%A5-react-%E5%BA%94%E7%94%A8%E8%B0%83%E8%AF%95"><span class="toc-number">2.3.</span> <span class="toc-text">深入 React 应用调试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%80%9A%E4%BF%A1"><span class="toc-number">3.</span> <span class="toc-text">与服务端通信</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%B8%B2%E6%9F%93%E9%9B%86%E5%90%88%E5%88%B0%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.1.</span> <span class="toc-text">从渲染集合到模块学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-number">3.2.</span> <span class="toc-text">表单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">3.3.</span> <span class="toc-text">从服务器获取数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%B0%86%E6%95%B0%E6%8D%AE-alert-%E5%87%BA%E6%9D%A5"><span class="toc-number">3.4.</span> <span class="toc-text">在服务端将数据 Alert 出来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99-react-%E5%BA%94%E7%94%A8%E5%8A%A0%E7%82%B9%E6%A0%B7%E5%BC%8F"><span class="toc-number">3.5.</span> <span class="toc-text">给 React 应用加点样式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8-nodejs-%E5%92%8C-express-%E5%86%99%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A8%8B%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text">用 NodeJS 和 Express
+写服务端程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#node.js-%E4%B8%8E-express"><span class="toc-number">4.1.</span> <span class="toc-text">Node.js 与 Express</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E5%88%B0%E7%BD%91%E4%B8%8A"><span class="toc-number">4.2.</span> <span class="toc-text">把应用部署到网上</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright"><span><b>&copy;2022 - 2023</b></span><span><b>&nbsp;&nbsp;By old_driver_zero</b></span></div><div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" title="博客框架为Hexo_v6.4.0" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Frame-Hexo-blue.svg" alt></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" title="主题版本Butterfly_v4.8.1" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Theme-Butterfly-6513df.svg" alt></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" title="本站采用多线部署，主线路托管于Vercel" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Hosted-Vercel-brightgreen.svg" alt></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本网站源码由Github提供存储仓库" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src=" https://sourcebucket.s3.ladydaily.com/badge/Source-Github-d021d6.svg" alt></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://my-twikoo-puce.vercel.app/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://my-twikoo-puce.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script async src="//at.alicdn.com/t/c/font_4031045_8r6cr7hwlv.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div></html>

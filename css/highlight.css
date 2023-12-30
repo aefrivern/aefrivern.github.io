@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">:root {
+:root {
     --hl-color: #586875;      /*代码框字体顔色 【必须】 (把下面.hljs的 color复製到这里来)*/
     --hl-bg: #F5F7FA;         /*代码框背景色 【必须】 (把下面.hljs的 background复製到这里来)*/
     --hltools-bg: #321a0f;    /*代码框顶部工具栏背景色 【可选】(如果你关掉了 copy、lang 和 shrink,可不用配置这个）*/

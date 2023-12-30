@@ -1,0 +1,522 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>JavaScript | old-driver-zeroの小屋</title><meta name="author" content="old_driver_zero"><meta name="copyright" content="old_driver_zero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="写在最前 JavaScript 和 Java 没有任何关系，这个名字是为了蹭 Java 的热度 1console.log(&quot;Hello, world!&quot;); 值，类型，操作符 数字，64 位，包括小数 算术，% 是取余 特殊的数：Infinity，-Infinity，NaN 字符串有三种方式：&#96;&#96;, ””, ’&#39;，使用 Unicode，特殊字符需要  转义，第">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript">
+<meta property="og:url" content="https://old-driver-zero.github.io/posts/cc1b9611.html">
+<meta property="og:site_name" content="old-driver-zeroの小屋">
+<meta property="og:description" content="写在最前 JavaScript 和 Java 没有任何关系，这个名字是为了蹭 Java 的热度 1console.log(&quot;Hello, world!&quot;); 值，类型，操作符 数字，64 位，包括小数 算术，% 是取余 特殊的数：Infinity，-Infinity，NaN 字符串有三种方式：&#96;&#96;, ””, ’&#39;，使用 Unicode，特殊字符需要  转义，第">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://old-driver-zero.github.io/gallery/cover/JavaScript.webp">
+<meta property="article:published_time" content="2023-12-25T02:32:05.141Z">
+<meta property="article:modified_time" content="2023-12-30T06:58:17.957Z">
+<meta property="article:author" content="old_driver_zero">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://old-driver-zero.github.io/gallery/cover/JavaScript.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://old-driver-zero.github.io/posts/cc1b9611.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//hm.baidu.com"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?da75f0595ffd5e578744142f5a6a471e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JavaScript',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-30 14:58:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_8r6cr7hwlv.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/scrollbar.css"><link rel="stylesheet" href="/css/barber-shop.css"><link rel="stylesheet" href="/css/navigation bar.css"><link rel="stylesheet" href="/css/article title.css"><link rel="stylesheet" href="/css/card author.css"><link rel="stylesheet" href="/css/transpancy.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css">
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="old-driver-zeroの小屋" type="application/atom+xml">
+</head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">156</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/gallery/cover/JavaScript.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JavaScript</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-25T02:32:05.141Z" title="发表于 2023-12-25 10:32:05">2023-12-25</time><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-30T06:58:17.957Z" title="更新于 2023-12-30 14:58:17">2023-12-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><a class="faa-parent animated-hover"></a><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-word"/></svg><span class="post-meta-label">字数总计:</span><span class="word-count">2187</span><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-shizhong"/></svg><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="写在最前">写在最前</h1>
+<p>JavaScript 和 Java <strong>没有任何关系</strong>，这个名字是为了蹭
+Java 的热度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="值类型操作符">值，类型，操作符</h1>
+<p>数字，64 位，包括小数</p>
+<p>算术，<code>%</code> 是取余</p>
+<p>特殊的数：<code>Infinity</code>，<code>-Infinity</code>，<code>NaN</code></p>
+<p>字符串有三种方式：<strong>``</strong>, <strong>””</strong>,
+<strong>’'</strong>，使用 Unicode，特殊字符需要  转义，第一个中可以使用
+${100 / 2} 等模板字面义</p>
+<p><code>typeof</code> 操作符输出类型，如 <code>typeof 4.5</code></p>
+<p>布尔值，注意 NaN != NaN</p>
+<p>逻辑操作：<code>$$</code>，<code>||</code>，短路</p>
+<p>三元运算符：<code>? :</code></p>
+<p>空值：<code>null</code> 和 <code>undefined</code>，注意 null ==
+undefined</p>
+<p>自动类型转换，如 <code>“” == false</code></p>
+<p>如果在比较时不想要自动类型转换，则使用 <code>===</code> 和
+<code>!==</code>，如 <code>“” !== false</code></p>
+<h1 id="程序结构">程序结构</h1>
+<p>语句有时可以不用分号隔开，但保险起见还是都用分号隔开</p>
+<p>绑定，或变量：<code>let a = 5;</code>；还有另一种写法
+<code>var</code>，是老式的写法，和 <code>let</code>
+的区别在于作用域只限定于函数，而 <code>let</code>
+支持块作用域。通常无脑使用 <code>let</code></p>
+<p>常量使用 <code>const</code>，注意是其指向的对象固定，即可以向一个
+<code>const</code> 列表中添加元素</p>
+<p>未赋初值的绑定的值是 <code>undefined</code></p>
+<p>绑定名称可以使用 $ 和 _</p>
+<p><code>if</code>、<code>while</code>、<code>for</code>、<code>break</code>、<code>switch-case</code></p>
+<p>命名推荐使用驼峰命名法，如 <code>JavaScript</code></p>
+<h1 id="函数">函数</h1>
+<p>定义函数有三种方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> square1 = <span class="keyword">function</span>(<span class="params">x</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;; <span class="comment">// 注意有分号</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数声明，区别在于会自动提到最前面，即可以在这之前就调用 square2 函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">square2</span>(<span class="params">x</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125; <span class="comment">// 无分号</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">square3</span> = (<span class="params">x</span>) =&gt; &#123;<span class="keyword">return</span> x * x&#125;;</span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">square3_2</span> = x =&gt; x * x;</span><br></pre></td></tr></table></figure>
+<p>可以在函数中定义函数</p>
+<p>参数是可选的，即可以传递过多或过少的参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">suqare</span>(<span class="number">4</span>, <span class="literal">true</span>, <span class="string">&quot;fdjoasdj&quot;</span>); <span class="comment">// 合法</span></span><br></pre></td></tr></table></figure>
+<p>也可以设置参数默认值</p>
+<p>闭包：把函数视为值，返回函数，如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">multiplier</span>(<span class="params">factor</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">number</span> =&gt;</span> number * factor;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> twice = <span class="title function_">multiplier</span>(<span class="number">2</span>)</span><br><span class="line"><span class="title function_">twice</span>(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="数据结构对象和阵列">数据结构：对象和阵列</h1>
+<p>定义列表：<code>let listOfNumbers = [0, 1, 2, 3, 4];</code></p>
+<p>属性，如 <code>listOfNumbers.length</code></p>
+<p>访问属性的方法有两种，还有一种是
+<code>listOfNumbers["length"]</code>，注意这个会计算方括号内的表达式</p>
+<p>对象还有方法，如 <code>listOfNumbers.push(5);</code></p>
+<p>对于列表，尾部操作：<code>push()</code>、<code>pop()</code>，头部操作：<code>shift()</code>、<code>unshift()</code></p>
+<p>对象的定义类似于函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> day1 = &#123;</span><br><span class="line">    <span class="attr">squirrel</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="string">&quot;daily events&quot;</span>: [<span class="string">&quot;work&quot;</span>, <span class="string">&quot;running&quot;</span>] <span class="comment">// 属性名可以用空格分割</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>可以后续添加属性：<code>day1["finished"] = true;</code></p>
+<p><code>delete</code> 可以用于删除某个属性</p>
+<p><code>Object.keys()</code>
+函数可以返回属性名的列表，用其可以遍历所有属性</p>
+<p><code>Object.assign()</code>
+函数从其他对象复制所有属性到某个对象上</p>
+<p>注意在对象的比较时只有两个绑定指向同一个实体时 <code>==</code>
+才会返回 <code>true</code>，即 JavaScript 中没有深度比较</p>
+<p>数组的遍历有简单的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> entry <span class="keyword">of</span> <span class="variable constant_">JOURNAL</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>反过来已知值获取索引有 <code>.indexOf()</code> 和
+<code>.lastIndexOf()</code>
+方法，还有切片方法：<code>.slice()</code></p>
+<p>对于字符串，有
+<code>.trim()</code>，<code>.padStart()</code>，<code>repeat()</code>，<code>.join()</code>，<code>.split()</code>
+等方法<del>终于有类似 Java 的地方了</del></p>
+<p>可以使用剩余参数 <code>...</code> 来接收任意个数的参数，如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">max</span>(<span class="params">...numbers</span>) &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以使用这个记号展开列表：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = [<span class="number">7</span>, <span class="number">9</span>, <span class="number">0</span>];</span><br><span class="line"><span class="title function_">max</span>(<span class="number">10</span>, ...numbers, <span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+<p>Math 对象提供了很多有用的数学函数，如 <code>Math.random()</code></p>
+<p>可以解析列表：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">phi</span>(<span class="params">[n1, n2]</span>) &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对象也适用：<code>let &#123;name&#125; = &#123;name: "Faraji", age: 23&#125;;</code></p>
+<p>JSON 文件可用于序列化数据，与 JavaScript
+的对象格式基本一致<del>不然为什么叫 JavaScript Object
+Notation</del>，但是名称必须用引号，如</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;squirrel&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;events&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;work&quot;</span><span class="punctuation">,</span> <span class="string">&quot;running&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>可以使用 <code>JSON.stringify()</code> 将数据转化为 JSON
+字符串格式；使用 <code>JSON.parse()</code> 则转化 JSON 字符串为 JS
+对象</p>
+<h1 id="高阶函数">高阶函数</h1>
+<p>传递函数为参数</p>
+<p><code>filter()</code>、<code>map()</code>、<code>reduce()</code>
+等取代循环的方法</p>
+<h1 id="对象生命的秘密">对象生命的秘密</h1>
+<p>封装，方法</p>
+<p>原型：可以用 <code>Object.getPrototypeOf()</code>
+获取某对象的原型，原型定义为属性 <code>.prototype</code></p>
+<p>所有对象的最终原型都是 <code>Object.prototype</code></p>
+<p>使用 <code>Object.create()</code> 创建一个特定的原型</p>
+<p>可以直接把函数作为类，也可以显示编写类：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Rabbit</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">type</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">type</span> = type;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">speak</span>(<span class="params">line</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`The <span class="subst">$&#123;<span class="variable language_">this</span>.type&#125;</span> rabbit says &#x27;<span class="subst">$&#123;line&#125;</span>)&#x27;`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> killerRabbit = <span class="keyword">new</span> <span class="title class_">Rabbit</span>(<span class="string">&quot;killer&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>注意到类中可以有方法，但没有属性，必须后面手动设定，如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Rabbit</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">teeth</span> = <span class="string">&quot;small&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>原型属性可以被覆盖</p>
+<p>JS 中还有映射类 <code>Map</code>，相当于字典，有方法
+<code>has()</code>、<code>set()</code>、<code>get()</code></p>
+<p>多态：例如可以重载 <code>toString</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Rabbit</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`a <span class="subst">$&#123;<span class="variable language_">this</span>.type&#125;</span> rabbit`</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>属性名称实际上不是字符串，而是 <code>Symbol</code></p>
+<p>可迭代对象有一个 <code>Symbol.iterator</code> 方法，其有一个
+<code>next</code> 方法，返回 <code>value-done</code> 对</p>
+<p>一些似乎可以“直接”访问的属性其本质上也通过了函数调用，如
+<code>.size</code>；定义方法为在方法名前加 <code>get</code> 或
+<code>set</code></p>
+<p>继承，如 <code>class SymmetricMatrix extends Matrix</code></p>
+<p>调用父类的方法则使用 <code>super</code></p>
+<p><code>instanceof</code> 返回是否是某个类的实例，所有对象都是
+<code>Object</code> 的实例</p>
+<h1 id="bug-和错误">Bug 和错误</h1>
+<p>在程序或函数开头可以加上 <code>“use strict”</code> 进入严格模式，此处
+JS 语法更严格</p>
+<p>JavaScript 的强类型版本——TypeScript</p>
+<p>编写测试</p>
+<p>对于出错，可以返回一个特殊值，如
+<code>null</code>、<code>undefined</code>、<code>-1</code></p>
+<p>抛出异常：<code>throw new Error("message");</code></p>
+<p>捕捉异常：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意这会捕捉所有异常，如果想要捕捉特定类型的异常，可以</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InputError</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Error</span>();</span><br><span class="line"><span class="keyword">try</span> &#123;&#125; <span class="keyword">catch</span> (e) &#123;<span class="keyword">if</span> (e <span class="keyword">instanceof</span> <span class="title class_">InputError</span>) &#123;&#125; <span class="keyword">else</span> &#123;&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="正则表达式">正则表达式</h1>
+<p>两种写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> re1 = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> re2 = <span class="regexp">/abc/</span>;</span><br></pre></td></tr></table></figure>
+<p>调用：<code>test("")</code>、<code>exec()</code>、<code>search()</code>、<code>replace()</code></p>
+<h1 id="模块">模块</h1>
+<p>模块，包</p>
+<p>包管理器的 NPM</p>
+<p>CommonJS
+的引入模块方案：<code>const ordinal = require("ordinal")</code></p>
+<p>新版的方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ordinal <span class="keyword">from</span> <span class="string">&quot;ordinal&quot;</span>; <span class="comment">// 引入</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">formatData</span>(<span class="params">data, format</span>) &#123;...&#125; <span class="comment">// 导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> [<span class="string">&quot;Spring&quot;</span>, <span class="string">&quot;Winter&quot;</span>] <span class="comment">// 不指定名字的默认导出</span></span><br></pre></td></tr></table></figure>
+<p>可能会使用某些 JS 方言编写，在发布时为了兼容性，会编译为较老版本的
+JS</p>
+<p>因为一个个小的模块不方便传输，所以通常会在发布时合并成较大的模块，叫做
+bundling</p>
+<p>为了节省空间，在发布时可能删除空格和注释，替换代码等，叫 minifier</p>
+<h1 id="异步编程">异步编程</h1>
+<p>JavaScript 完全使用单线程</p>
+<p><strong>回调 callback</strong> 函数：当动作结束时调用函数，如
+<code>setTimeout(() =&gt; console.log("Tick"), 500);</code></p>
+<p>JS 中是可能在某个时刻完成并产生某个值的异步 action，创建的办法是
+<code>Promise.resolve()</code></p>
+<p><code>.then()</code> 在 promise 产生一个值的时候调用回调函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fifteen = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="number">15</span>);</span><br><span class="line">fifteen.<span class="title function_">then</span>(<span class="function"><span class="params">value</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Got <span class="subst">$&#123;value&#125;</span>`</span>));</span><br></pre></td></tr></table></figure>
+<p>对于异步中的异常，有 <code>Promise.reject</code>() 函数</p>
+<p>对于 promise 集合，<code>Promise.all()</code> 返回一个等待所有
+promises 被解决并产生值的 promise</p>
+<p>可以像同步一样异步编程，只需要在函数之前加上
+<code>async</code>，等待获得的值前加上 <code>await</code>，如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">findInStorage</span>(<span class="params">nest, name</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> local = <span class="keyword">await</span> <span class="title function_">storage</span>(nest, name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以暂停和恢复的函数类似于异步，但是没有 promise，这种函数叫
+generator，只有在调用 <code>.next()</code> 时才会产生下一个值，其在
+<code>function</code> 后加上 <code>*</code>，使用 <code>yield</code>
+返回数据，如 iterator 可以简化为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Group</span>.<span class="property"><span class="keyword">prototype</span></span>[<span class="title class_">Symbol</span>.<span class="property">iterator</span>] = <span class="keyword">function</span>*() &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i , <span class="variable language_">this</span>.<span class="property">members</span>.<span class="property">length</span>; i++)</span><br><span class="line">        <span class="keyword">yield</span> <span class="variable language_">this</span>.<span class="property">members</span>[i];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>异步调度</p>
+<h1 id="javascript-和浏览器">JavaScript 和浏览器</h1>
+<p>html 中的标签：<code>&lt;script&gt; &lt;/script&gt;</code></p>
+<p>浏览器中环境隔离</p>
+<h1 id="文档对象模型">文档对象模型</h1>
+<p>DOM 类似于一棵树的结构</p>
+<p>书上的一些遍历操作：<code>.childNodes</code>、<code>ELEMENT_NODE</code></p>
+<p>获取元素：<code>.getElementsByTagName("a")</code> 或
+<code>.getElementById("")</code></p>
+<p>改变文档：</p>
+<ul>
+<li>删除 <code>.remove()</code></li>
+<li>添加 <code>.appendChild()</code></li>
+<li>替换 <code>.replaceChild(新结点，被替换结点)</code></li>
+<li>插入 <code>.insertBefore(新结点，插入结点)</code></li>
+<li>创建结点 <code>.createTextNode()</code></li>
+</ul>
+<p>可以使用 <code>.getAttribute()</code> 和 <code>.setAttribute()</code>
+操作元素的属性</p>
+<p>调整布局：<code>.offsetWidth</code>、<code>offsetHeight</code>、<code>clientWidth</code>、<code>clientHeigtht</code></p>
+<p>访问 <code>style</code> 属性修改样式</p>
+<p>css</p>
+<p>动画：<code>requestAnimationFrame()</code></p>
+<p><code>.querySelectorAll()</code> 和 <code>.querySelector()</code> 与
+<code>.getElementByTagName()</code>
+等不同，其返回的对象不是活着的，即当改变文档时不会改变。且依旧不是一个真的数组，需要使用
+<code>Array.from()</code></p>
+<h1 id="处理事件">处理事件</h1>
+<p>一个点击的例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	windows.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;You knocked?&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>第二个参数就是一个 event handler</p>
+<p>事件对象可能有一些信息，如</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	button.<span class="title function_">addEventListener</span>(<span class="string">&quot;mousedown&quot;</span>, <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (event.<span class="property">button</span> == <span class="number">0</span>)</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Left button&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>事件处理器按照从小到大的顺序发生，如果想要阻止传递，使用
+<code>event.stopPropagation()</code></p>
+<p>很多事件已经定义了默认行为，可以使用
+<code>event.preventDefault()</code> 显示阻止该事件的默认行为</p>
+<p>键盘：<code>keydown</code>、<code>keyup</code>、<code>ctrlKey</code>、<code>metaKey</code>
+属性等</p>
+<p>对于指针，有 <code>clientX</code> 等属性</p>
+<p>scroll 事件</p>
+<p>focus 事件</p>
+<p>load 事件</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/web/">web</a><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a></div><div class="post_share"><div class="social-share" data-image="/gallery/cover/JavaScript.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/320cf12b.html" title="全栈公开课"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%85%A8%E6%A0%88%E5%85%AC%E5%BC%80%E8%AF%BE.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">全栈公开课</div></div></a></div><div class="next-post pull-right"><a href="/posts/447a8d68.html" title="Stanford CS144：计算机网络导论"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Stanford%20CS144%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AF%BC%E8%AE%BA.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Stanford CS144：计算机网络导论</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="iconfont icon-tuijian"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/320cf12b.html" title="全栈公开课"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%85%A8%E6%A0%88%E5%85%AC%E5%BC%80%E8%AF%BE.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-27</div><div class="title">全栈公开课</div></div></a></div><div><a href="/posts/5dc45f0c.html" title="Jupyter Notebook 学习笔记"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Jupyter%20Notebook%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-16</div><div class="title">Jupyter Notebook 学习笔记</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">old_driver_zero</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">156</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-RSS_flat"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/old-driver-zero" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"/></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" target="_blank" title="QQ邮箱" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" target="_blank" title="Steam" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"/></svg></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-mulu"/></svg></a><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D"><span class="toc-number">1.</span> <span class="toc-text">写在最前</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%80%BC%E7%B1%BB%E5%9E%8B%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">2.</span> <span class="toc-text">值，类型，操作符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">程序结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%98%B5%E5%88%97"><span class="toc-number">5.</span> <span class="toc-text">数据结构：对象和阵列</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">高阶函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%94%9F%E5%91%BD%E7%9A%84%E7%A7%98%E5%AF%86"><span class="toc-number">7.</span> <span class="toc-text">对象生命的秘密</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bug-%E5%92%8C%E9%94%99%E8%AF%AF"><span class="toc-number">8.</span> <span class="toc-text">Bug 和错误</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">9.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97"><span class="toc-number">10.</span> <span class="toc-text">模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="toc-number">11.</span> <span class="toc-text">异步编程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#javascript-%E5%92%8C%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">12.</span> <span class="toc-text">JavaScript 和浏览器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">13.</span> <span class="toc-text">文档对象模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E4%BA%8B%E4%BB%B6"><span class="toc-number">14.</span> <span class="toc-text">处理事件</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright"><span><b>&copy;2022 - 2023</b></span><span><b>&nbsp;&nbsp;By old_driver_zero</b></span></div><div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" title="博客框架为Hexo_v6.4.0" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Frame-Hexo-blue.svg" alt></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" title="主题版本Butterfly_v4.8.1" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Theme-Butterfly-6513df.svg" alt></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" title="本站采用多线部署，主线路托管于Vercel" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Hosted-Vercel-brightgreen.svg" alt></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本网站源码由Github提供存储仓库" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src=" https://sourcebucket.s3.ladydaily.com/badge/Source-Github-d021d6.svg" alt></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://my-twikoo-puce.vercel.app/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://my-twikoo-puce.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script async src="//at.alicdn.com/t/c/font_4031045_8r6cr7hwlv.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div></html>
