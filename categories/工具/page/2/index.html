@@ -9,20 +9,20 @@
 <meta property="article:author" content="old_driver_zero">
 <meta property="article:tag" content="ACG Computer Live">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://old-driver-zero.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://old-driver-zero.github.io/categories/%E5%B7%A5%E5%85%B7/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//hm.baidu.com"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://old-driver-zero.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://old-driver-zero.github.io/categories/%E5%B7%A5%E5%85%B7/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//hm.baidu.com"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?da75f0595ffd5e578744142f5a6a471e";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
-</script><script>const GLOBAL_CONFIG = { 
+</script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
   localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
   translate: undefined,
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
   copy: {
     success: '复制成功',
     error: '复制错误',
@@ -43,11 +43,9 @@
   copyright: undefined,
   lightbox: 'fancybox',
   Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
   islazyload: true,
@@ -55,92 +53,86 @@
   percent: {
     toc: true,
     rightside: false,
-  }
+  },
+  autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: '分类: 工具',
   isPost: false,
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-30 16:51:13'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
+  postUpdate: '2024-01-01 13:21:26'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
         }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
         }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
 
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
         }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
         }
       }
-      win.activateLightMode = function () {
+      win.activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
@@ -148,9 +140,9 @@
       }
       const t = saveToLocal.get('theme')
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
       const asideStatus = saveToLocal.get('aside-status')
       if (asideStatus !== undefined) {
         if (asideStatus === 'hide') {
@@ -160,13 +152,13 @@
         }
       }
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
       }
-    }
-    detectApple()
-    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_8r6cr7hwlv.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/article title.css"><link rel="stylesheet" href="/css/card author.css"><link rel="stylesheet" href="/css/transpancy.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css">
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/article title.css"><link rel="stylesheet" href="/css/card author.css"><link rel="stylesheet" href="/css/transpancy.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css">
 <style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
   white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
 <link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="old-driver-zeroの小屋" type="application/atom+xml">
@@ -177,38 +169,403 @@
 document.addEventListener('pjax:send', () => {
   Pace.restart()
 })
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">156</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">工具</h1></div></header><main class="layout" id="content-inner"><div id="category"><div class="article-sort-title">分类 - 工具</div><div class="article-sort"><div class="article-sort-item year">2023</div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/d7fdf01f.html" title="Qt 学习笔记"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Qt%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" alt="Qt 学习笔记" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-04-12T05:04:08.871Z" title="发表于 2023-04-12 13:04:08">2023-04-12</time></div><a class="article-sort-item-title" href="/posts/d7fdf01f.html" title="Qt 学习笔记">Qt 学习笔记</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/3c3cdb74.html" title="Git 学习笔记"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Git%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" alt="Git 学习笔记" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-04-08T10:55:30.180Z" title="发表于 2023-04-08 18:55:30">2023-04-08</time></div><a class="article-sort-item-title" href="/posts/3c3cdb74.html" title="Git 学习笔记">Git 学习笔记</a></div></div><div class="article-sort-item year">2022</div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/5f2caa2c.html" title="颜色名称及色样表（HTML版）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E9%A2%9C%E8%89%B2%E5%90%8D%E7%A7%B0%E5%8F%8A%E8%89%B2%E6%A0%B7%E8%A1%A8%EF%BC%88HTML%E7%89%88%EF%BC%89.webp" alt="颜色名称及色样表（HTML版）" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-11-03T11:10:19.864Z" title="发表于 2022-11-03 19:10:19">2022-11-03</time></div><a class="article-sort-item-title" href="/posts/5f2caa2c.html" title="颜色名称及色样表（HTML版）">颜色名称及色样表（HTML版）</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/41f65cde.html" title="pandoc 中提供的 markdown 特殊扩展功能"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/pandoc%20%E4%B8%AD%E6%8F%90%E4%BE%9B%E7%9A%84%20markdown%20%E7%89%B9%E6%AE%8A%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD.webp" alt="pandoc 中提供的 markdown 特殊扩展功能" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-11-03T10:05:53.234Z" title="发表于 2022-11-03 18:05:53">2022-11-03</time></div><a class="article-sort-item-title" href="/posts/41f65cde.html" title="pandoc 中提供的 markdown 特殊扩展功能">pandoc 中提供的 markdown 特殊扩展功能</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/84cae757.html" title="Butterfly 外挂标签"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Butterfly%20%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE.webp" alt="Butterfly 外挂标签" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-11-02T04:11:42.099Z" title="发表于 2022-11-02 12:11:42">2022-11-02</time></div><a class="article-sort-item-title" href="/posts/84cae757.html" title="Butterfly 外挂标签">Butterfly 外挂标签</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/4d2b51ac.html" title="Markdown &amp; LaTeX 常用数学符号和公式"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Markdown%20&amp;%20LaTeX%20%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E5%92%8C%E5%85%AC%E5%BC%8F.webp" alt="Markdown &amp; LaTeX 常用数学符号和公式" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-11-01T16:00:00.000Z" title="发表于 2022-11-02 00:00:00">2022-11-02</time></div><a class="article-sort-item-title" href="/posts/4d2b51ac.html" title="Markdown &amp; LaTeX 常用数学符号和公式">Markdown &amp; LaTeX 常用数学符号和公式</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/70685119.html" title="Markdown 基础语法汇总"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Markdown%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB.webp" alt="Markdown 基础语法汇总" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-11-01T09:21:49.106Z" title="发表于 2022-11-01 17:21:49">2022-11-01</time></div><a class="article-sort-item-title" href="/posts/70685119.html" title="Markdown 基础语法汇总">Markdown 基础语法汇总</a></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/categories/%E5%B7%A5%E5%85%B7/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">old_driver_zero</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">156</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-RSS_flat"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/old-driver-zero" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"/></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" target="_blank" title="QQ邮箱" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" target="_blank" title="Steam" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"/></svg></a></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">159</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"/></svg><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">工具</h1></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/posts/d7fdf01f.html" title="Qt 学习笔记"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Qt%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qt 学习笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/d7fdf01f.html" title="Qt 学习笔记">Qt 学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-12T05:04:08.871Z" title="发表于 2023-04-12 13:04:08">2023-04-12</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-02T05:12:59.222Z" title="更新于 2023-12-02 13:12:59">2023-12-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/C/">C++</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Qt/">Qt</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/GUI/">GUI</a></span></div><div class="content">下载和安装
+
+官网
+国内镜像网站
+
+中国科学技术大学：http://mirrors.ustc.edu.cn/qtproject/
+清华大学：https://mirrors.tuna.tsinghua.edu.cn/qt/
+北京理工大学：http://mirror.bit.edu.cn/qtproject/
+中国互联网络信息中心：https://mirrors.cnnic.cn/qt/
+
+
+安装时如果操作系统为 Windows，则应该安装 MinGW 版本
+Qt Creator
+
+QWidget 类：不带菜单栏的
+QMainWindow 类：带菜单栏的
+
+界面：代码实现和图形界面分开
+代码区有头文件和相应的实现（都在类中）
+图形界面有插件和相应的属性设置
+有不知道的命令可以在左侧帮助中查
+1234567891011#include &quot;widget.h&quot;#include &lt;QApplication&gt; // 包含一个应用程序类的文件int main(int argc, char *argv[])&#123;    QA ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/3c3cdb74.html" title="Git 学习笔记"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Git%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git 学习笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/3c3cdb74.html" title="Git 学习笔记">Git 学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-08T10:55:30.180Z" title="发表于 2023-04-08 18:55:30">2023-04-08</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-16T04:33:46.090Z" title="更新于 2023-09-16 12:33:46">2023-09-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/Git/">Git</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">版本管理</a></span></div><div class="content">简介
+Git
+是一种分布式版本控制系统，和集中式版本控制系统相对，其特点是每个用户在本地都有一份完整的版本库。
+Git 的优点：
+
+直接记录快照，而非差异比较。如果文件没有更改，Git
+不会重新存储该文件，而是建立一个链接，故能节省空间。建议某转发文件存多份的互联网大厂好好学一下
+近乎所有操作都是本地执行。不需要连接服务器，速度快，且可以在无网络的环境下工作
+保证完整性。所有数据在储存前都会计算检验和
+一般只添加数据。能够保证 Git 可以成功恢复之前的版本
+
+文件的三种状态：
+
+已提交 committed
+已修改 modified
+已暂存 staged
+
+Git 的三个区域：
+
+工作区
+暂存区
+Git 目录
+
+
+
+三种区域及其关系
+
+基本的 Git 工作流程如下：
+
+在工作区中修改文件
+将你想要下次提交的更改选择性地暂存。将更改的部分添加到暂存区
+提交更新。将暂存区的文件的快照永久性存储到 Git 目录
+
+起步
+安装与美化
+官网下载
+把 Git Bash 添加到 Windows Terminal 中：
+在 Wi ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/5f2caa2c.html" title="颜色名称及色样表（HTML版）"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E9%A2%9C%E8%89%B2%E5%90%8D%E7%A7%B0%E5%8F%8A%E8%89%B2%E6%A0%B7%E8%A1%A8%EF%BC%88HTML%E7%89%88%EF%BC%89.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="颜色名称及色样表（HTML版）"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/5f2caa2c.html" title="颜色名称及色样表（HTML版）">颜色名称及色样表（HTML版）</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-03T11:10:19.864Z" title="发表于 2022-11-03 19:10:19">2022-11-03</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-16T04:59:39.786Z" title="更新于 2023-09-16 12:59:39">2023-09-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/HTML/">HTML</a></span></div><div class="content">
+
+
+
+ 
+
+
+颜色名
+
+
+中文名称
+
+
+Hex RGB
+
+
+十进制 Decimal
+
+
+ 
+
+
+
+
+ 
+
+
+LightPink
+
+
+浅粉红
+
+
+#FFB6C1
+
+
+255,182,193
+
+
+ 
+
+
+
+
+ 
+
+
+Pink
+
+
+粉红
+
+
+#FFC0CB
+
+
+255,192,203
+
+
+ 
+
+
+
+
+ 
+
+
+Crimson
+
+
+深红(猩红)
+
+
+#DC143C
+
+
+220,20,60
+
+
+ 
+
+
+
+
+ 
+
+
+LavenderBlush
+
+
+淡紫红
+
+
+#FFF0F5
+
+
+255,240,245
+
+
+ 
+
+
+
+
+ 
+
+
+PaleVioletRed
+
+
+弱紫罗兰红
+
+
+#DB7093
+
+
+219,112,147
+
+
+ 
+
+
+
+
+ 
+
+
+HotPink
+
+
+热情的粉红
+
+
+#FF69B4
+
+
+255,105,180
+
+
+  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/41f65cde.html" title="pandoc 中提供的 markdown 特殊扩展功能"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/pandoc%20%E4%B8%AD%E6%8F%90%E4%BE%9B%E7%9A%84%20markdown%20%E7%89%B9%E6%AE%8A%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="pandoc 中提供的 markdown 特殊扩展功能"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/41f65cde.html" title="pandoc 中提供的 markdown 特殊扩展功能">pandoc 中提供的 markdown 特殊扩展功能</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-03T10:05:53.234Z" title="发表于 2022-11-03 18:05:53">2022-11-03</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-13T09:05:31.436Z" title="更新于 2023-04-13 17:05:31">2023-04-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Markdown/">Markdown</a></span></div><div class="content">
+为什么要替换 Hexo 的默认 Markdown 引擎? Hexo 默认使用 marked.js
+去解析我们写的 markdown，比如一些符号，_
+代表斜体，会被处理为 &lt;em&gt; 标签，比如 x_i
+在开始被渲染的时候，处理为
+x&lt;em&gt;i&lt;/em&gt;，这个时候 mathjax
+就无法渲染成下标了。很多符号都有这个问题，比如粗体
+*，也是无法在 mathjax 渲染出来的，好在有替代的乘法等，包括
+\\ 同理。
+
+下载地址：Github
+目前，NexT 提供两种数学公式渲染引擎，分别为 MathJax 和 Katex，默认为
+MathJax。
+如果你选择使用 MathJax 进行数学公式渲染，你需要使用
+hexo-renderer-pandoc 或者 hexo-renderer-kramed
+这两个渲染器的其中一个。
+这里推荐使用 MathJax + hexo-renderer-pandoc ，并以此为例：
+段落
+在 markdown
+中一个分行符不会将文字拆分成两段，为了段落的拆分，你需要在段落之间插入一个空 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/84cae757.html" title="Butterfly 外挂标签"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Butterfly%20%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Butterfly 外挂标签"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/84cae757.html" title="Butterfly 外挂标签">Butterfly 外挂标签</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-02T04:11:42.099Z" title="发表于 2022-11-02 12:11:42">2022-11-02</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-23T07:18:22.340Z" title="更新于 2023-04-23 15:18:22">2023-04-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/Butterfly/">Butterfly</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a></span></div><div class="content">行内文本样式
+123456带 &#123;% u 下划线 %&#125; 的文本带 &#123;% emp 着重号 %&#125; 的文本带 &#123;% wavy 波浪线 %&#125; 的文本带 &#123;% del 删除线 %&#125; 的文本键盘样式的文本：&#123;% kbd Ctrl %&#125; + &#123;% kbd D %&#125;密码样式的文本：&#123;% psw 这里没有验证码 %&#125;
+带 下划线 的文本
+带 着重号 的文本
+带 波浪线 的文本
+带 删除线 的文本
+键盘样式的文本：Ctrl + D
+密码样式的文本：这里没有验证码
+行内文本 span
+1&#123;% span 样式参数(参数以空格划分), 文本内容 %&#125;
+可选参数：
+
+字体: logo、 code
+颜色:
+red、yellow、green、cyan、blue、gray
+大小:
+small、h4、h3、h2、h1、large、huge、ultra
+对齐方向:
+left、center、right
+
+实例：
+
+彩色文字：红 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/4d2b51ac.html" title="Markdown &amp; LaTeX 常用数学符号和公式"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Markdown%20&amp;%20LaTeX%20%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E5%92%8C%E5%85%AC%E5%BC%8F.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Markdown &amp; LaTeX 常用数学符号和公式"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/4d2b51ac.html" title="Markdown &amp; LaTeX 常用数学符号和公式">Markdown &amp; LaTeX 常用数学符号和公式</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-01T16:00:00.000Z" title="发表于 2022-11-02 00:00:00">2022-11-02</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-28T07:13:55.025Z" title="更新于 2023-05-28 15:13:55">2023-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/LaTeX/">LaTeX</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88/">文字排版</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Markdown/">Markdown</a></span></div><div class="content">如何插入公式
+行中插入公式
+$数学公式$
+例如：$y=ax+b$
+显示：
+与正文独立插入公式
+$$ 数学公式 $$
+例如： $$ y=ax+b $$
+显示：
+常见数学符号和公式
+上下标
+
+
+
+显示
+代码
+描述
+
+
+
+
+
+x^{2}
+上标，例如：x 的平方
+
+
+
+x_{i}
+下标，例如：第 i 个 x
+
+
+
+括号和分隔符
+()、[] 和 | 可以直接输入
+
+
+
+显示
+代码
+显示
+代码
+描述
+
+
+
+
+
+\langle
+
+\rangle
+尖括号
+
+
+
+\{
+
+\}
+花括号
+
+
+
+分数
+
+分数通常使用 \frac{分子}{分母}，如：
+
+
+
+显示
+代码
+
+
+
+
+
+\frac{x}{y}
+
+
+
+分式较为复杂时，可以使用 分子 分母表示，如：
+
+
+
+显示
+代码
+
+
+
+
+
+a+b+c+d+e+f \over g+h+i+j+k+l
+
+
+
+当分式仅有两个字符时，可以使用 \frac ab
+来快速生成
+
+开方
+使 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/70685119.html" title="Markdown 基础语法汇总"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Markdown%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Markdown 基础语法汇总"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/70685119.html" title="Markdown 基础语法汇总">Markdown 基础语法汇总</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-01T09:21:49.106Z" title="发表于 2022-11-01 17:21:49">2022-11-01</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-20T07:45:13.376Z" title="更新于 2023-04-20 15:45:13">2023-04-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88/">文字排版</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Markdown/">Markdown</a></span></div><div class="content">
+大家一开始以为，文档处理不过就是写写字，然后 txt（文本）诞生了。
+后来文秘们发现，文档并不只是文字，还要各种排版，然后增强版的
+rtf（富文本）诞生了。
+再后来文秘们发现，文档并不只是排版，还包括页眉页脚，数学公式等排版，然后威力增强版的
+doc（文档）诞生了。
+再后来网络开发人员发现，上面的文档在网页上直接呈现在网络传输中太笨重了，大家并不需要这么丰富的排版功能，然后精简版的
+html（超文本标记语言）诞生了。
+再后来开发人员发现，其实我在写开发文档的时候，只是想简单写个纪要，只需要最简单的几个标识而已，html
+还是太笨重了，然后 markdown（轻量级标记语言）诞生了。
+上面各种格式都一直共存，大家只是通过实践发现，原来我们的编辑需求可以细分这么多的场景。
+
+前言
+Markdown 是一种轻量级标记语言，
+它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的 XHTML（或者
+HTML）文档。
+由于 Markdown
+的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，许多网站都广泛使用
+Markdown 来撰写帮助文档 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/categories/%E5%B7%A5%E5%85%B7/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">old_driver_zero</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">159</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-RSS_flat"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/old-driver-zero" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"/></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" target="_blank" title="QQ邮箱" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" target="_blank" title="Steam" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"/></svg></a></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="iconfont icon-wenjianjia"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACG%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">ACG杂谈</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">27</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">游戏人生</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">读书笔记</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"><span class="card-category-list-name">闲言碎语</span><span class="card-category-list-count">2</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><a class="faa-parent animated-hover"></a><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-biaoqian1"/></svg><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/GUI/" style="font-size: 1.1em; color: #999">GUI</a> <a href="/tags/%E5%AF%BB%E6%89%BE%E5%A4%A9%E5%A0%82/" style="font-size: 1.1em; color: #999">寻找天堂</a> <a href="/tags/%E5%90%8E%E5%AE%AB/" style="font-size: 1.1em; color: #999">后宫</a> <a href="/tags/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/" style="font-size: 1.1em; color: #999">复变函数</a> <a href="/tags/Shell/" style="font-size: 1.1em; color: #999">Shell</a> <a href="/tags/%E8%AF%8D%E4%B8%AD%E4%B9%8B%E9%BE%99/" style="font-size: 1.1em; color: #999">词中之龙</a> <a href="/tags/%E5%92%92%E6%9C%AF%E5%9B%9E%E6%88%98/" style="font-size: 1.1em; color: #999">咒术回战</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 1.1em; color: #999">编码</a> <a href="/tags/%E8%B7%B3%E8%B7%83/" style="font-size: 1.1em; color: #999">跳跃</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" style="font-size: 1.3em; color: #99a1ac">函数式编程</a> <a href="/tags/%E6%90%9E%E7%AC%91/" style="font-size: 1.1em; color: #999">搞笑</a> <a href="/tags/Eushully/" style="font-size: 1.1em; color: #999">Eushully</a> <a href="/tags/%E8%AF%97%E5%9C%A3/" style="font-size: 1.1em; color: #999">诗圣</a> <a href="/tags/GRIS/" style="font-size: 1.1em; color: #999">GRIS</a> <a href="/tags/%E7%8E%89%E5%AD%90%E7%88%B1%E6%83%85%E6%95%85%E4%BA%8B/" style="font-size: 1.1em; color: #999">玉子爱情故事</a> <a href="/tags/Crash-Course/" style="font-size: 1.1em; color: #999">Crash Course</a> <a href="/tags/%E7%AE%80%E5%A5%A5%E6%96%AF%E6%B1%80/" style="font-size: 1.1em; color: #999">简奥斯汀</a> <a href="/tags/%E5%85%83%E7%A8%B9/" style="font-size: 1.1em; color: #999">元稹</a> <a href="/tags/%E5%BC%82%E4%B8%96%E7%95%8C/" style="font-size: 1.5em; color: #99a9bf">异世界</a> <a href="/tags/%E6%9C%89%E7%94%9F%E4%B9%8B%E5%B9%B4/" style="font-size: 1.1em; color: #999">有生之年</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.1em; color: #999">数据结构</a> <a href="/tags/%E7%8E%B0%E5%AE%9E/" style="font-size: 1.1em; color: #999">现实</a> <a href="/tags/%E6%81%8B%E7%88%B1/" style="font-size: 1.1em; color: #999">恋爱</a> <a href="/tags/Scheme/" style="font-size: 1.1em; color: #999">Scheme</a> <a href="/tags/%E6%9D%8E%E7%99%BD/" style="font-size: 1.1em; color: #999">李白</a> <a href="/tags/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81/" style="font-size: 1.1em; color: #999">傲慢与偏见</a> <a href="/tags/%E5%85%B3%E4%BA%8E%E6%88%91%E8%BD%AC%E7%94%9F%E5%8F%98%E6%88%90%E5%8F%B2%E8%8E%B1%E5%A7%86%E8%BF%99%E6%A1%A3%E4%BA%8B/" style="font-size: 1.1em; color: #999">关于我转生变成史莱姆这档事</a> <a href="/tags/%E7%BA%AF%E7%88%B1/" style="font-size: 1.1em; color: #999">纯爱</a> <a href="/tags/%E5%AD%94%E4%B9%99%E5%B7%B1/" style="font-size: 1.1em; color: #999">孔乙己</a> <a href="/tags/%E9%9C%8D%E6%AF%94%E7%89%B9%E4%BA%BA/" style="font-size: 1.1em; color: #999">霍比特人</a> <a href="/tags/%E5%96%9C%E5%89%A7/" style="font-size: 1.1em; color: #999">喜剧</a> <a href="/tags/%E5%8E%BB%E6%9C%88%E7%90%83/" style="font-size: 1.1em; color: #999">去月球</a> <a href="/tags/%E7%AC%AC%E4%B9%9D%E8%89%BA%E6%9C%AF/" style="font-size: 1.1em; color: #999">第九艺术</a> <a href="/tags/C/" style="font-size: 1.3em; color: #99a1ac">C++</a> <a href="/tags/%E8%8B%B1%E9%9B%84/" style="font-size: 1.1em; color: #999">英雄</a> <a href="/tags/%E8%BE%9B%E5%BC%83%E7%96%BE/" style="font-size: 1.1em; color: #999">辛弃疾</a> <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 1.5em; color: #99a9bf">概率论</a> <a href="/tags/%E6%88%90%E4%B8%BA%E7%AE%80%E5%A5%A5%E6%96%AF%E6%B1%80/" style="font-size: 1.1em; color: #999">成为简奥斯汀</a> <a href="/tags/%E8%87%B4%E9%83%81/" style="font-size: 1.1em; color: #999">致郁</a> <a href="/tags/Python/" style="font-size: 1.5em; color: #99a9bf">Python</a></div></div><div class="card-widget card-webinfo"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-shuju"/></svg></a><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">99</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishdate="2022-10-31T12:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">22.9w</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastpushdate="2023-12-30T08:51:12.334Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright"><span><b>&copy;2022 - 2023</b></span><span><b>&nbsp;&nbsp;By old_driver_zero</b></span></div><div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" title="博客框架为Hexo_v6.4.0" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Frame-Hexo-blue.svg" alt></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" title="主题版本Butterfly_v4.8.1" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Theme-Butterfly-6513df.svg" alt></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" title="本站采用多线部署，主线路托管于Vercel" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Hosted-Vercel-brightgreen.svg" alt></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本网站源码由Github提供存储仓库" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src=" https://sourcebucket.s3.ladydaily.com/badge/Source-Github-d021d6.svg" alt></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
-  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
-  if ($mermaidWrap.length) {
-    window.runMermaid = () => {
-      window.loadMermaid = true
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><a class="faa-parent animated-hover"></a><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-biaoqian1"/></svg><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%BA%B5%E4%BD%BF%E6%89%8B%E6%AE%8B%E4%BB%8D%E5%A4%A7%E7%88%B1/" style="font-size: 1.2em; color: #999da3">纵使手残仍大爱</a> <a href="/tags/Qt/" style="font-size: 1.1em; color: #999">Qt</a> <a href="/tags/%E4%BA%AC%E9%83%BD%E5%8A%A8%E7%94%BB/" style="font-size: 1.1em; color: #999">京都动画</a> <a href="/tags/%E8%AF%97%E9%AC%BC/" style="font-size: 1.1em; color: #999">诗鬼</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.2em; color: #999da3">博客</a> <a href="/tags/%E5%93%86%E5%95%A6A%E6%A2%A6/" style="font-size: 1.1em; color: #999">哆啦A梦</a> <a href="/tags/NTR/" style="font-size: 1.1em; color: #999">NTR</a> <a href="/tags/University-of-Helsinki/" style="font-size: 1.2em; color: #999da3">University of Helsinki</a> <a href="/tags/%E6%9C%89%E7%94%9F%E4%B9%8B%E5%B9%B4/" style="font-size: 1.1em; color: #999">有生之年</a> <a href="/tags/%E6%96%87%E6%98%8EVI/" style="font-size: 1.1em; color: #999">文明VI</a> <a href="/tags/%E9%93%B6%E6%B2%B3%E6%88%98%E5%A3%AB%E6%81%B6%E9%AD%94%E5%9F%8E/" style="font-size: 1.2em; color: #999da3">银河战士恶魔城</a> <a href="/tags/%E8%B1%AA%E6%94%BE/" style="font-size: 1.1em; color: #999">豪放</a> <a href="/tags/%E7%A7%8D%E7%94%B0%E6%B5%81/" style="font-size: 1.1em; color: #999">种田流</a> <a href="/tags/R18/" style="font-size: 1.2em; color: #999da3">R18</a> <a href="/tags/%E5%9B%9B%E5%A4%A7%E5%90%8D%E8%91%97/" style="font-size: 1.1em; color: #999">四大名著</a> <a href="/tags/%E5%90%89%E5%8D%9C%E5%8A%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4/" style="font-size: 1.1em; color: #999">吉卜力工作室</a> <a href="/tags/ACG/" style="font-size: 1.1em; color: #999">ACG</a> <a href="/tags/%E6%81%8B%E7%88%B1/" style="font-size: 1.1em; color: #999">恋爱</a> <a href="/tags/Mermaid/" style="font-size: 1.1em; color: #999">Mermaid</a> <a href="/tags/%E9%B2%81%E8%BF%85/" style="font-size: 1.1em; color: #999">鲁迅</a> <a href="/tags/%E5%8F%AF%E6%B1%97%E5%AD%A6%E9%99%A2/" style="font-size: 1.2em; color: #999da3">可汗学院</a> <a href="/tags/MIT/" style="font-size: 1.5em; color: #99a9bf">MIT</a> <a href="/tags/Everlasting-Summer/" style="font-size: 1.1em; color: #999">Everlasting Summer</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 1.1em; color: #999">信息论</a> <a href="/tags/%E6%B0%B4%E4%BB%99/" style="font-size: 1.1em; color: #999">水仙</a> <a href="/tags/%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E5%B0%8F%E5%9C%86/" style="font-size: 1.1em; color: #999">魔法少女小圆</a> <a href="/tags/%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88/" style="font-size: 1.3em; color: #99a1ac">文字排版</a> <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 1.3em; color: #99a1ac">概率论</a> <a href="/tags/%E8%87%B4%E9%83%81/" style="font-size: 1.1em; color: #999">致郁</a> <a href="/tags/%E8%BF%90%E5%8A%A8/" style="font-size: 1.1em; color: #999">运动</a> <a href="/tags/%E6%90%9E%E7%AC%91/" style="font-size: 1.1em; color: #999">搞笑</a> <a href="/tags/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81/" style="font-size: 1.1em; color: #999">傲慢与偏见</a> <a href="/tags/CLI/" style="font-size: 1.1em; color: #999">CLI</a> <a href="/tags/C/" style="font-size: 1.2em; color: #999da3">C++</a> <a href="/tags/%E8%B7%B3%E8%B7%83/" style="font-size: 1.1em; color: #999">跳跃</a> <a href="/tags/%E7%99%BD%E6%AF%9B/" style="font-size: 1.1em; color: #999">白毛</a> <a href="/tags/web/" style="font-size: 1.4em; color: #99a5b6">web</a> <a href="/tags/Princeton/" style="font-size: 1.2em; color: #999da3">Princeton</a> <a href="/tags/%E7%BA%AF%E7%88%B1/" style="font-size: 1.1em; color: #999">纯爱</a> <a href="/tags/%E5%90%8E%E5%AE%AB/" style="font-size: 1.1em; color: #999">后宫</a></div></div><div class="card-widget card-webinfo"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-shuju"/></svg></a><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">99</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishdate="2022-10-31T12:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">23.1w</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastpushdate="2024-01-01T05:21:24.888Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2024 By old_driver_zero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
 
-      Array.from($mermaidWrap).forEach((item, index) => {
-        const mermaidSrc = item.firstElementChild
-        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
-        const mermaidID = 'mermaid-' + index
-        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
-        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
-          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
         })
-      })
-    }
+      }
 
-    const loadMermaid = () => {
-      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
-    }
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
 
-    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
   }
-})()</script></div><script async src="//at.alicdn.com/t/c/font_4031045_8r6cr7hwlv.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
 
 var pjax = new Pjax({
   elements: 'a:not([target="_blank"])',
@@ -220,11 +577,11 @@ var pjax = new Pjax({
 
 document.addEventListener('pjax:send', function () {
 
-  // removeEventListener scroll 
-  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
-  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
 
-  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  document.getElementById('rightside').classList.remove('rightside-show')
   
   if (window.aplayers) {
     for (let i = 0; i < window.aplayers.length; i++) {
@@ -256,7 +613,6 @@ document.addEventListener('pjax:complete', function () {
 
   GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
 
-  typeof chatBtnFn === 'function' && chatBtnFn()
   typeof panguInit === 'function' && panguInit()
 
   // google analytics
@@ -271,7 +627,7 @@ document.addEventListener('pjax:complete', function () {
   typeof Prism === 'object' && Prism.highlightAll()
 })
 
-document.addEventListener('pjax:error', (e) => {
+document.addEventListener('pjax:error', e => {
   if (e.request.status === 404) {
     pjax.loadUrl('/404.html')
   }

@@ -9,20 +9,20 @@
 <meta property="article:author" content="old_driver_zero">
 <meta property="article:tag" content="ACG Computer Live">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://old-driver-zero.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://old-driver-zero.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//hm.baidu.com"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://old-driver-zero.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://old-driver-zero.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//hm.baidu.com"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?da75f0595ffd5e578744142f5a6a471e";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
-</script><script>const GLOBAL_CONFIG = { 
+</script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
   localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
   translate: undefined,
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
   copy: {
     success: '复制成功',
     error: '复制错误',
@@ -43,11 +43,9 @@
   copyright: undefined,
   lightbox: 'fancybox',
   Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
   islazyload: true,
@@ -55,92 +53,86 @@
   percent: {
     toc: true,
     rightside: false,
-  }
+  },
+  autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: '分类: 学习笔记',
   isPost: false,
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-12-30 16:51:13'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
+  postUpdate: '2024-01-01 13:21:26'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
         }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
         }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
 
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
         }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
         }
       }
-      win.activateLightMode = function () {
+      win.activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
           document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
@@ -148,9 +140,9 @@
       }
       const t = saveToLocal.get('theme')
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
       const asideStatus = saveToLocal.get('aside-status')
       if (asideStatus !== undefined) {
         if (asideStatus === 'hide') {
@@ -160,13 +152,13 @@
         }
       }
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
       }
-    }
-    detectApple()
-    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_8r6cr7hwlv.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/article title.css"><link rel="stylesheet" href="/css/card author.css"><link rel="stylesheet" href="/css/transpancy.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css">
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/article title.css"><link rel="stylesheet" href="/css/card author.css"><link rel="stylesheet" href="/css/transpancy.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css">
 <style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
   white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
 <link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="old-driver-zeroの小屋" type="application/atom+xml">
@@ -177,38 +169,361 @@
 document.addEventListener('pjax:send', () => {
   Pace.restart()
 })
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">156</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">学习笔记</h1></div></header><main class="layout" id="content-inner"><div id="category"><div class="article-sort-title">分类 - 学习笔记</div><div class="article-sort"><div class="article-sort-item year">2023</div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/ad31055e.html" title="MIT 6.041 &amp; 6.431：概率系统分析与应用概率"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%206.041%20&amp;%206.431%EF%BC%9A%E6%A6%82%E7%8E%87%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E6%A6%82%E7%8E%87.webp" alt="MIT 6.041 &amp; 6.431：概率系统分析与应用概率" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-05-27T08:26:40.187Z" title="发表于 2023-05-27 16:26:40">2023-05-27</time></div><a class="article-sort-item-title" href="/posts/ad31055e.html" title="MIT 6.041 &amp; 6.431：概率系统分析与应用概率">MIT 6.041 &amp; 6.431：概率系统分析与应用概率</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/2f34eb00.html" title="MIT 6.050J &amp; 2.110J：信息与熵"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%206.050J%20&amp;%202.110J%EF%BC%9A%E4%BF%A1%E6%81%AF%E4%B8%8E%E7%86%B5.webp" alt="MIT 6.050J &amp; 2.110J：信息与熵" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-05-20T05:27:19.895Z" title="发表于 2023-05-20 13:27:19">2023-05-20</time></div><a class="article-sort-item-title" href="/posts/2f34eb00.html" title="MIT 6.050J &amp; 2.110J：信息与熵">MIT 6.050J &amp; 2.110J：信息与熵</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/e5cd9bbd.html" title="Haskell MOOC Part 2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Haskell%20MOOC%20Part%202.webp" alt="Haskell MOOC Part 2" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-05-14T08:38:23.640Z" title="发表于 2023-05-14 16:38:23">2023-05-14</time></div><a class="article-sort-item-title" href="/posts/e5cd9bbd.html" title="Haskell MOOC Part 2">Haskell MOOC Part 2</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/7cc4ca07.html" title="Haskell MOOC Part 1"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Haskell%20MOOC%20Part%201.webp" alt="Haskell MOOC Part 1" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-05-07T07:23:19.382Z" title="发表于 2023-05-07 15:23:19">2023-05-07</time></div><a class="article-sort-item-title" href="/posts/7cc4ca07.html" title="Haskell MOOC Part 1">Haskell MOOC Part 1</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/62a1ec0c.html" title="MIT 18.04：复变函数"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.04%EF%BC%9A%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0.webp" alt="MIT 18.04：复变函数" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-04-27T12:58:57.679Z" title="发表于 2023-04-27 20:58:57">2023-04-27</time></div><a class="article-sort-item-title" href="/posts/62a1ec0c.html" title="MIT 18.04：复变函数">MIT 18.04：复变函数</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/dcdf88c8.html" title="计算机科学速成课"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E9%80%9F%E6%88%90%E8%AF%BE.webp" alt="计算机科学速成课" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-04-19T12:55:55.270Z" title="发表于 2023-04-19 20:55:55">2023-04-19</time></div><a class="article-sort-item-title" href="/posts/dcdf88c8.html" title="计算机科学速成课">计算机科学速成课</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/3871b764.html" title="MIT 18.06：线性代数"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.06%EF%BC%9A%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.webp" alt="MIT 18.06：线性代数" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-04-02T07:34:49.634Z" title="发表于 2023-04-02 15:34:49">2023-04-02</time></div><a class="article-sort-item-title" href="/posts/3871b764.html" title="MIT 18.06：线性代数">MIT 18.06：线性代数</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/4392373e.html" title="MIT 18.01：单变量微积分"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.01%EF%BC%9A%E5%8D%95%E5%8F%98%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86.webp" alt="MIT 18.01：单变量微积分" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-03-31T11:47:01.443Z" title="发表于 2023-03-31 19:47:01">2023-03-31</time></div><a class="article-sort-item-title" href="/posts/4392373e.html" title="MIT 18.01：单变量微积分">MIT 18.01：单变量微积分</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/ffdfd6d4.html" title="MIT 6.042J &amp; 18.062J：计算机科学中的数学"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%206.042J%20&amp;%2018.062J%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6.webp" alt="MIT 6.042J &amp; 18.062J：计算机科学中的数学" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-03-11T06:23:49.695Z" title="发表于 2023-03-11 14:23:49">2023-03-11</time></div><a class="article-sort-item-title" href="/posts/ffdfd6d4.html" title="MIT 6.042J &amp; 18.062J：计算机科学中的数学">MIT 6.042J &amp; 18.062J：计算机科学中的数学</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/a13c1dba.html" title="Coursera Algorithms II：算法（第二部分）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Coursera%20Algorithms%20II%EF%BC%9A%E7%AE%97%E6%B3%95%EF%BC%88%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%89.webp" alt="Coursera Algorithms II：算法（第二部分）" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-02-10T05:56:19.748Z" title="发表于 2023-02-10 13:56:19">2023-02-10</time></div><a class="article-sort-item-title" href="/posts/a13c1dba.html" title="Coursera Algorithms II：算法（第二部分）">Coursera Algorithms II：算法（第二部分）</a></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/3/">3</a><a class="extend next" rel="next" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/3/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">old_driver_zero</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">156</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-RSS_flat"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/old-driver-zero" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"/></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" target="_blank" title="QQ邮箱" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" target="_blank" title="Steam" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"/></svg></a></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">159</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"/></svg><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">学习笔记</h1></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/posts/ad31055e.html" title="MIT 6.041 &amp; 6.431：概率系统分析与应用概率"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%206.041%20&amp;%206.431%EF%BC%9A%E6%A6%82%E7%8E%87%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E6%A6%82%E7%8E%87.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MIT 6.041 &amp; 6.431：概率系统分析与应用概率"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/ad31055e.html" title="MIT 6.041 &amp; 6.431：概率系统分析与应用概率">MIT 6.041 &amp; 6.431：概率系统分析与应用概率</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-27T08:26:40.187Z" title="发表于 2023-05-27 16:26:40">2023-05-27</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-25T01:01:51.678Z" title="更新于 2023-11-25 09:01:51">2023-11-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/MIT/">MIT</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/">概率论</a></span></div><div class="content">概率模型与公理
+Probability Models and Axioms
+样本空间 sample space：
+
+离散，如抛骰子
+连续，如在面积中取某个子区域
+
+事件 event 是样本空间的一个子集
+公理：
+
+非负：
+标准化：
+加法：如果 ，则 
+
+离散一致律 Discrete uniform
+law：若所有结果等可能，则
+中的元素数量样本空间的总元素数量
+计算概率 = 计数
+连续一致律 Continuous uniform
+law：落在面积中半部分的概率
+可数加法公理：如果  是互斥 disjoint 事件，则
+
+条件概率和贝叶斯法则
+Conditioning and Bayes' Rule
+条件概率的定义：
+
+如果 ，则不存在 
+本质上是更换了样本空间
+全概率定理 Total probability theorem：
+
+分治
+把样本空间分成 
+已知 
+
+
+贝叶斯法则 Bayes' Rule
+
+先验 prior 概率 ，即初始的信念
+已知 
+想要计算  即  发生了，修改信念
+
+
+独立性 Inde ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/2f34eb00.html" title="MIT 6.050J &amp; 2.110J：信息与熵"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%206.050J%20&amp;%202.110J%EF%BC%9A%E4%BF%A1%E6%81%AF%E4%B8%8E%E7%86%B5.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MIT 6.050J &amp; 2.110J：信息与熵"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/2f34eb00.html" title="MIT 6.050J &amp; 2.110J：信息与熵">MIT 6.050J &amp; 2.110J：信息与熵</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-20T05:27:19.895Z" title="发表于 2023-05-20 13:27:19">2023-05-20</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-06-26T13:43:09.690Z" title="更新于 2023-06-26 21:43:09">2023-06-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/MIT/">MIT</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/">信息论</a></span></div><div class="content">比特 Bits
+布尔位：与、或、非、抑或等运算
+电路位：
+
+
+有回路的电路位可能更复杂，叫时序逻辑电路 sequential
+logic
+控制位：例如
+(if (and (&lt; x 0) (&gt; y 0)) (define z 0))，特点在于有短路效应
+物理位：若一个位可以被储存或转移，则其必定有物理形式
+量子位：
+
+可逆性 reversibility：量子数学中的函数是可逆的
+叠加性 superposition：27% yes 73% no
+纠缠 entanglement：量子纠缠
+
+经典位：0V-0.2V 为逻辑假，0.8V-1V 为逻辑真
+编码 Codes
+符号空间大小：1、2、2
+的幂次方、有限、无限可数、无限不可数
+
+二进制编码十进制 BCD
+基因编码
+电话地址编码
+IP 地址
+ASCII
+
+00000000 表示 NUL，被忽略
+11111111 表示删除
+固定长度和可变长度编码
+摩尔斯编码
+压缩 Compression
+分成两类：有损（可逆）和无损（不可逆）
+可变长度编码 运行长度编码：把 abb ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/e5cd9bbd.html" title="Haskell MOOC Part 2"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Haskell%20MOOC%20Part%202.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Haskell MOOC Part 2"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/e5cd9bbd.html" title="Haskell MOOC Part 2">Haskell MOOC Part 2</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-14T08:38:23.640Z" title="发表于 2023-05-14 16:38:23">2023-05-14</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-25T00:48:10.897Z" title="更新于 2023-11-25 08:48:10">2023-11-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/University-of-Helsinki/">University of Helsinki</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Haskell/">Haskell</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">函数式编程</a></span></div><div class="content">还原论 Reductionism
+懒惰和纯净
+懒惰 lazy 是一个值如果不需要，则不会计算，如
+1234f x = f x   -- 会陷入无限循环g x y = xg 2 (f 1)  ==&gt;  2 -- 不会陷入无限循环，因为 (f 1) 没有求值
+等价推理
+对于相同的输入总是返回相同的值
+无限列表
+12345678Prelude&gt; repeat 1 -- 会陷入死循环[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1^CPrelude&gt; take 10 $ repeat 1 -- 不会陷入死循环[1,1,1,1,1,1,1,1,1,1]Prelude&gt; repeat 1 !! 133371
+运行原理
+
+C 等语言从内向外求值
+Haskell 从外向内求值
+
+这是 Haskell 执行 length 的过程
+123456789length (map not (True:False:[]))  ==&gt; length (not True : map not (False:[]))  = ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/7cc4ca07.html" title="Haskell MOOC Part 1"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Haskell%20MOOC%20Part%201.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Haskell MOOC Part 1"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/7cc4ca07.html" title="Haskell MOOC Part 1">Haskell MOOC Part 1</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-07T07:23:19.382Z" title="发表于 2023-05-07 15:23:19">2023-05-07</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-25T01:02:13.776Z" title="更新于 2023-11-25 09:02:13">2023-11-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/University-of-Helsinki/">University of Helsinki</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Haskell/">Haskell</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">函数式编程</a></span></div><div class="content">…就这样开始了 …And so It
+Begins
+Haskell
+
+函数式
+Functional：程序完全由函数构成，函数可以以函数为参数或返回函数，循环结构是递归
+纯净 Pure：函数没有副作用
+懒惰 Lazy：只有需要时才会计算值
+强类型 Strongly
+typed：每个值和表达式都有类型，在编译时检查类型错误
+类型推断 Type inferred：编译器可以推断类型
+垃圾收集 Garbage-collected：不需要手动管理内存
+编译 Compiled： Haskell 是编译型语言
+
+GHCi
+命令行界面运行 stack ghci 进入交互模式
+12345678910111213141516ghci&gt; 1+12ghci&gt; &quot;asdf&quot;&quot;asdf&quot;ghci&gt; reverse &quot;asdf&quot;&quot;fdsa&quot;ghci&gt; :type &quot;asdf&quot;&quot;asdf&quot; :: Stringghci&gt; tail &quo ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/62a1ec0c.html" title="MIT 18.04：复变函数"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.04%EF%BC%9A%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MIT 18.04：复变函数"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/62a1ec0c.html" title="MIT 18.04：复变函数">MIT 18.04：复变函数</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-27T12:58:57.679Z" title="发表于 2023-04-27 20:58:57">2023-04-27</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-25T01:00:33.697Z" title="更新于 2023-11-25 09:00:33">2023-11-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/MIT/">MIT</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/">复变函数</a></span></div><div class="content">复数与复平面
+Complex algebra and the complex plane
+复数的定义及基本术语
+
+数学中用 ，工程中常用 ，称作虚数 imaginary
+number
+算术基本定理： 阶的多项式有
+ 个复数根（包括重根）
+复数可表示为：
+
+其中  都是实数 real
+number
+
+ 称为实部 real
+part
+ 称为虚部 imaginary
+part，虚部不包括 
+复数的集合用  表示
+
+复数的加法、减法、乘法、除法
+共轭复数 complex conjugation：
+
+有用的性质：若 ，则
+
+复数  的大小
+magnitude / 绝对值 absolute value / 模 modulus / 范式
+norm：
+
+复平面： 轴为实轴， 轴为虚轴
+三角形不等式：
+
+当且仅当其中有一个为 0 或  时，取 =
+极坐标与欧拉公式
+极坐标 polar coordinates：
+
+欧拉公式 Euler’s Formula：
+
+证明：
+
+求导
+0
+无穷级数
+
+复数指数的极坐标：
+
+优点 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/dcdf88c8.html" title="计算机科学速成课"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E9%80%9F%E6%88%90%E8%AF%BE.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机科学速成课"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/dcdf88c8.html" title="计算机科学速成课">计算机科学速成课</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-19T12:55:55.270Z" title="发表于 2023-04-19 20:55:55">2023-04-19</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-25T00:39:36.488Z" title="更新于 2023-11-25 08:39:36">2023-11-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Crash-Course/">Crash Course</a></span></div><div class="content">计算机早期历史 Early
+Computing
+公认最早的计算设备的算盘，注意不是中国的，而是美索不达米亚文明的，它没有计算的功能，只是用于记录数据。
+最早使用计算机 computer 一词的文献是 1613
+年的一本书，指的是一种职业，即负责计算的人，他们有时也会使用机器辅助计算，所以渐渐地“计算机”也代指机器。
+步进计算器：由莱布尼兹发明，像汽车的里程表
+
+加法：由多个齿轮组成，每当一个齿轮转过 9，它会转回
+0，同时让旁边的齿轮前进一个齿
+减法：反向旋转
+乘除：本质上是加法或减法的叠加
+所以它是第一台能做“加减乘除”的机器
+
+计算表：预先算好，也就是早期的打表法，类似与字典之类的工具书，但不够灵活。
+Charles Babbage
+提出了“差分机”，能近似多项式，但最终没做出来，后来有人历史学家按照它的设计图做了出来，发现确实可以做到。
+在做这台机器的过程中，这个人提出了一种“分析机”的概念，是“通用计算机”，和后来的冯诺依曼结构是一种东西，但实在是太超前了，当时仅存在于概念上。
+此人被认为是“计算之父”
+Ada Lovelace
+给分析机写 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/3871b764.html" title="MIT 18.06：线性代数"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.06%EF%BC%9A%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MIT 18.06：线性代数"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/3871b764.html" title="MIT 18.06：线性代数">MIT 18.06：线性代数</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-02T07:34:49.634Z" title="发表于 2023-04-02 15:34:49">2023-04-02</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-06-28T07:54:26.885Z" title="更新于 2023-06-28 15:54:26">2023-06-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/MIT/">MIT</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a></span></div><div class="content">方程组的几何解释
+二元一次方程组：
+
+可以写成矩阵形式：
+
+更进一步抽象：
+
+
+
+行图像
+
+列的线性组合：
+
+
+
+列图像
+
+对任何 ，能否求解 
+也就是，列的线性组合能否覆盖整个空间
+矩阵右乘一个向量表示列的线性组合
+
+矩阵消元
+高斯消元过程演示：
+
+方框框出来的为每一步消元得到的主元 pivot，主元不能为
+0，如果为 0，则与下面的非 0 元素作行交换
+虚线左边的是增广矩阵 augmented
+matrix，相当于新增加的一列
+最后进行回代即可解决
+消元的目的是从  得到 （上三角矩阵）
+一个矩阵左乘一个向量表示行的线性组合，而每个消元的过程就是矩阵的行变换，故每个消元过程可以用原始矩阵左乘一个矩阵表示，如：
+
+第一个矩阵就是一个消元矩阵，记作 
+所以例子的消元过程为：
+
+矩阵乘法中括号可以移动，故整个过程可以用一个矩阵表示
+单位矩阵：
+
+置换 permutation矩阵：
+
+某个矩阵左乘该矩阵，表示置换其两行；
+某个矩阵右乘该矩阵，表示置换其两列；
+逆 inverse：如何将  还原为 
+
+表 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/4392373e.html" title="MIT 18.01：单变量微积分"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.01%EF%BC%9A%E5%8D%95%E5%8F%98%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MIT 18.01：单变量微积分"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/4392373e.html" title="MIT 18.01：单变量微积分">MIT 18.01：单变量微积分</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-31T11:47:01.443Z" title="发表于 2023-03-31 19:47:01">2023-03-31</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-08T14:26:17.666Z" title="更新于 2023-05-08 22:26:17">2023-05-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/">微积分</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/MIT/">MIT</a></span></div><div class="content">导数 derivatives
+几何解释：切线斜率
+物理解释：速率
+极限 limits 连续性
+continuity
+
+若
+
+则称  在  处连续
+continuous
+可去间断点 removable discontinuity：若左极限  右极限 ，但是  不相等或无定义
+跳跃间断点 jump
+discontinuity：左、右极限均存在但不相等
+两个三角的极限：
+
+
+定理：可导必连续
+导数运算法则
+加法：
+
+数乘：
+
+乘法公式：
+
+除法公式：
+
+链式法则
+chain rule 和 高阶导数 higher derivatives
+链式法则：
+
+高阶导数记号：
+
+隐函数求导
+implicit differentiation 和逆 inverses
+例如：
+
+直接对  求导：
+
+逆函数求导：
+
+
+指数函数 exponential
+和对数函数 log 求导
+
+自然对数：
+
+
+
+双曲正弦函数
+hyperbolic sine 和双曲余弦函数 hyperbolic cosine
+双曲正弦函数 hyp ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/ffdfd6d4.html" title="MIT 6.042J &amp; 18.062J：计算机科学中的数学"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%206.042J%20&amp;%2018.062J%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MIT 6.042J &amp; 18.062J：计算机科学中的数学"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/ffdfd6d4.html" title="MIT 6.042J &amp; 18.062J：计算机科学中的数学">MIT 6.042J &amp; 18.062J：计算机科学中的数学</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-11T06:23:49.695Z" title="发表于 2023-03-11 14:23:49">2023-03-11</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-27T08:28:56.554Z" title="更新于 2023-05-27 16:28:56">2023-05-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/MIT/">MIT</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/">离散数学</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/">概率论</a></span></div><div class="content">证明 Introduction and Proofs
+广义上的证明
+Proof：确定事实的方法
+手段：
+
+实验和观察
+抽样找反例
+法官-陪审团
+上帝的话
+老板
+内心的信念
+
+数学上的证明是通过一系列公理的逻辑推理来验证一个命题
+定义：命题 Proposition
+是要么为真要么为假的陈述
+定义：谓词 Predicate
+是一个真值依赖于变量值的命题
+定义：如果  为假或
+ 为真，则蕴含
+implication 
+为真
+所以猪会飞 
+我是国王是正确的
+定义：公理 axiom 是一个假定为真的命题
+例如：如果  且 ，则 
+欧几里得几何中的：给定一条直线 
+和不在直线  上的点 ，通过点  与直线  的平行线有且只有一条
+但在球面几何中该公理是错误的
+公理必须是：
+
+一致的 consistent ：一个命题不能同时为真或为假
+完整的 complete ：所有命题必须为真或为假
+
+很可惜，根据哥德尔不完备定理，不存在一组一致且完整的公理，即永远无法证明出一些命题的真假
+反证法 数学归纳法 Induction
+反证法 Pro ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/a13c1dba.html" title="Coursera Algorithms II：算法（第二部分）"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Coursera%20Algorithms%20II%EF%BC%9A%E7%AE%97%E6%B3%95%EF%BC%88%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%89.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Coursera Algorithms II：算法（第二部分）"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/a13c1dba.html" title="Coursera Algorithms II：算法（第二部分）">Coursera Algorithms II：算法（第二部分）</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-10T05:56:19.748Z" title="发表于 2023-02-10 13:56:19">2023-02-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-30T03:22:19.028Z" title="更新于 2023-08-30 11:22:19">2023-08-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"/></svg><a class="article-meta__tags" href="/tags/Princeton/">Princeton</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Java/">Java</a></span></div><div class="content">无向图 Undirected graphs
+图的介绍 Introduction to
+graph
+图：一对对顶点 vertices
+用边 edge 连接
+路径 path：用边连接在一起的顶点序列
+环 cycle：首尾相同的路
+如果两个顶点间有路，则这两个顶点相连 connected
+图 API Graph API
+顶点表示： 到 
+的整数（用符号表将名称与整数转换）
+123456789101112131415public class Graph {    Graph(int V)    Graph(In in)    void addEdge(int v,int w)    Iterable&lt;Integer&gt;adj(int v)    int V()    int E()    String toString()}
+一些关于度数的处理：
+123456789101112131415161718192021222324252627public static int degree(Graph G, int v) {    int degree = 0;  ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/3/">3</a><a class="extend next" rel="next" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/3/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">old_driver_zero</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">159</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-RSS_flat"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/old-driver-zero" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"/></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" target="_blank" title="QQ邮箱" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" target="_blank" title="Steam" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"/></svg></a></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
             <i class="iconfont icon-wenjianjia"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACG%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">ACG杂谈</span><span class="card-category-list-count">23</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">27</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">游戏人生</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">读书笔记</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"><span class="card-category-list-name">闲言碎语</span><span class="card-category-list-count">2</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><a class="faa-parent animated-hover"></a><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-biaoqian1"/></svg><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/GUI/" style="font-size: 1.1em; color: #999">GUI</a> <a href="/tags/%E5%AF%BB%E6%89%BE%E5%A4%A9%E5%A0%82/" style="font-size: 1.1em; color: #999">寻找天堂</a> <a href="/tags/%E5%90%8E%E5%AE%AB/" style="font-size: 1.1em; color: #999">后宫</a> <a href="/tags/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/" style="font-size: 1.1em; color: #999">复变函数</a> <a href="/tags/Shell/" style="font-size: 1.1em; color: #999">Shell</a> <a href="/tags/%E8%AF%8D%E4%B8%AD%E4%B9%8B%E9%BE%99/" style="font-size: 1.1em; color: #999">词中之龙</a> <a href="/tags/%E5%92%92%E6%9C%AF%E5%9B%9E%E6%88%98/" style="font-size: 1.1em; color: #999">咒术回战</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 1.1em; color: #999">编码</a> <a href="/tags/%E8%B7%B3%E8%B7%83/" style="font-size: 1.1em; color: #999">跳跃</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" style="font-size: 1.3em; color: #99a1ac">函数式编程</a> <a href="/tags/%E6%90%9E%E7%AC%91/" style="font-size: 1.1em; color: #999">搞笑</a> <a href="/tags/Eushully/" style="font-size: 1.1em; color: #999">Eushully</a> <a href="/tags/%E8%AF%97%E5%9C%A3/" style="font-size: 1.1em; color: #999">诗圣</a> <a href="/tags/GRIS/" style="font-size: 1.1em; color: #999">GRIS</a> <a href="/tags/%E7%8E%89%E5%AD%90%E7%88%B1%E6%83%85%E6%95%85%E4%BA%8B/" style="font-size: 1.1em; color: #999">玉子爱情故事</a> <a href="/tags/Crash-Course/" style="font-size: 1.1em; color: #999">Crash Course</a> <a href="/tags/%E7%AE%80%E5%A5%A5%E6%96%AF%E6%B1%80/" style="font-size: 1.1em; color: #999">简奥斯汀</a> <a href="/tags/%E5%85%83%E7%A8%B9/" style="font-size: 1.1em; color: #999">元稹</a> <a href="/tags/%E5%BC%82%E4%B8%96%E7%95%8C/" style="font-size: 1.5em; color: #99a9bf">异世界</a> <a href="/tags/%E6%9C%89%E7%94%9F%E4%B9%8B%E5%B9%B4/" style="font-size: 1.1em; color: #999">有生之年</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.1em; color: #999">数据结构</a> <a href="/tags/%E7%8E%B0%E5%AE%9E/" style="font-size: 1.1em; color: #999">现实</a> <a href="/tags/%E6%81%8B%E7%88%B1/" style="font-size: 1.1em; color: #999">恋爱</a> <a href="/tags/Scheme/" style="font-size: 1.1em; color: #999">Scheme</a> <a href="/tags/%E6%9D%8E%E7%99%BD/" style="font-size: 1.1em; color: #999">李白</a> <a href="/tags/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81/" style="font-size: 1.1em; color: #999">傲慢与偏见</a> <a href="/tags/%E5%85%B3%E4%BA%8E%E6%88%91%E8%BD%AC%E7%94%9F%E5%8F%98%E6%88%90%E5%8F%B2%E8%8E%B1%E5%A7%86%E8%BF%99%E6%A1%A3%E4%BA%8B/" style="font-size: 1.1em; color: #999">关于我转生变成史莱姆这档事</a> <a href="/tags/%E7%BA%AF%E7%88%B1/" style="font-size: 1.1em; color: #999">纯爱</a> <a href="/tags/%E5%AD%94%E4%B9%99%E5%B7%B1/" style="font-size: 1.1em; color: #999">孔乙己</a> <a href="/tags/%E9%9C%8D%E6%AF%94%E7%89%B9%E4%BA%BA/" style="font-size: 1.1em; color: #999">霍比特人</a> <a href="/tags/%E5%96%9C%E5%89%A7/" style="font-size: 1.1em; color: #999">喜剧</a> <a href="/tags/%E5%8E%BB%E6%9C%88%E7%90%83/" style="font-size: 1.1em; color: #999">去月球</a> <a href="/tags/%E7%AC%AC%E4%B9%9D%E8%89%BA%E6%9C%AF/" style="font-size: 1.1em; color: #999">第九艺术</a> <a href="/tags/C/" style="font-size: 1.3em; color: #99a1ac">C++</a> <a href="/tags/%E8%8B%B1%E9%9B%84/" style="font-size: 1.1em; color: #999">英雄</a> <a href="/tags/%E8%BE%9B%E5%BC%83%E7%96%BE/" style="font-size: 1.1em; color: #999">辛弃疾</a> <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 1.5em; color: #99a9bf">概率论</a> <a href="/tags/%E6%88%90%E4%B8%BA%E7%AE%80%E5%A5%A5%E6%96%AF%E6%B1%80/" style="font-size: 1.1em; color: #999">成为简奥斯汀</a> <a href="/tags/%E8%87%B4%E9%83%81/" style="font-size: 1.1em; color: #999">致郁</a> <a href="/tags/Python/" style="font-size: 1.5em; color: #99a9bf">Python</a></div></div><div class="card-widget card-webinfo"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-shuju"/></svg></a><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">99</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishdate="2022-10-31T12:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">22.9w</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastpushdate="2023-12-30T08:51:12.334Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright"><span><b>&copy;2022 - 2023</b></span><span><b>&nbsp;&nbsp;By old_driver_zero</b></span></div><div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" title="博客框架为Hexo_v6.4.0" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Frame-Hexo-blue.svg" alt></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" title="主题版本Butterfly_v4.8.1" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Theme-Butterfly-6513df.svg" alt></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" title="本站采用多线部署，主线路托管于Vercel" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://sourcebucket.s3.ladydaily.com/badge/Hosted-Vercel-brightgreen.svg" alt></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本网站源码由Github提供存储仓库" rel="external nofollow noopener noreferrer"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src=" https://sourcebucket.s3.ladydaily.com/badge/Source-Github-d021d6.svg" alt></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
-  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
-  if ($mermaidWrap.length) {
-    window.runMermaid = () => {
-      window.loadMermaid = true
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><a class="faa-parent animated-hover"></a><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-biaoqian1"/></svg><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%BA%B5%E4%BD%BF%E6%89%8B%E6%AE%8B%E4%BB%8D%E5%A4%A7%E7%88%B1/" style="font-size: 1.2em; color: #999da3">纵使手残仍大爱</a> <a href="/tags/Qt/" style="font-size: 1.1em; color: #999">Qt</a> <a href="/tags/%E4%BA%AC%E9%83%BD%E5%8A%A8%E7%94%BB/" style="font-size: 1.1em; color: #999">京都动画</a> <a href="/tags/%E8%AF%97%E9%AC%BC/" style="font-size: 1.1em; color: #999">诗鬼</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.2em; color: #999da3">博客</a> <a href="/tags/%E5%93%86%E5%95%A6A%E6%A2%A6/" style="font-size: 1.1em; color: #999">哆啦A梦</a> <a href="/tags/NTR/" style="font-size: 1.1em; color: #999">NTR</a> <a href="/tags/University-of-Helsinki/" style="font-size: 1.2em; color: #999da3">University of Helsinki</a> <a href="/tags/%E6%9C%89%E7%94%9F%E4%B9%8B%E5%B9%B4/" style="font-size: 1.1em; color: #999">有生之年</a> <a href="/tags/%E6%96%87%E6%98%8EVI/" style="font-size: 1.1em; color: #999">文明VI</a> <a href="/tags/%E9%93%B6%E6%B2%B3%E6%88%98%E5%A3%AB%E6%81%B6%E9%AD%94%E5%9F%8E/" style="font-size: 1.2em; color: #999da3">银河战士恶魔城</a> <a href="/tags/%E8%B1%AA%E6%94%BE/" style="font-size: 1.1em; color: #999">豪放</a> <a href="/tags/%E7%A7%8D%E7%94%B0%E6%B5%81/" style="font-size: 1.1em; color: #999">种田流</a> <a href="/tags/R18/" style="font-size: 1.2em; color: #999da3">R18</a> <a href="/tags/%E5%9B%9B%E5%A4%A7%E5%90%8D%E8%91%97/" style="font-size: 1.1em; color: #999">四大名著</a> <a href="/tags/%E5%90%89%E5%8D%9C%E5%8A%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4/" style="font-size: 1.1em; color: #999">吉卜力工作室</a> <a href="/tags/ACG/" style="font-size: 1.1em; color: #999">ACG</a> <a href="/tags/%E6%81%8B%E7%88%B1/" style="font-size: 1.1em; color: #999">恋爱</a> <a href="/tags/Mermaid/" style="font-size: 1.1em; color: #999">Mermaid</a> <a href="/tags/%E9%B2%81%E8%BF%85/" style="font-size: 1.1em; color: #999">鲁迅</a> <a href="/tags/%E5%8F%AF%E6%B1%97%E5%AD%A6%E9%99%A2/" style="font-size: 1.2em; color: #999da3">可汗学院</a> <a href="/tags/MIT/" style="font-size: 1.5em; color: #99a9bf">MIT</a> <a href="/tags/Everlasting-Summer/" style="font-size: 1.1em; color: #999">Everlasting Summer</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 1.1em; color: #999">信息论</a> <a href="/tags/%E6%B0%B4%E4%BB%99/" style="font-size: 1.1em; color: #999">水仙</a> <a href="/tags/%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%E5%B0%8F%E5%9C%86/" style="font-size: 1.1em; color: #999">魔法少女小圆</a> <a href="/tags/%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88/" style="font-size: 1.3em; color: #99a1ac">文字排版</a> <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 1.3em; color: #99a1ac">概率论</a> <a href="/tags/%E8%87%B4%E9%83%81/" style="font-size: 1.1em; color: #999">致郁</a> <a href="/tags/%E8%BF%90%E5%8A%A8/" style="font-size: 1.1em; color: #999">运动</a> <a href="/tags/%E6%90%9E%E7%AC%91/" style="font-size: 1.1em; color: #999">搞笑</a> <a href="/tags/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81/" style="font-size: 1.1em; color: #999">傲慢与偏见</a> <a href="/tags/CLI/" style="font-size: 1.1em; color: #999">CLI</a> <a href="/tags/C/" style="font-size: 1.2em; color: #999da3">C++</a> <a href="/tags/%E8%B7%B3%E8%B7%83/" style="font-size: 1.1em; color: #999">跳跃</a> <a href="/tags/%E7%99%BD%E6%AF%9B/" style="font-size: 1.1em; color: #999">白毛</a> <a href="/tags/web/" style="font-size: 1.4em; color: #99a5b6">web</a> <a href="/tags/Princeton/" style="font-size: 1.2em; color: #999da3">Princeton</a> <a href="/tags/%E7%BA%AF%E7%88%B1/" style="font-size: 1.1em; color: #999">纯爱</a> <a href="/tags/%E5%90%8E%E5%AE%AB/" style="font-size: 1.1em; color: #999">后宫</a></div></div><div class="card-widget card-webinfo"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-shuju"/></svg></a><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">99</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishdate="2022-10-31T12:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">23.1w</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastpushdate="2024-01-01T05:21:24.888Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2024 By old_driver_zero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
 
-      Array.from($mermaidWrap).forEach((item, index) => {
-        const mermaidSrc = item.firstElementChild
-        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
-        const mermaidID = 'mermaid-' + index
-        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
-        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
-          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
         })
-      })
-    }
+      }
 
-    const loadMermaid = () => {
-      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
-    }
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
 
-    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
   }
-})()</script></div><script async src="//at.alicdn.com/t/c/font_4031045_8r6cr7hwlv.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
 
 var pjax = new Pjax({
   elements: 'a:not([target="_blank"])',
@@ -220,11 +535,11 @@ var pjax = new Pjax({
 
 document.addEventListener('pjax:send', function () {
 
-  // removeEventListener scroll 
-  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
-  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
 
-  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  document.getElementById('rightside').classList.remove('rightside-show')
   
   if (window.aplayers) {
     for (let i = 0; i < window.aplayers.length; i++) {
@@ -256,7 +571,6 @@ document.addEventListener('pjax:complete', function () {
 
   GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
 
-  typeof chatBtnFn === 'function' && chatBtnFn()
   typeof panguInit === 'function' && panguInit()
 
   // google analytics
@@ -271,7 +585,7 @@ document.addEventListener('pjax:complete', function () {
   typeof Prism === 'object' && Prism.highlightAll()
 })
 
-document.addEventListener('pjax:error', (e) => {
+document.addEventListener('pjax:error', e => {
   if (e.request.status === 404) {
     pjax.loadUrl('/404.html')
   }
