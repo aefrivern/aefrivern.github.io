@@ -385,11 +385,11 @@
       <category term="学习笔记" scheme="https://old-driver-zero.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
+      <category term="体系结构" scheme="https://old-driver-zero.github.io/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
+    
       <category term="计算机科学" scheme="https://old-driver-zero.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
       <category term="ETH Zurich" scheme="https://old-driver-zero.github.io/tags/ETH-Zurich/"/>
-    
-      <category term="体系结构" scheme="https://old-driver-zero.github.io/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
@@ -419,9 +419,9 @@
       <category term="学习笔记" scheme="https://old-driver-zero.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="计算机科学" scheme="https://old-driver-zero.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
-    
       <category term="体系结构" scheme="https://old-driver-zero.github.io/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="计算机科学" scheme="https://old-driver-zero.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/"/>
     
       <category term="UC Berkeley" scheme="https://old-driver-zero.github.io/tags/UC-Berkeley/"/>
     
@@ -465,37 +465,6 @@
   </entry>
   
   <entry>
-    <title>社会主义 galgame</title>
-    <link href="https://old-driver-zero.github.io/posts/d839b0e.html"/>
-    <id>https://old-driver-zero.github.io/posts/d839b0e.html</id>
-    <published>2023-10-08T00:17:22.000Z</published>
-    <updated>2024-03-07T00:17:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这部作品画风很独特，给人一种很诡异的感觉，以至于 H-CG让人不太想看。前苏联的风格，如少先队、夏令营、列宁像等独特的元素还是让人眼前一亮。但苏联+日本水手服的搭配还是让人有点出戏，可以看出制作者有向日本galgame 看齐的意识，但是还有待打磨，形成自己的一套风格。</p><p>游戏的剧情尽管有点老套，是常见的穿越题材，但是胜在其对氛围的营造。尤其是Miku<del>（这和初音未来没有关系我不是很认可）</del>线，让人细思极恐。</p><p>总而言之，这应该算是俄罗斯 galgame一次出色的尝试了，即学习借鉴了日本风格，又有文化输出的意味，很值得学习。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;p&gt;这部作品画风很独特，给人一种很诡异的感觉，以至于
-        
-      
-    
-    </summary>
-    
-    
-      <category term="游戏人生" scheme="https://old-driver-zero.github.io/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/"/>
-    
-    
-      <category term="Everlasting Summer" scheme="https://old-driver-zero.github.io/tags/Everlasting-Summer/"/>
-    
-      <category term="苏联" scheme="https://old-driver-zero.github.io/tags/%E8%8B%8F%E8%81%94/"/>
-    
-  </entry>
-  
-  <entry>
     <title>一场美丽奇幻的梦</title>
     <link href="https://old-driver-zero.github.io/posts/167c7c45.html"/>
     <id>https://old-driver-zero.github.io/posts/167c7c45.html</id>
@@ -523,6 +492,37 @@
       <category term="GRIS" scheme="https://old-driver-zero.github.io/tags/GRIS/"/>
     
       <category term="第九艺术" scheme="https://old-driver-zero.github.io/tags/%E7%AC%AC%E4%B9%9D%E8%89%BA%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>社会主义 galgame</title>
+    <link href="https://old-driver-zero.github.io/posts/d839b0e.html"/>
+    <id>https://old-driver-zero.github.io/posts/d839b0e.html</id>
+    <published>2023-10-08T00:17:22.000Z</published>
+    <updated>2024-03-07T00:17:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这部作品画风很独特，给人一种很诡异的感觉，以至于 H-CG让人不太想看。前苏联的风格，如少先队、夏令营、列宁像等独特的元素还是让人眼前一亮。但苏联+日本水手服的搭配还是让人有点出戏，可以看出制作者有向日本galgame 看齐的意识，但是还有待打磨，形成自己的一套风格。</p><p>游戏的剧情尽管有点老套，是常见的穿越题材，但是胜在其对氛围的营造。尤其是Miku<del>（这和初音未来没有关系我不是很认可）</del>线，让人细思极恐。</p><p>总而言之，这应该算是俄罗斯 galgame一次出色的尝试了，即学习借鉴了日本风格，又有文化输出的意味，很值得学习。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;p&gt;这部作品画风很独特，给人一种很诡异的感觉，以至于
+        
+      
+    
+    </summary>
+    
+    
+      <category term="游戏人生" scheme="https://old-driver-zero.github.io/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/"/>
+    
+    
+      <category term="Everlasting Summer" scheme="https://old-driver-zero.github.io/tags/Everlasting-Summer/"/>
+    
+      <category term="苏联" scheme="https://old-driver-zero.github.io/tags/%E8%8B%8F%E8%81%94/"/>
     
   </entry>
   
