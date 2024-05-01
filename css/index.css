@@ -4729,7 +4729,7 @@ mjx-assistive-mml {
     background-repeat: no-repeat !important;
   }
   [data-theme="dark"] #web_bg {
-    background: url(/gallery/wallpaper/wallpaper_mobilenight.webp)#【可选】移动端夜间模式背景 !important;
+    background: url(/gallery/wallpaper/wallpaper_mobilenight.webp) !important;
     background-attachment: local !important;
     background-position: center !important;
     background-size: cover !important;
