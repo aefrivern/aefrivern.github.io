@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UML | old-driver-zeroの小屋</title><meta name="author" content="old_driver_zero"><meta name="copyright" content="old_driver_zero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基于 UML Distilled Third Edition: A Brief Guide to the Standard Object Modeling Language 编写 在线画图网站：draw.io 简介 统一建模语言 Unified Modeling Language(UML) 是图像标记家族，通常用于面向对象编程中 标准由 OMG 制定 UML 通常有三种用法：  草稿——最常用 蓝">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UML">
+<meta property="og:url" content="https://old-driver-zero.github.io/posts/af8b09ba.html">
+<meta property="og:site_name" content="old-driver-zeroの小屋">
+<meta property="og:description" content="基于 UML Distilled Third Edition: A Brief Guide to the Standard Object Modeling Language 编写 在线画图网站：draw.io 简介 统一建模语言 Unified Modeling Language(UML) 是图像标记家族，通常用于面向对象编程中 标准由 OMG 制定 UML 通常有三种用法：  草稿——最常用 蓝">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://old-driver-zero.github.io/gallery/cover/UML.webp">
+<meta property="article:published_time" content="2024-04-29T07:15:15.000Z">
+<meta property="article:modified_time" content="2024-04-30T02:43:39.000Z">
+<meta property="article:author" content="old_driver_zero">
+<meta property="article:tag" content="UML">
+<meta property="article:tag" content="软件工程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://old-driver-zero.github.io/gallery/cover/UML.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://old-driver-zero.github.io/posts/af8b09ba.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UML',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-30 10:43:39'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/article title.css"><link rel="stylesheet" href="/css/card author.css"><link rel="stylesheet" href="/css/transpancy.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css">
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">183</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/gallery/cover/UML.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/favicon.ico"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"/></svg><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UML</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-29T07:15:15.000Z" title="发表于 2024-04-29 15:15:15">2024-04-29</time><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-30T02:43:39.000Z" title="更新于 2024-04-30 10:43:39">2024-04-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><a class="faa-parent animated-hover"></a><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-word"/></svg><span class="post-meta-label">字数总计:</span><span class="word-count">901</span><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-shizhong"/></svg><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>基于 <em>UML Distilled Third Edition: A Brief Guide to the Standard Object Modeling Language</em> 编写</p>
+<p>在线画图网站：<a target="_blank" rel="external nofollow noopener noreferrer" href="https://app.diagrams.net/">draw.io</a></p>
+<h1>简介</h1>
+<p><strong>统一建模语言 Unified Modeling Language(UML)</strong> 是图像标记家族，通常用于面向对象编程中</p>
+<p>标准由 OMG 制定</p>
+<p>UML 通常有三种用法：</p>
+<ul>
+<li>草稿——最常用</li>
+<li>蓝图</li>
+<li>编程语言</li>
+</ul>
+<p>两个时间阶段：</p>
+<ul>
+<li>前向工程：在写代码之前画图</li>
+<li>逆向工程：从现有的代码中构造 UML 图以帮助理解代码</li>
+</ul>
+<p>也正因为前两种用法更常见，故应该力求简洁，抓住要点，就像设计模式一样，通过公认的规范让人能够快速抓住要点。所以在使用的过程中要尽量避免那些微妙的歧义之处</p>
+<h1>类图</h1>
+<p>类图是最常见的图之一</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/UML/%E7%B1%BB%E5%9B%BE.svg" alt="类图"></p>
+<p><strong>属性 properties</strong> 代表类的结构化特征，有两种标记方式：</p>
+<ul>
+<li><strong>Attribute</strong>：直接写在类的框图中
+<ul>
+<li>通常语法如下：<code>可见性 名字: 类型 乘数 = 默认值 &#123;属性字符串&#125;</code></li>
+<li>例如：<code>- title: String [1] = &quot;Untitled&quot; &#123;readOnly&#125;</code></li>
+</ul>
+</li>
+<li><strong>关联 association</strong>：用带箭头的线将两个对象连接起来</li>
+</ul>
+<p><strong>乘数 multiplicity</strong>：多少对象充满该属性，如 <code>1</code>、<code>0..1</code>、<code>*</code> 等</p>
+<p>单箭头的是单向关联，双箭头的则是双向关联</p>
+<p><strong>操作 operation</strong> 的语法是：<code>可见性 名称 (参数列表): 返回类型 &#123;属性字符串&#125;</code></p>
+<p><strong>泛化 generalization</strong> 即软件中的继承</p>
+<p>标签样式的是注释</p>
+<p>虚线箭头表示<strong>依赖 dependency</strong>，即被依赖方改变，依赖方也要跟着改变</p>
+<p>注意依赖不一定有传递性，因为可能并不改变接口</p>
+<p>依赖的关键字：</p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>意义</th>
+<th>关键字</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;&lt;call&gt;&gt;</code></td>
+<td>调用操作</td>
+<td><code>&lt;&lt;create&gt;&gt;</code></td>
+<td>创建实例</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;derive&gt;&gt;</code></td>
+<td>从目标派生</td>
+<td><code>&lt;&lt;instantiate&gt;&gt;</code></td>
+<td>是目标的实例</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;permit&gt;&gt;</code></td>
+<td>访问目标的私有特征</td>
+<td><code>&lt;&lt;realize&gt;&gt;</code></td>
+<td>是目标定义的接口或规范的实现</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;refine&gt;&gt;</code></td>
+<td>不同语义上的关系</td>
+<td><code>&lt;&lt;substitute&gt;&gt;</code></td>
+<td>可替代目标</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;trace&gt;&gt;</code></td>
+<td>跟踪需求</td>
+<td><code>&lt;&lt;use&gt;&gt;</code></td>
+<td>需要目标用于实现</td>
+</tr>
+</tbody>
+</table>
+<p><strong>约束 constraint</strong> 放在 <code>&#123; &#125;</code> 中</p>
+<h1>时序图</h1>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/UML/%E6%97%B6%E5%BA%8F%E5%9B%BE.svg" alt="时序图"></p>
+<p>分布式和中心式控制</p>
+<p>如果一个对象要创建，则发出 <code>new</code> 消息；如果要删除，则画上 <code>X</code></p>
+<p>尽管并不擅长，时序图仍然支持循环和条件</p>
+<p>同步信息和异步信息</p>
+<h1>类图：进阶概念</h1>
+<p><strong>关键词 keyword</strong></p>
+<p>也可以在类中加入<strong>责任 responsibility</strong></p>
+<p>静态操作和属性加<u>下划线</u></p>
+<p><strong>组合 composition</strong> 和关联不同，强调了<strong>没有共享</strong>，即一方删除了，其包含的内容也会被删除</p>
+<p><strong>派生属性 derived attribute</strong>：前面加 <code>/</code>，表示这是由计算得来的</p>
+<p>接口和抽象类</p>
+<ul>
+<li><em>抽象类</em>用<em>斜体</em>表示，<em>抽象方法</em>也用斜体表示</li>
+<li>虚线箭头表示实现某接口</li>
+<li>套接字的写法也可以</li>
+</ul>
+<p>限定关联：用于强调例如“Order 中的每个 Product 实例有一个 Order Line”</p>
+<p>区别<strong>分类 classification</strong> 和<strong>泛化 generalization</strong>：</p>
+<ul>
+<li>分类：对象是某类型的一个实例</li>
+<li>泛化：类型是某个类型的子类</li>
+</ul>
+<p>多分类：和泛化一样，但是在箭头边上加上分类<strong>鉴别符 discriminator</strong></p>
+<p>关联类：支持多对多</p>
+<p>模板类：C++ 限定</p>
+<p>激活类：边框是双竖线，表示在客户端中的线程中执行</p>
+<p>可见性：常用 <code>+</code>(public) 和 <code>-</code>(private)</p>
+<h1>对象图</h1>
+<p>通常用于展示对象之间的关系</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/UML/%E5%AF%B9%E8%B1%A1%E5%9B%BE.svg" alt="对象图"></p>
+<h1>包图</h1>
+<p>用于表示包的依赖，资产，实现关系等</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/UML/%E5%8C%85%E5%9B%BE.svg" alt="包图"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/UML/">UML</a><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></div><div class="post_share"><div class="social-share" data-image="/gallery/cover/UML.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/599b3123.html" title="Hexo 和 Butterfly 搭建博客"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Hexo%20%E5%92%8C%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hexo 和 Butterfly 搭建博客</div></div></a></div><div class="next-post pull-right"><a href="/posts/8d7f2967.html" title="WSL2"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/WSL2.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">WSL2</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">old_driver_zero</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">183</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/old-driver-zero" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"/></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" target="_blank" title="QQ邮箱" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" target="_blank" title="Steam" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"/></svg></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-mulu"/></svg></a><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">类图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">时序图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">类图：进阶概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">对象图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">包图</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2024 By old_driver_zero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async src="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.0/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.63.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.12.0"></script></div></div></html>

@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Makefile | old-driver-zeroの小屋</title><meta name="author" content="old_driver_zero"><meta name="copyright" content="old_driver_zero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="介绍 Makefile 的基本规则： 1234target ... : prerequisites ...    recipe    ...    ...  target：可以是一个 object file（目标文件），也可以是一个可执行文件，还可以是一个标签（label） prerequisites：生成该 target 所依赖的文件和&#x2F;或 target recipe：该 tar">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Makefile | old-driver-zeroの小屋</title><meta name="author" content="old_driver_zero"><meta name="copyright" content="old_driver_zero"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="介绍 Makefile 的基本规则： target ... : prerequisites ...    recipe    ...    ...  target：可以是一个 object file（目标文件），也可以是一个可执行文件，还可以是一个标签（label） prerequisites：生成该 target 所依赖的文件和&#x2F;或 target recipe：该 target 要执行的命令（任">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Makefile">
 <meta property="og:url" content="https://old-driver-zero.github.io/posts/6441a1ac.html">
 <meta property="og:site_name" content="old-driver-zeroの小屋">
-<meta property="og:description" content="介绍 Makefile 的基本规则： 1234target ... : prerequisites ...    recipe    ...    ...  target：可以是一个 object file（目标文件），也可以是一个可执行文件，还可以是一个标签（label） prerequisites：生成该 target 所依赖的文件和&#x2F;或 target recipe：该 tar">
+<meta property="og:description" content="介绍 Makefile 的基本规则： target ... : prerequisites ...    recipe    ...    ...  target：可以是一个 object file（目标文件），也可以是一个可执行文件，还可以是一个标签（label） prerequisites：生成该 target 所依赖的文件和&#x2F;或 target recipe：该 target 要执行的命令（任">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://old-driver-zero.github.io/gallery/cover/Makefile.webp">
 <meta property="article:published_time" content="2024-04-10T06:59:51.000Z">
@@ -157,156 +157,125 @@
     })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/article title.css"><link rel="stylesheet" href="/css/card author.css"><link rel="stylesheet" href="/css/transpancy.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css">
 <style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
   white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
-<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="old-driver-zeroの小屋" type="application/atom+xml">
-</head><body><script>window.paceOptions = {
+<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0"></head><body><script>window.paceOptions = {
   restartOnPushState: false
 }
 
 document.addEventListener('pjax:send', () => {
   Pace.restart()
 })
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">120</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">180</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/gallery/cover/Makefile.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"/></svg><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Makefile</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T06:59:51.000Z" title="发表于 2024-04-10 14:59:51">2024-04-10</time><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-20T02:02:55.000Z" title="更新于 2024-04-20 10:02:55">2024-04-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><a class="faa-parent animated-hover"></a><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-word"/></svg><span class="post-meta-label">字数总计:</span><span class="word-count">2236</span><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-shizhong"/></svg><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="介绍">介绍</h1>
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">183</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/gallery/cover/Makefile.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="old-driver-zeroの小屋"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/favicon.ico"><span class="site-name">old-driver-zeroの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"/></svg><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"/></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"/></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"/></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"/></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"/></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"/></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"/></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"/></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"/></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"/></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Makefile</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"/></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T06:59:51.000Z" title="发表于 2024-04-10 14:59:51">2024-04-10</time><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"/></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-20T02:02:55.000Z" title="更新于 2024-04-20 10:02:55">2024-04-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><a class="faa-parent animated-hover"></a><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"/></svg><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-word"/></svg><span class="post-meta-label">字数总计:</span><span class="word-count">2220</span><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-shizhong"/></svg><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>介绍</h1>
 <p>Makefile 的基本规则：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile">target ... : prerequisites ...<br>    recipe<br>    ...<br>    ...<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">target ... : prerequisites ...<br>    recipe<br>    ...<br>    ...<br></code></pre></td></tr></table></figure>
 <ul>
-<li><code>target</code>：可以是一个 object
-file（目标文件），也可以是一个可执行文件，还可以是一个标签（label）</li>
-<li><code>prerequisites</code>：生成该 target 所依赖的文件和/或
-target</li>
-<li><code>recipe</code>：该 target 要执行的命令（任意的 shell
-命令）</li>
+<li><code>target</code>：可以是一个 object file（目标文件），也可以是一个可执行文件，还可以是一个标签（label）</li>
+<li><code>prerequisites</code>：生成该 target 所依赖的文件和/或 target</li>
+<li><code>recipe</code>：该 target 要执行的命令（任意的 shell 命令）</li>
 </ul>
 <p>简单来说就是指定了一个依赖关系</p>
 <p>输入 <code>make</code> 命令时，是这么工作的：</p>
-<ol type="1">
-<li><code>make</code> 会在当前目录下找名字叫 <code>Makefile</code> 或
-<code>makefile</code> 的文件</li>
+<ol>
+<li><code>make</code> 会在当前目录下找名字叫 <code>Makefile</code> 或 <code>makefile</code> 的文件</li>
 <li>如果找到，它会找文件中的第一个目标文件（target），并把这个文件作为最终的目标文件</li>
-<li>如果该文件不存在，或其所依赖的后面的 <code>.o</code>
-文件的文件修改时间要比这个文件新，则执行后面所定义的命令来生成这个文件</li>
-<li>如果所依赖的 <code>.o</code> 文件也不存在，那么 make
-会在当前文件中找目标为 <code>.o</code>
-文件的依赖性，如果找到则再根据那一个规则生成 <code>.o</code> 文件</li>
+<li>如果该文件不存在，或其所依赖的后面的 <code>.o</code> 文件的文件修改时间要比这个文件新，则执行后面所定义的命令来生成这个文件</li>
+<li>如果所依赖的 <code>.o</code> 文件也不存在，那么 make 会在当前文件中找目标为 <code>.o</code> 文件的依赖性，如果找到则再根据那一个规则生成 <code>.o</code> 文件</li>
 <li>最后用 <code>.o</code> 文件生成可执行文件</li>
 </ol>
 <p>在 Makefile 中可以声明变量并使用变量：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile">OBJ = main.o kbd.o command.o display.o<br>edit : <span class="hljs-variable">$(objects)</span><br>    cc -o edit <span class="hljs-variable">$(objects)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">OBJ = main.o kbd.o command.o display.o<br>edit : <span class="hljs-variable">$(objects)</span><br>    cc -o edit <span class="hljs-variable">$(objects)</span><br></code></pre></td></tr></table></figure>
 <p>事实上，make 可以自动推导文件及依赖关系后的命令，如</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile">kbd.o : kbd.c defs.h command.h<br>    cc -c kbd.c<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">kbd.o : kbd.c defs.h command.h<br>    cc -c kbd.c<br></code></pre></td></tr></table></figure>
 <p>可以简化为：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile">kbd.o : defs.h command.h<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">kbd.o : defs.h command.h<br></code></pre></td></tr></table></figure>
 <p>每个 Makefile 都应该在最后写一个清空目标文件的规则，如：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile">.PHONY : clean<br>clean :<br>    -rm edit <span class="hljs-variable">$(objects)</span><br></code></pre></td></tr></table></figure>
-<p>当然，Makefile
-可以为任意的文件名，但在使用时必须指定：<code>make -f Make.Solaris</code></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">.PHONY : clean<br>clean :<br>    -rm edit <span class="hljs-variable">$(objects)</span><br></code></pre></td></tr></table></figure>
+<p>当然，Makefile 可以为任意的文件名，但在使用时必须指定：<code>make -f Make.Solaris</code></p>
 <p>还可以把其他 Makefile 包含进来，如：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-keyword">include</span> 文件名...<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-keyword">include</span> 文件名...<br></code></pre></td></tr></table></figure>
 <p>其寻找的位置是：</p>
-<ol type="1">
+<ol>
 <li>当前目录</li>
 <li><code>-I</code> 参数指定的目录</li>
 <li><code>&lt;prefix&gt;/include</code></li>
 </ol>
-<h1 id="书写规则">书写规则</h1>
-<p>make 支持三个通配符：<code>*</code>，<code>?</code> 和
-<code>~</code></p>
-<p><code>VPATH</code> 变量指定了 make 寻找文件的目录，还有
-<code>vpath</code> 功能类似，但是更灵活：</p>
+<h1>书写规则</h1>
+<p>make 支持三个通配符：<code>*</code>，<code>?</code> 和 <code>~</code></p>
+<p><code>VPATH</code> 变量指定了 make 寻找文件的目录，还有 <code>vpath</code> 功能类似，但是更灵活：</p>
 <ul>
-<li><code>vpath &lt;pattern&gt; &lt;directories&gt;</code>：为符合模式
-<code>&lt;pattern&gt;</code> 的文件指定搜索目录
-<code>&lt;directories&gt;</code></li>
-<li><code>vpath &lt;pattern&gt;</code>：清除符合模式
-<code>&lt;pattern&gt;</code> 的文件的搜索目录</li>
+<li><code>vpath &lt;pattern&gt; &lt;directories&gt;</code>：为符合模式 <code>&lt;pattern&gt;</code> 的文件指定搜索目录 <code>&lt;directories&gt;</code></li>
+<li><code>vpath &lt;pattern&gt;</code>：清除符合模式 <code>&lt;pattern&gt;</code> 的文件的搜索目录</li>
 <li><code>vpath</code>：清除所有已被设置好了的文件搜索目录</li>
 </ul>
 <p>可以连续使用 <code>vpath</code> 语句</p>
-<p>因为不生成 <code>clean</code>
-文件，故这是一个<strong>伪目标</strong>，如：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs makefile">.PHONY : cleanall cleanobj cleandiff<br><br>cleanall : cleanobj cleandiff<br>    rm program<br><br>cleanobj :<br>    rm *.o<br><br>cleandiff :<br>    rm *.diff<br></code></pre></td></tr></table></figure>
+<p>因为不生成 <code>clean</code> 文件，故这是一个<strong>伪目标</strong>，如：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">.PHONY : cleanall cleanobj cleandiff<br><br>cleanall : cleanobj cleandiff<br>    rm program<br><br>cleanobj :<br>    rm *.o<br><br>cleandiff :<br>    rm *.diff<br></code></pre></td></tr></table></figure>
 <p>Makefile 的规则中的目标可以不止一个，如</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile">bigoutput littleoutput : text.g<br>    generate text.g -<span class="hljs-variable">$(<span class="hljs-built_in">subst</span> output,,<span class="hljs-variable">$@</span>)</span> &gt; <span class="hljs-variable">$@</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">bigoutput littleoutput : text.g<br>    generate text.g -<span class="hljs-variable">$(<span class="hljs-built_in">subst</span> output,,<span class="hljs-variable">$@</span>)</span> &gt; <span class="hljs-variable">$@</span><br></code></pre></td></tr></table></figure>
 <p><strong>静态模式</strong>可以更加容易地定义多目标的规则：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile">&lt;targets ...&gt; : &lt;target-pattern&gt; : &lt;prereq-patterns ...&gt;<br>    &lt;commands&gt;<br>    ...<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">&lt;targets ...&gt; : &lt;target-pattern&gt; : &lt;prereq-patterns ...&gt;<br>    &lt;commands&gt;<br>    ...<br></code></pre></td></tr></table></figure>
 <ul>
 <li><code>targets</code> 定义了一系列的目标文件，可以有通配符</li>
-<li><code>target-pattern</code> 是指明了 <code>targets</code>
-的模式，也就是的目标集模式</li>
-<li><code>prereq-patterns</code> 是目标的依赖模式，它对
-<code>target-pattern</code> 形成的模式再进行一次依赖目标的定义</li>
+<li><code>target-pattern</code> 是指明了 <code>targets</code> 的模式，也就是的目标集模式</li>
+<li><code>prereq-patterns</code> 是目标的依赖模式，它对 <code>target-pattern</code> 形成的模式再进行一次依赖目标的定义</li>
 </ul>
-<p>大多数的 C/C++ 编译器都支持一个 <code>-M</code>
-的选项，即自动找寻源文件中包含的头文件，并生成一个依赖关系</p>
-<p>利用这个特性，我们可以为每一个 <code>name.c</code> 的文件都生成一个
-<code>name.d</code> 的 Makefile 文件， <code>.d</code> 文件中就存放对应
-<code>.c</code> 文件的依赖关系</p>
-<h1 id="书写命令">书写命令</h1>
-<p>通常，make 会把执行的命令显示到屏幕上，如果不想显示，则加上
-<code>@</code>，如：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile">@echo 正在编译XXX模块......<br></code></pre></td></tr></table></figure>
+<p>大多数的 C/C++ 编译器都支持一个 <code>-M</code> 的选项，即自动找寻源文件中包含的头文件，并生成一个依赖关系</p>
+<p>利用这个特性，我们可以为每一个 <code>name.c</code> 的文件都生成一个 <code>name.d</code> 的 Makefile 文件， <code>.d</code> 文件中就存放对应 <code>.c</code> 文件的依赖关系</p>
+<h1>书写命令</h1>
+<p>通常，make 会把执行的命令显示到屏幕上，如果不想显示，则加上 <code>@</code>，如：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">@echo 正在编译XXX模块......<br></code></pre></td></tr></table></figure>
 <p>当然，加上参数 <code>-s</code> 会全面禁止命令的显示</p>
-<p>如果要让上一条命令的结果应用在下一条命令上，则应该使用 <code>;</code>
-分割这两条命令，如：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">exec:</span><br>    cd /home/hchen; pwd<br></code></pre></td></tr></table></figure>
+<p>如果要让上一条命令的结果应用在下一条命令上，则应该使用 <code>;</code> 分割这两条命令，如：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">exec:</span><br>    cd /home/hchen; pwd<br></code></pre></td></tr></table></figure>
 <p>make 默认使用的 shell 是 <code>/bin/sh</code></p>
-<p>make
-会检测每个命令的返回码，如果失败，则会终止执行当前规则；为了让其忽略出错，可以在命令前加
-<code>-</code>，如：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">clean:</span><br>    -rm -f *.o<br></code></pre></td></tr></table></figure>
+<p>make 会检测每个命令的返回码，如果失败，则会终止执行当前规则；为了让其忽略出错，可以在命令前加 <code>-</code>，如：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">clean:</span><br>    -rm -f *.o<br></code></pre></td></tr></table></figure>
 <p>相应的全局方法是加上参数 <code>-i</code></p>
 <p>可以嵌套执行 Makefile 文件，如总控 Makefile 可以这样写：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">subsystem:</span><br>    cd subdir &amp;&amp; <span class="hljs-variable">$(MAKE)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">subsystem:</span><br>    cd subdir &amp;&amp; <span class="hljs-variable">$(MAKE)</span><br></code></pre></td></tr></table></figure>
 <p>其作用是执行 <code>subdir</code> 目录下的 Makefile 文件</p>
-<p>默认情况下总控中定义的变量不会传递给下级的
-Makefile，如果想要传递，可以：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-keyword">export</span> &lt;variable ...&gt;;<br></code></pre></td></tr></table></figure>
+<p>默认情况下总控中定义的变量不会传递给下级的 Makefile，如果想要传递，可以：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-keyword">export</span> &lt;variable ...&gt;;<br></code></pre></td></tr></table></figure>
 <p>如果要传递所有的变量，则直接使用 <code>export</code></p>
 <p>加上 <code>-w</code> 参数可以看到当前的工作目录</p>
 <p>我们可以为相同的命令序列定义一个变量：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-keyword">define</span> run-yacc<br>yacc <span class="hljs-variable">$(<span class="hljs-built_in">firstword</span> <span class="hljs-variable">$^</span>)</span><br>mv y.tab.c <span class="hljs-variable">$@</span><br><span class="hljs-keyword">endef</span><br></code></pre></td></tr></table></figure>
-<h1 id="使用变量">使用变量</h1>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-keyword">define</span> run-yacc<br>yacc <span class="hljs-variable">$(<span class="hljs-built_in">firstword</span> <span class="hljs-variable">$^</span>)</span><br>mv y.tab.c <span class="hljs-variable">$@</span><br><span class="hljs-keyword">endef</span><br></code></pre></td></tr></table></figure>
+<h1>使用变量</h1>
 <p>定义变量的方法：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile">foo = <span class="hljs-variable">$(bar)</span><br>bar = <span class="hljs-variable">$(ugh)</span><br>ugh = Huh?<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">foo = <span class="hljs-variable">$(bar)</span><br>bar = <span class="hljs-variable">$(ugh)</span><br>ugh = Huh?<br></code></pre></td></tr></table></figure>
 <p>注意到上面那种定义顺序是合法的，当然还有另一种方法避免了这种情况：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile">x := foo<br>y := <span class="hljs-variable">$(x)</span> bar<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">x := foo<br>y := <span class="hljs-variable">$(x)</span> bar<br></code></pre></td></tr></table></figure>
 <p>一种定义一个空格的变量的方法：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile">nullstring :=<br>space := <span class="hljs-variable">$(nullstring)</span> <span class="hljs-comment"># 通过注释指定了一个空格</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">nullstring :=<br>space := <span class="hljs-variable">$(nullstring)</span> <span class="hljs-comment"># 通过注释指定了一个空格</span><br></code></pre></td></tr></table></figure>
 <p><code>?=</code> 表示如果没有定义过，则定义；反之，则什么都不做</p>
-<p><code>$(var:a=b)</code>：把变量 <code>var</code> 中所有结尾的
-<code>a</code> 替换成
-<code>b</code>。这里的“结尾”意思是“空格”或是“结束符”。</p>
+<p><code>$(var:a=b)</code>：把变量 <code>var</code> 中所有结尾的 <code>a</code> 替换成 <code>b</code>。这里的“结尾”意思是“空格”或是“结束符”。</p>
 <p>可以使用 <code>+=</code> 给变量追加值</p>
-<p>如果有变量是 make 的命令行参数设置的，则 Makefile
-中对这个变量的赋值会被忽略，如果想设置，可以在前面加
-<code>override</code></p>
+<p>如果有变量是 make 的命令行参数设置的，则 Makefile 中对这个变量的赋值会被忽略，如果想设置，可以在前面加 <code>override</code></p>
 <p>之前定义的变量都是“全局变量”，也可以为某个目标设置局部变量，其作用范围只在这条规则以及连带规则中：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile">&lt;target ...&gt; : &lt;variable-assignment&gt;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">&lt;target ...&gt; : &lt;variable-assignment&gt;;<br></code></pre></td></tr></table></figure>
 <p>还支持<strong>模式变量</strong>，即可以把变量定义在所有符合该模式的目标上：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile">&lt;pattern ...&gt;; : &lt;variable-assignment&gt;;<br></code></pre></td></tr></table></figure>
-<h1 id="使用条件判断">使用条件判断</h1>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-keyword">ifeq</span> (<span class="hljs-variable">$(CC)</span>,gcc)<br>    <span class="hljs-variable">$(CC)</span> -o foo <span class="hljs-variable">$(objects)</span> <span class="hljs-variable">$(libs_for_gcc)</span><br><span class="hljs-keyword">else</span><br>    <span class="hljs-variable">$(CC)</span> -o foo <span class="hljs-variable">$(objects)</span> <span class="hljs-variable">$(normal_libs)</span><br><span class="hljs-keyword">endif</span><br></code></pre></td></tr></table></figure>
-<p>除了 <code>ifeq</code> 以外，还有
-<code>ifneq</code>、<code>ifdef</code>、<code>ifndef</code></p>
-<h1 id="使用函数">使用函数</h1>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">&lt;pattern ...&gt;; : &lt;variable-assignment&gt;;<br></code></pre></td></tr></table></figure>
+<h1>使用条件判断</h1>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-keyword">ifeq</span> (<span class="hljs-variable">$(CC)</span>,gcc)<br>    <span class="hljs-variable">$(CC)</span> -o foo <span class="hljs-variable">$(objects)</span> <span class="hljs-variable">$(libs_for_gcc)</span><br><span class="hljs-keyword">else</span><br>    <span class="hljs-variable">$(CC)</span> -o foo <span class="hljs-variable">$(objects)</span> <span class="hljs-variable">$(normal_libs)</span><br><span class="hljs-keyword">endif</span><br></code></pre></td></tr></table></figure>
+<p>除了 <code>ifeq</code> 以外，还有 <code>ifneq</code>、<code>ifdef</code>、<code>ifndef</code></p>
+<h1>使用函数</h1>
 <p>函数调用类似于变量使用：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile">$(&lt;function&gt; &lt;arguments&gt;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">$(&lt;function&gt; &lt;arguments&gt;)<br></code></pre></td></tr></table></figure>
 <p>字符串替换函数 <code>subst</code>：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">subst</span> &lt;from&gt;,&lt;to&gt;,&lt;text&gt;)</span><br></code></pre></td></tr></table></figure>
-<p>把字串 <code>&lt;text&gt;</code> 中的 <code>&lt;from&gt;</code>
-字符串替换成 <code>&lt;to&gt;</code></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">subst</span> &lt;from&gt;,&lt;to&gt;,&lt;text&gt;)</span><br></code></pre></td></tr></table></figure>
+<p>把字串 <code>&lt;text&gt;</code> 中的 <code>&lt;from&gt;</code> 字符串替换成 <code>&lt;to&gt;</code></p>
 <p>还有相应的模式版本 <code>patsubst</code>：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt;)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt;)</span><br></code></pre></td></tr></table></figure>
 <p>去空格函数 <code>strip</code>：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">strip</span> &lt;string&gt;)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">strip</span> &lt;string&gt;)</span><br></code></pre></td></tr></table></figure>
 <p>去掉 <code>&lt;string&gt;</code> 字串中开头和结尾的空字符</p>
 <p>查找字符串函数 <code>findstring</code>：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">findstring</span> &lt;find&gt;,&lt;in&gt;)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">findstring</span> &lt;find&gt;,&lt;in&gt;)</span><br></code></pre></td></tr></table></figure>
 <p><code>sort</code> 排序（升序），注意同时会去重</p>
 <p>取单词串函数 <code>wordlist</code></p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">wordlist</span> &lt;start&gt;,&lt;end&gt;,&lt;text&gt;)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">wordlist</span> &lt;start&gt;,&lt;end&gt;,&lt;text&gt;)</span><br></code></pre></td></tr></table></figure>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>名称</th>
 <th>功能</th>
 <th>名称</th>
@@ -314,31 +283,31 @@ Makefile，如果想要传递，可以：</p>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>filter</code></td>
 <td>过滤</td>
 <td><code>filter-out</code></td>
 <td>反过滤</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>word</code></td>
 <td>单词个数统计</td>
 <td><code>firstword</code></td>
 <td>首单词</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>dir</code></td>
 <td>取目录</td>
 <td><code>notdir</code></td>
 <td>取非目录</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>suffix</code></td>
 <td>取后缀</td>
 <td><code>basename</code></td>
 <td>取前缀</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>addsuffix</code></td>
 <td>加后缀</td>
 <td><code>addprefix</code></td>
@@ -347,31 +316,24 @@ Makefile，如果想要传递，可以：</p>
 </tbody>
 </table>
 <p>连接函数 <code>join</code>：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">join</span> &lt;list1&gt;,&lt;list2&gt;)</span><br></code></pre></td></tr></table></figure>
-<p>功能：把 <code>&lt;list2&gt;</code>
-中的单词<strong>对应地</strong>加到 <code>&lt;list1&gt;</code>
-的单词后面</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">join</span> &lt;list1&gt;,&lt;list2&gt;)</span><br></code></pre></td></tr></table></figure>
+<p>功能：把 <code>&lt;list2&gt;</code> 中的单词<strong>对应地</strong>加到 <code>&lt;list1&gt;</code> 的单词后面</p>
 <p>用来做循环的 <code>foreach</code>：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">foreach</span> &lt;var&gt;,&lt;list&gt;,&lt;text&gt;)</span><br></code></pre></td></tr></table></figure>
-<p>把参数 <code>&lt;list&gt;</code> 中的单词逐一取出放到参数
-<code>&lt;var&gt;</code> 所指定的变量中，然后再执行
-<code>&lt;text&gt;</code> 所包含的表达式</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">foreach</span> &lt;var&gt;,&lt;list&gt;,&lt;text&gt;)</span><br></code></pre></td></tr></table></figure>
+<p>把参数 <code>&lt;list&gt;</code> 中的单词逐一取出放到参数 <code>&lt;var&gt;</code> 所指定的变量中，然后再执行 <code>&lt;text&gt;</code> 所包含的表达式</p>
 <p><code>if</code> 函数</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">if</span> &lt;condition&gt;,&lt;then-part&gt;)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">if</span> &lt;condition&gt;,&lt;then-part&gt;)</span><br></code></pre></td></tr></table></figure>
 <p><code>call</code> 可以用来创建新的参数化：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile">reverse =  $(2) $(1)<br>foo = <span class="hljs-variable">$(<span class="hljs-built_in">call</span> reverse,a,b)</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">reverse =  $(2) $(1)<br>foo = <span class="hljs-variable">$(<span class="hljs-built_in">call</span> reverse,a,b)</span><br></code></pre></td></tr></table></figure>
 <p><code>origin</code> 告诉你变量是从哪里来的</p>
-<p><code>shell</code> 函数参数是 shell
-命令，和反引号功能一致，注意其会影响性能</p>
+<p><code>shell</code> 函数参数是 shell 命令，和反引号功能一致，注意其会影响性能</p>
 <p>还有控制函数：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">error</span> &lt;text ...&gt;)</span><br><span class="hljs-variable">$(<span class="hljs-built_in">warning</span> &lt;text ...&gt;)</span><br></code></pre></td></tr></table></figure>
-<h1 id="make-的运行">make 的运行</h1>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">error</span> &lt;text ...&gt;)</span><br><span class="hljs-variable">$(<span class="hljs-built_in">warning</span> &lt;text ...&gt;)</span><br></code></pre></td></tr></table></figure>
+<h1>make 的运行</h1>
 <p><code>make</code> 的时候可以指定目标</p>
-<h1 id="隐含规则">隐含规则</h1>
+<h1>隐含规则</h1>
 <p>make 中有一些隐含规则，不必写出来，例如编译 C 语言的：</p>
-<p><code>&lt;n&gt;.o</code> 的目标的依赖目标会自动推导为
-<code>&lt;n&gt;.c</code> ，并且其生成命令是
-<code>$(CC) –c $(CPPFLAGS) $(CFLAGS)</code></p>
+<p><code>&lt;n&gt;.o</code> 的目标的依赖目标会自动推导为 <code>&lt;n&gt;.c</code> ，并且其生成命令是 <code>$(CC) –c $(CPPFLAGS) $(CFLAGS)</code></p>
 <p>隐含规则使用的变量：</p>
 <ul>
 <li><code>AR</code>：函数库打包程序，默认命令是 <code>ar</code></li>
@@ -389,21 +351,17 @@ Makefile，如果想要传递，可以：</p>
 <p><strong>模式规则</strong>：使用 <code>%</code> 通配</p>
 <p><strong>自动化变量</strong>及其说明：</p>
 <ul>
-<li><code>$@</code>：表示规则中的目标文件集。在模式规则中，如果有多个目标，那么，
-<code>$@</code> 就是匹配于目标中模式定义的集合</li>
+<li><code>$@</code>：表示规则中的目标文件集。在模式规则中，如果有多个目标，那么， <code>$@</code> 就是匹配于目标中模式定义的集合</li>
 <li><code>$%</code>：仅当目标是函数库文件中，表示规则中的目标成员名</li>
-<li><code>$&lt;</code>：依赖目标中的第一个目标名字。如果依赖目标是以模式（即
-<code>%</code> ）定义的，那么 <code>$&lt;</code>
-将是符合模式的一系列的文件集。注意，其是一个一个取出来的</li>
+<li><code>$&lt;</code>：依赖目标中的第一个目标名字。如果依赖目标是以模式（即 <code>%</code> ）定义的，那么 <code>$&lt;</code> 将是符合模式的一系列的文件集。注意，其是一个一个取出来的</li>
 <li><code>$?</code>：所有比目标新的依赖目标的集合</li>
 <li><code>$^</code>：所有的依赖目标的集合。以空格分隔。如果在依赖目标中有多个重复的，那么这个变量会去除重复的依赖目标，只保留一份</li>
-<li><code>$+</code>：这个变量很像 <code>$^</code>
-，也是所有依赖目标的集合。只是它不去除重复的依赖目标</li>
+<li><code>$+</code>：这个变量很像 <code>$^</code> ，也是所有依赖目标的集合。只是它不去除重复的依赖目标</li>
 </ul>
-<h1 id="使用-make-更新函数库文件">使用 make 更新函数库文件</h1>
+<h1>使用 make 更新函数库文件</h1>
 <p>一个函数库文件由多个文件组成，可以用如下格式指定函数库文件及其组成:</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs makefile">archive(member)<br></code></pre></td></tr></table></figure>
-</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Makefile/">Makefile</a><a class="post-meta__tags" href="/tags/%E7%BC%96%E8%AF%91/">编译</a></div><div class="post_share"><div class="social-share" data-image="/gallery/cover/Makefile.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/8724ba9a.html" title="C++ 入门（下）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/C++%20%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%8B%EF%BC%89.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">C++ 入门（下）</div></div></a></div><div class="next-post pull-right"><a href="/posts/2069534c.html" title="打倒孔家店，救出孔夫子"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%AD%94%E5%AD%90.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">打倒孔家店，救出孔夫子</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">old_driver_zero</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">120</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">180</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-RSS_flat"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://github.com/old-driver-zero" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"/></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" target="_blank" title="QQ邮箱" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" target="_blank" title="Steam" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"/></svg></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-mulu"/></svg></a><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">书写规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%A6%E5%86%99%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">书写命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8F%98%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">使用变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-number">5.</span> <span class="toc-text">使用条件判断</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">使用函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#make-%E7%9A%84%E8%BF%90%E8%A1%8C"><span class="toc-number">7.</span> <span class="toc-text">make 的运行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9A%90%E5%90%AB%E8%A7%84%E5%88%99"><span class="toc-number">8.</span> <span class="toc-text">隐含规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-make-%E6%9B%B4%E6%96%B0%E5%87%BD%E6%95%B0%E5%BA%93%E6%96%87%E4%BB%B6"><span class="toc-number">9.</span> <span class="toc-text">使用 make 更新函数库文件</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2024 By old_driver_zero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+<figure class="highlight makefile"><table><tr><td class="code"><pre><code class="hljs makefile">archive(member)<br></code></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Makefile/">Makefile</a><a class="post-meta__tags" href="/tags/%E7%BC%96%E8%AF%91/">编译</a></div><div class="post_share"><div class="social-share" data-image="/gallery/cover/Makefile.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/8724ba9a.html" title="C++ 入门（下）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/C++%20%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%8B%EF%BC%89.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">C++ 入门（下）</div></div></a></div><div class="next-post pull-right"><a href="/posts/2069534c.html" title="打倒孔家店，救出孔夫子"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%AD%94%E5%AD%90.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">打倒孔家店，救出孔夫子</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">old_driver_zero</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">183</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/old-driver-zero" target="_blank" title="GitHub" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"/></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" target="_blank" title="QQ邮箱" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"/></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" target="_blank" title="Steam" rel="external nofollow noopener noreferrer"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"/></svg></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-mulu"/></svg></a><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">书写规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">书写命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">使用变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">使用条件判断</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">使用函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">make 的运行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text">隐含规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">9.</span> <span class="toc-text">使用 make 更新函数库文件</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>不必要做的事不做，必须做的一律从简</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2024 By old_driver_zero</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
   const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
   if ($mermaid.length === 0) return
   const runMermaid = () => {
