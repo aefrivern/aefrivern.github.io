@@ -1,11 +1,11 @@
 /* 自定义字体为JetBrains Mono和XHei */
 @font-face {
   font-family: "JetBrains Mono";
-  font-display: swap;
+  font-display: block;
   src: url("/fonts/JetBrainsMono-Regular.woff2") format("truetype");
 }
 @font-face {
   font-family: "XHei";
-  font-display: swap;
+  font-display: block;
   src: url("/fonts/XHei.woff2") format("truetype");
 }
