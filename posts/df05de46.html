@@ -1,0 +1,501 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MIT 6.824：分布式系统 | Aefrivernの小屋</title><meta name="author" content="Aefrivern"><meta name="copyright" content="Aefrivern"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="简介 Introduction 第一个知识点：如果某件事可以不使用分布式系统解决，那么就不要使用分布式系统解决。 但分布式系统有很多优点，比如：  更高的计算性能 提供容错 有一些天然的原因导致某系统在物理上就是分布的 安全  同样存在一些挑战：  并发 局部错误 性能提升不易  三个基础设施：  存储 计算 通信  有以下几个重要话题：  可扩展性 Scalability，可以简单地通过增加更多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT 6.824：分布式系统">
+<meta property="og:url" content="https://aefrivern.github.io/posts/df05de46.html">
+<meta property="og:site_name" content="Aefrivernの小屋">
+<meta property="og:description" content="简介 Introduction 第一个知识点：如果某件事可以不使用分布式系统解决，那么就不要使用分布式系统解决。 但分布式系统有很多优点，比如：  更高的计算性能 提供容错 有一些天然的原因导致某系统在物理上就是分布的 安全  同样存在一些挑战：  并发 局部错误 性能提升不易  三个基础设施：  存储 计算 通信  有以下几个重要话题：  可扩展性 Scalability，可以简单地通过增加更多">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aefrivern.github.io/gallery/cover/MIT%206.824%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.webp">
+<meta property="article:published_time" content="2024-10-20T02:02:27.000Z">
+<meta property="article:modified_time" content="2024-10-26T05:04:53.000Z">
+<meta property="article:author" content="Aefrivern">
+<meta property="article:tag" content="MIT">
+<meta property="article:tag" content="分布式系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aefrivern.github.io/gallery/cover/MIT%206.824%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://aefrivern.github.io/posts/df05de46.html"><link rel="preconnect" href="//unpkg.com"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://unpkg.com/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MIT 6.824：分布式系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-26 13:04:53'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://unpkg.com/pace-js@1.2.4/themes/blue/pace-theme-minimal.css"/><script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">148</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">209</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"></use></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"></use></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"></use></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"></use></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"></use></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"></use></svg><span> 随便逛逛</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/gallery/cover/MIT%206.824%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="Aefrivernの小屋"><span class="site-name">Aefrivernの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"></use></svg><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"></use></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"></use></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"></use></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"></use></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"></use></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"></use></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MIT 6.824：分布式系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-20T02:02:27.000Z" title="发表于 2024-10-20 10:02:27">2024-10-20</time><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-26T05:04:53.000Z" title="更新于 2024-10-26 13:04:53">2024-10-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><a class="faa-parent animated-hover"></a><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-word"></use></svg><span class="post-meta-label">字数总计:</span><span class="word-count">4093</span><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-shizhong"></use></svg><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="简介-Introduction">简介 Introduction</h1>
+<p>第一个知识点：<strong>如果某件事可以不使用分布式系统解决，那么就不要使用分布式系统解决</strong>。</p>
+<p>但分布式系统有很多优点，比如：</p>
+<ul>
+<li>更高的计算性能</li>
+<li>提供容错</li>
+<li>有一些天然的原因导致某系统在物理上就是分布的</li>
+<li>安全</li>
+</ul>
+<p>同样存在一些挑战：</p>
+<ul>
+<li>并发</li>
+<li>局部错误</li>
+<li>性能提升不易</li>
+</ul>
+<p>三个基础设施：</p>
+<ul>
+<li>存储</li>
+<li>计算</li>
+<li>通信</li>
+</ul>
+<p>有以下几个重要话题：</p>
+<ul>
+<li><strong>可扩展性 Scalability</strong>，可以简单地通过增加更多的机器来提高性能</li>
+<li><strong>可用性 Availability</strong>，系统可以一直运行，即使有一些机器出现问题。另一种容错特性是 <strong>可恢复性 recoverability</strong>，较弱一点。两个重要的工具是复制和非易失存储</li>
+<li><strong>一致性 Consistency</strong>，所有用户看到的数据都是一致的。分为强一致性和弱一致性，由于强一致性的通信要求过高，所以在实践中通常使用弱一致性</li>
+</ul>
+<p><strong>MapReduce</strong> 是一个分布式计算框架，用于处理大规模数据集。它将计算分为两个阶段：Map 阶段和 Reduce 阶段。Map 阶段将输入数据映射为键值对，Reduce 阶段将相同键的值聚合在一起。</p>
+<ul>
+<li>整个 MapReduce 计算叫作一个 <strong>job</strong></li>
+<li>每一次 Map 或 Reduce 阶段叫作一个 <strong>task</strong></li>
+</ul>
+<h1 id="GFS">GFS</h1>
+<p>存储是分布式系统中一种关键的抽象，简单的存储接口往往非常有用且极其通用</p>
+<p>而存储系统通常特别困难，因为很容易出现这样的死循环：</p>
+<ul>
+<li>性能——切片</li>
+<li>故障——容错</li>
+<li>容错——复制</li>
+<li>复制——不一致</li>
+<li>不一致——性能</li>
+</ul>
+<p>GFS 的设计目标：</p>
+<ul>
+<li>大型快速</li>
+<li>全局通用</li>
+<li>将文件分割存储以获得更高的聚合吞吐量</li>
+<li>自动恢复</li>
+</ul>
+<p>当然，也存在一些时代局限性：</p>
+<ul>
+<li>单个数据中心</li>
+<li>只用于 Google 内部使用</li>
+<li>关注巨大的吞吐量，单次操作的数据大</li>
+</ul>
+<p>还有一点比较特殊，GFS 是弱一致性的，尽管当时主流学术界认为存储系统必须具备强一致性</p>
+<p>Master 节点用来管理文件和 Chunk 的信息，Chunk 服务器用来存储实际的数据</p>
+<p>Master 节点保存的表单：</p>
+<ul>
+<li>文件名到 Chunk Handle 数组的对应</li>
+<li>所有对于 Chunk 的写操作都必须在主 Chunk 上顺序处理</li>
+</ul>
+<p>当有数据变更时，Master 会向磁盘的 log 中追加一条记录，并生成 CheckPoint；若出现了故障，Master 会从 CheckPoint 中恢复</p>
+<p>读文件：</p>
+<ul>
+<li>客户端将文件名和偏移量发送给 Master</li>
+<li>Master 节点将 Chunk Handle 和服务器列表发送给客户端，客户端会缓存这些信息</li>
+<li>客户端与选出的 Chunk 服务器通信，Chunk 服务器从文件中读取对应的数据返回给客户端</li>
+</ul>
+<p>在写文件时，要通过主副本来写入，但有时主副本会不存在，这时 Master 就要找出所有存有 Chunk 最新副本的 Chunk 服务器作为 Primary，其余为 Secondary。之后 Master 增加版本号，并将版本号写入磁盘</p>
+<p>然后通知 Primary 和 Secondary 服务器，还会给 Primary 一个租约</p>
+<p>所有服务器都会将数据写入到一个临时位置，然后 Primary 会将数据写入到 Chunk 中，最后通知 Secondary 服务器增加到 Chunk 末尾</p>
+<p>当一些客户端写文件时，因为其中一个 Secondary 未能成功执行数据追加操作，可能会导致不同的副本有完全不同的数据</p>
+<h1 id="VMWare-FT">VMWare FT</h1>
+<p>Fail-stop 是一种容错领域的通用术语，指如果某些东西出了故障会单纯的停止运行</p>
+<p>复制技术不是单纯的重复，而是风险的分散，也是资金与风险的权衡</p>
+<p>两种复制方法：</p>
+<p><strong>复制状态机（Replicated State Machine）</strong>：将 <strong>操作</strong> 复制到多个副本，然后在每个副本上执行相同的操作</p>
+<p><strong>状态转移（State Transfer）</strong>：将 <strong>内存状态</strong> 从一个副本复制到另一个副本</p>
+<p>VMware FT 从机器级别实现复制，而不用管运行的是什么软件</p>
+<p>运行的原理是一个虚拟机，Primary 虚机和 Backup 虚机都会收到客户端请求并执行，但是只有 Primary 会生成回复报文给客户端</p>
+<p>Primary 到 Backup 之间同步的数据流的通道称为 Log Channel，当 Backup 不再从 Primary 收到消息，Backup 虚机会上线（Go Alive），成为 Primary 虚机</p>
+<p>非确定性（Non-Deterministic）事件比较难处理，如：</p>
+<ul>
+<li>网络数据包的内容和中断的时间</li>
+<li>怪异指令，如随机数</li>
+<li>多 CPU 的并发，但论文完全没有讨论</li>
+</ul>
+<p>因此，当 VMM 收到网卡中断的时候，会将整个网络数据包拷贝给 Primary 虚机的内存，之后模拟一个网卡中断发送给 Primary 虚机，然后将网络数据包和指令序号发送给 Backup</p>
+<p><strong>控制输出（Output Rule）</strong>：确保在客户端看到对于请求的响应时，Backup 虚机一定也看到了对应的请求。大概方法是当 Primary 的 VMM 收到了这个 Backup 的 ACK 时，才会将虚机生成的输出转发到网络中</p>
+<p>最后讨论 <strong>脑裂 Split Brain</strong> 问题，即 Primary 和 Backup 都在正常运行，但是它们之间的通信中断了，导致互相认为对方挂了。解决方法是求助第三方权威机构 Test-and-Set 服务来决定两个副本中的哪一个应该上线</p>
+<h1 id="Raft">Raft</h1>
+<p>构建能够自动恢复，又避免脑裂的多副本系统的关键在于 <strong>过半票决</strong>，即在任何时候为了完成任何操作，都必须凑够过半的服务器来批准相应的操作</p>
+<p>这样就做到了每一个操作对应的过半服务器，必然至少包含一个服务器存在于上一个操作的过半服务器中，即任意两组过半服务器，至少有一个服务器是重叠，</p>
+<p>服务副本的组成：应用程序代码和 Raft 库</p>
+<ul>
+<li>Raft 层帮助应用程序将其状态拷贝到其他副本节点</li>
+</ul>
+<p>Raft 层本身保持的状态中最重要的是操作的日志</p>
+<p>客户端发送的请求不会被立刻执行，当这个请求存在于过半的副本节点中时，Leader 才会实际执行这个请求</p>
+<p>Raft 层通过发送 AppendEntries RPC 来复制日志，Leader 会周期性地发送心跳消息，以防止 Follower 超时</p>
+<p>当 leader 下一次发送 AppendEntries RPC 时，会将上一次的结果更大的 commit 号一并发送给 Follower，这样 Follower 就可以知道 Leader 的日志已经更新到哪里了</p>
+<p>log 的用处：</p>
+<ul>
+<li>给操作排序</li>
+<li>对 Follower，存放临时操作</li>
+<li>对 leader，用于向 Follower 重传日志</li>
+<li>恢复状态</li>
+</ul>
+<p>应用层接口：</p>
+<ul>
+<li><strong>Start(command)</strong>：将 command 添加到日志中，返回日志索引和 term</li>
+<li>applyChannel：Leader 将日志应用到状态机后，将结果发送到 applyChannel</li>
+</ul>
+<p>通过 <strong>任期号 term number</strong> 来区分不同的 Leader，Followers 只需要知道当前的任期号。</p>
+<ul>
+<li>每个 Raft 节点都有一个选举定时器，在时间耗尽之前，若没有收到 Leader 信息，则开始选举</li>
+<li>当前服务器会向所有 Raft 节点发出请求投票 RequestVote RPC，每个 raft 节点只能投一次票，故最多只有一个 Leader</li>
+<li>获得过半票的服务器会成为 Leader，然后向其他服务器发送心跳信息</li>
+</ul>
+<p>每个节点超时时间是随机的，这样可以避免多个节点同时发起选举</p>
+<ul>
+<li>下界：心跳间隔的几倍</li>
+<li>上界：恢复时间，不同节点的超时时间差要足够长</li>
+</ul>
+<p>日志恢复：</p>
+<ul>
+<li>Leader 会向 Follower 发送 prevLogIndex 和 prevLogTerm，Follower 会检查自己的日志，如果没有这个日志，就会返回一个冲突的日志索引</li>
+<li>Leader 会根据冲突的日志索引，将 Follower 的日志截断到这个索引处，然后重新发送日志</li>
+</ul>
+<p>选举有一些限制，节点只能向满足下面条件之一的候选人投出赞成票：</p>
+<ul>
+<li>候选人最后一条 Log 条目的任期号 <strong>大于</strong> 本地最后一条 Log 条目的任期号</li>
+<li>候选人最后一条 Log 条目的任期号 <strong>等于</strong> 本地最后一条 Log 条目的任期号，但是候选人的 Log 条目数 <strong>大于</strong> 本地的 Log 条目数</li>
+</ul>
+<p>当出问题时，往往都缺失多条日志，所以需要快速恢复：Follower 因为 Log 信息不匹配，拒绝了 Leader 的 AppendEntries 之后的回复携带了三个信息：</p>
+<ul>
+<li>XTerm：冲突日志的任期号</li>
+<li>XIndex：冲突日志的索引</li>
+<li>XLen：冲突日志的长度</li>
+</ul>
+<p>需要持久化存储的数据：</p>
+<ul>
+<li>Log：记录了应用状态</li>
+<li>CurrentTerm</li>
+<li>VotedFor：确保每个任期只有最多一个 Leader</li>
+</ul>
+<p>随着系统的运行，log 会越来越多，这时候就要用到 <strong>快照 snapshot</strong>，将当前状态保存下来，然后删除之前的 log</p>
+<p><strong>线性一致 Linearizability</strong></p>
+<h1 id="ZooKeeper">ZooKeeper</h1>
+<p>Zookeeper 的结构：</p>
+<ul>
+<li>上面一层是与客户端交互的 Zookeeper</li>
+<li>下面一层是管理多副本的 Zab</li>
+</ul>
+<p>Zookeeper 为了性能，允许客户端读取副本，可能获得较旧的版本，在一定程度上破坏了线性一致性，但有两个保证：</p>
+<ul>
+<li>写入操作是线性一致的</li>
+<li>任何一个客户端的请求，都会按照客户端指定的顺序来执行</li>
+</ul>
+<p>实现第二个的方法是：</p>
+<ul>
+<li>每个 Log 条目都会被 Leader 打上 zxid 的标签</li>
+<li>客户端会在请求中带上 zxid，Leader 会检查 zxid，如果小于当前的 zxid，就会拒绝这个请求</li>
+</ul>
+<p>一个弥补非严格线性一致的方法是 sync，可以保证在 sync 之前的操作都已经完成</p>
+<p>客户端在使用 exists 时，可以设置 watch，当节点发生变化时，Zookeeper 会通知客户端</p>
+<p>Zookeeper 的一些应用：</p>
+<ul>
+<li>VMware FT 所需要的 Test-and-Set 服务</li>
+<li>选举 Master</li>
+<li>保存配置信息</li>
+</ul>
+<p>Zookeeper 的 API 类似于文件系统，节点为 znode，有三种类型：</p>
+<ul>
+<li>Regular：一旦创建就一直存在</li>
+<li>Ephemeral：客户端断开连接后会被删除</li>
+<li>Sequential：在节点名后面加上一个序号</li>
+</ul>
+<p>以 RPC 的方式暴露 API：</p>
+<ul>
+<li><code>create(path, data, flags)</code>：创建一个 znode</li>
+<li><code>delete(path, version)</code>：删除一个 znode</li>
+<li><code>setData(path, data, version)</code>：设置 znode 的数据</li>
+<li><code>getData(path, watch)</code>：获取 znode 的数据</li>
+<li><code>exists(path, watch)</code>：检查 znode 是否存在</li>
+<li><code>list(path)</code>：列出 znode 的子节点</li>
+</ul>
+<p>mini-transaction：和数据库的事务类似，可以保证对于一份数据操作的原子性</p>
+<p>可以实现一个简单的非扩展锁：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">WHILE TRUE:<br>    IF CREATE(&quot;f&quot;, data, ephemeral=TRUE): RETURN<br>    IF EXIST(&quot;f&quot;, watch=TRUE):<br>        WAIT<br></code></pre></td></tr></table></figure>
+<p>但这个锁不好，因为可能会出现羊群效应，即每一次锁文件的释放，所有剩下的客户端都会收到 WATCH 的通知，并且回到循环的开始，再次尝试创建锁文件</p>
+<p>这里通过创建 Sequential 文件来实现可扩展锁，当锁释放时，另一个客户端获得锁的复杂度是 O(1)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">CREATE(&quot;f&quot;, data, sequential=TRUE, ephemeral=TRUE)<br>WHILE TRUE:<br>    LIST(&quot;f*&quot;)<br>    IF NO LOWER #FILE: RETURN<br>    IF EXIST(NEXT LOWER #FILE, watch=TRUE):<br>        WAIT<br></code></pre></td></tr></table></figure>
+<p>核心思想在于每个客户端等待的锁文件都不一样</p>
+<p>由于分布式系统中存在部分故障，这与多线程代码不同，所以 Zookeeper 实现的锁也不同于多线程锁</p>
+<h1 id="CRAQ">CRAQ</h1>
+<p>旧的 <strong>链式复制 Chain Replication</strong>：总是从头到尾复制，和 raft 的对比：</p>
+<ul>
+<li>只发给一个人，故 HEAD 的瓶颈来得较晚</li>
+<li>读请求被分摊到 TAIL</li>
+<li>故障恢复较简单</li>
+</ul>
+<p>为了抵御脑裂，需要外部权威 Configuration Manager，一般基于 Raft 实现，Configuration Manager 会通告给所有参与者整个链的信息</p>
+<h1 id="Aurora">Aurora</h1>
+<p>EC2：Amazon 的云计算服务，提供了虚拟机实例，对于无状态服务很方便</p>
+<p>S3：Amazon 的云存储服务，可以定期做快照</p>
+<p>EBS：相当于一个硬盘，可以挂载到 EC2 实例上，多个 EBS 使用 Chain Replication 进行复制</p>
+<p>但是 EBS 有一些问题：</p>
+<ul>
+<li>有大量的数据通过网络传递</li>
+<li>总是会被放在一个 Availability Zone，容错性不好</li>
+</ul>
+<p>Aurora 最大的特点在于向副本发送的是日志，而不是数据块，这样可以减少网络传输的数据量。后果是不再是通用存储了，丧失了透明性</p>
+<p>另一点是，不需要等待所有副本都写入成功，只需要等待 Quorum 形成，就可以继续执行操作</p>
+<p>容错目标：</p>
+<ul>
+<li>一个 AZ 挂了，写操作不受影响</li>
+<li>对于读操作，Aurora 还能容忍一个额外服务器的故障</li>
+<li>能够容忍暂时的慢副本</li>
+<li>当一个副本挂了，能够快速生成一个新的副本</li>
+</ul>
+<p>Quorum 复制机制：读和写分别需要 R 和 W 个副本的确认，R + W = N + 1，这样就能保证任何读请求可以从至少一个看见了之前写请求的服务器得到回复</p>
+<p>在选择哪一个副本返回的是最新的数据时，使用版本号</p>
+<p>可以调整 Read Quorum 和 Write Quorum 使系统更好的支持读请求或写请求</p>
+<p>磁盘中的 data page 被分割到多个独立的**PG（Protection Group）**中</p>
+<p>快速用新的副本替代挂了的存储服务器的方法：对于每一个数据块，从 Protection Group 中挑选一个副本，作为数据拷贝的源，这样就能并行地从多台服务器上恢复</p>
+<p>如果存在大量的只读请求，则可以创建一些只读数据库，但会落后主数据库一点</p>
+<h1 id="Frangipani">Frangipani</h1>
+<p>文件系统的数据结构都存在一个叫做<strong>Petal</strong>的共享虚拟磁盘服务中</p>
+<p>缓存方案，write back</p>
+<p>Frangipani 的挑战来源：</p>
+<ul>
+<li>缓存</li>
+<li>去中心化的架构带来的大量的逻辑存在于客户端之中</li>
+</ul>
+<p>挑战：</p>
+<ul>
+<li>缓存一致性</li>
+<li>原子性</li>
+<li>崩溃恢复</li>
+</ul>
+<p>有一个锁服务器，保存着文件名和当前所有者的表单</p>
+<p>在每个工作站中，也有一个 lock 表单，记录着文件名、对应的锁的状态和文件的缓存内容</p>
+<p>每一个工作站的锁至少有两种模式。创建文件等过程中，锁在 Busy 状态；在系统调用结束后，锁是 Idle 状态，即不再使用这个锁，但从锁服务器的角度来看，工作站仍然持有锁</p>
+<p>当一个 Frangipani 服务器决定要读取文件时，会先向一个锁服务器请求文件对应的锁，然后再会向 Petal 服务器请求文件或者目录的数据</p>
+<p>规则：</p>
+<ul>
+<li>除非持有了与数据相关的锁，否则不允许持有缓存的数据</li>
+<li>先向 Petal 存储系统写数据，之后再释放锁</li>
+</ul>
+<p>工作站和锁服务器之间的消息：</p>
+<ul>
+<li>Request 请求某个文件锁</li>
+<li>如果这个锁不被持有，则 grant 将锁授予工作站</li>
+<li>如果这个锁被持有，则发送一个 Revoke 消息给当前持有锁的工作站 WS1，请求释放锁</li>
+<li>当一个工作站收到了一个 Revoke 请求，如果锁时在 Idle 状态，则写回数据，发送 Release 消息释放锁</li>
+</ul>
+<p>其中锁可以是排它锁，也可以是共享锁</p>
+<p>同样，锁可以用于实现原子性</p>
+<p>Frangipani 同样使用了 WAL，但特别的是：</p>
+<ul>
+<li>对于每个工作站都保存了一份独立的 Log</li>
+<li>工作站的 Log 存储在 Petal</li>
+</ul>
+<p>显然，应该在 release 之前的 write back 之前写入 WAL</p>
+<p>当然，为了避免时序问题导致的文件指代不清，对每一份数据增加一个版本号，将版本号与 Log 中描述的更新关联起来</p>
+<p>有意思的是，Frangipani 没什么重大的影响，原因是目标环境是一个小的工作组，而不是一个大型的数据中心，所以不符合在设计新系统时候的需求，随着时间的推移，慢慢被淘汰了。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MIT/">MIT</a><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/">分布式系统</a></div><div class="post_share"><div class="social-share" data-image="/gallery/cover/MIT%206.824%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://unpkg.com/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/7f8cc40b.html" title="CMU 15-481：并行计算架构"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/CMU%2015-481%EF%BC%9A%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CMU 15-481：并行计算架构</div></div></a></div><div class="next-post pull-right"><a href="/posts/44eb0be3.html" title="亡灵法师爱德华"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%EF%BC%9A%E7%88%B1%E5%BE%B7%E5%8D%8E.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">亡灵法师爱德华</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="iconfont icon-tuijian"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/4392373e.html" title="MIT 18.01：单变量微积分"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.01%EF%BC%9A%E5%8D%95%E5%8F%98%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-31</div><div class="title">MIT 18.01：单变量微积分</div></div></a></div><div><a href="/posts/bb154b63.html" title="MIT 18.02：多变量微积分"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.02%EF%BC%9A%E5%A4%9A%E5%8F%98%E9%87%8F%E5%BE%AE%E7%A7%AF%E5%88%86.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-31</div><div class="title">MIT 18.02：多变量微积分</div></div></a></div><div><a href="/posts/62a1ec0c.html" title="MIT 18.04：复变函数"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.04%EF%BC%9A%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-27</div><div class="title">MIT 18.04：复变函数</div></div></a></div><div><a href="/posts/3871b764.html" title="MIT 18.06：线性代数"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.06%EF%BC%9A%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-02</div><div class="title">MIT 18.06：线性代数</div></div></a></div><div><a href="/posts/440ed920.html" title="MIT 18.03：微分方程"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%2018.03%EF%BC%9A%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-19</div><div class="title">MIT 18.03：微分方程</div></div></a></div><div><a href="/posts/ad31055e.html" title="MIT 6.041 &amp; 6.431：概率系统分析与应用概率"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/MIT%206.041%20&%206.431%EF%BC%9A%E6%A6%82%E7%8E%87%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8%E6%A6%82%E7%8E%87.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-27</div><div class="title">MIT 6.041 &amp; 6.431：概率系统分析与应用概率</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Aefrivern</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">148</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">209</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="GitHub"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="QQ邮箱"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="Steam"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"></use></svg></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-mulu"></use></svg></a><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-Introduction"><span class="toc-number">1.</span> <span class="toc-text">简介 Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GFS"><span class="toc-number">2.</span> <span class="toc-text">GFS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VMWare-FT"><span class="toc-number">3.</span> <span class="toc-text">VMWare FT</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Raft"><span class="toc-number">4.</span> <span class="toc-text">Raft</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ZooKeeper"><span class="toc-number">5.</span> <span class="toc-text">ZooKeeper</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CRAQ"><span class="toc-number">6.</span> <span class="toc-text">CRAQ</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Aurora"><span class="toc-number">7.</span> <span class="toc-text">Aurora</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Frangipani"><span class="toc-number">8.</span> <span class="toc-text">Frangipani</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>安得广厦千万间，大庇天下寒士俱欢颜，风雨不动安如山。</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2024 By Aefrivern</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://unpkg.com/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.js"></script><script src="https://unpkg.com/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://unpkg.com/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script async src="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.js"></script><link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://unpkg.com/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://unpkg.com/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://unpkg.com/algoliasearch@4.22.0/dist/algoliasearch-lite.umd.js"></script><script src="https://unpkg.com/instantsearch.js@4.63.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.12.0"></script></div></div></html>
