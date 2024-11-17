@@ -1,0 +1,573 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>人月神话 | Aefrivernの小屋</title><meta name="author" content="Aefrivern"><meta name="copyright" content="Aefrivern"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="焦油坑   程序：自身完整，可运行在开发平台上 产品：可以被任何人运行、测试、维护的程序 系统：在功能上能相互协作的程序集合，具有规范的格式，可以进行交互，并可以用来组装和搭建整个系统 系统产品：成本高达 9 倍，但这才是真正有用的产品  乐：  创造 有用 解谜 学习  苦：  必须完美 依赖他人 找 bug 好不容易做出来了，却已经过时了   “焦油坑”这个比喻有点奇特，不过后面的苦乐分析实在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人月神话">
+<meta property="og:url" content="https://aefrivern.github.io/posts/70855dc9.html">
+<meta property="og:site_name" content="Aefrivernの小屋">
+<meta property="og:description" content="焦油坑   程序：自身完整，可运行在开发平台上 产品：可以被任何人运行、测试、维护的程序 系统：在功能上能相互协作的程序集合，具有规范的格式，可以进行交互，并可以用来组装和搭建整个系统 系统产品：成本高达 9 倍，但这才是真正有用的产品  乐：  创造 有用 解谜 学习  苦：  必须完美 依赖他人 找 bug 好不容易做出来了，却已经过时了   “焦油坑”这个比喻有点奇特，不过后面的苦乐分析实在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aefrivern.github.io/gallery/cover/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D.webp">
+<meta property="article:published_time" content="2024-11-07T01:51:00.000Z">
+<meta property="article:modified_time" content="2024-11-17T02:54:19.000Z">
+<meta property="article:author" content="Aefrivern">
+<meta property="article:tag" content="软件工程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aefrivern.github.io/gallery/cover/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://aefrivern.github.io/posts/70855dc9.html"><link rel="preconnect" href="//unpkg.com"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://unpkg.com/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '人月神话',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-17 10:54:19'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://unpkg.com/pace-js@1.2.4/themes/blue/pace-theme-minimal.css"/><script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">155</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">211</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"></use></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"></use></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"></use></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"></use></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"></use></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"></use></svg><span> 随便逛逛</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/gallery/cover/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="Aefrivernの小屋"><span class="site-name">Aefrivernの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"></use></svg><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-shouye-01"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guidang"></use></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-a-16-01-01"></use></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-wenjianjia"></use></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-xiangce"></use></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-guanyu"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-tongjichaxun"></use></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-liuyan"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-suiji"></use></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">人月神话</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-07T01:51:00.000Z" title="发表于 2024-11-07 09:51:00">2024-11-07</time><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-17T02:54:19.000Z" title="更新于 2024-11-17 10:54:19">2024-11-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><a class="faa-parent animated-hover"></a><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-word"></use></svg><span class="post-meta-label">字数总计:</span><span class="word-count">6.4k</span><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-shizhong"></use></svg><span class="post-meta-label">阅读时长:</span><span>18分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="焦油坑">焦油坑</h1>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D/%E7%BC%96%E7%A8%8B%E7%B3%BB%E7%BB%9F%E4%BA%A7%E5%93%81.webp" alt="编程系统产品"></p>
+<ul>
+<li>程序：自身完整，可运行在开发平台上</li>
+<li>产品：可以被任何人运行、测试、维护的程序</li>
+<li>系统：在功能上能相互协作的程序集合，具有规范的格式，可以进行交互，并可以用来组装和搭建整个系统</li>
+<li>系统产品：成本高达 9 倍，但这才是真正有用的产品</li>
+</ul>
+<p>乐：</p>
+<ul>
+<li>创造</li>
+<li>有用</li>
+<li>解谜</li>
+<li>学习</li>
+</ul>
+<p>苦：</p>
+<ul>
+<li>必须完美</li>
+<li>依赖他人</li>
+<li>找 bug</li>
+<li>好不容易做出来了，却已经过时了</li>
+</ul>
+<blockquote>
+<p>“焦油坑”这个比喻有点奇特，不过后面的苦乐分析实在是过于真实了</p>
+</blockquote>
+<h1 id="人月神话">人月神话</h1>
+<p>项目滞后：缺乏合理的时间进度</p>
+<ul>
+<li>不重视估计技术</li>
+<li>把进度和工作混淆，错误地认为人和月可以互换</li>
+<li>对估算的不信任</li>
+<li>不追踪进度</li>
+<li>当进度落后时，下意识地选择增加人力，但其实是火上浇油</li>
+</ul>
+<p>程序员通常是乐观主义者，他们坚信自己的程序没有 bug</p>
+<ul>
+<li>计算机编程“看似”易于掌握</li>
+<li>程序员通过纯粹的思维活动来开发程序</li>
+</ul>
+<p>最终，这种乐观主义会导致我们永远作出这样的估计：我们总是认为自己能在规定的时间内完成任务</p>
+<p>软件开发本质上是一项系统工作，沟通-交流的开销非常大，很快会消耗任务分解所节省下来的个人时间。因此，添加人手实际上会使项目进度更加落后</p>
+<p>作者推荐的进度安排：</p>
+<ul>
+<li>三分之一：计划</li>
+<li>六分之一：编码</li>
+<li>四分之一：组件测试和早期系统测试</li>
+<li>四分之一：系统测试，所有组件都已经完成</li>
+</ul>
+<p>这样划分是基于之前提到的编码时间是最容易被估计的，而测试时间是最难被估计的</p>
+<p><strong>Brooks’s Law</strong>：增加人手只会使项目进度更加落后</p>
+<blockquote>
+<p>大师的想法确实超前，直接指出了问题的本质和背后的原因。我以前在开发程序的时候分配时间也是完全错误的，把编码放到第一位。或许这个坏习惯一方面来源于初学编程时对编程语言本身的不熟悉，后来开发的程序都是写完即扔的小东西，不需要维护。我后来尝试把较多时间投入到第一步计划上，但发现无论花费多少的时间，自己的计划总是难以做到完美。</p>
+<p>但这些都是我经过实践观察到的现象，却无法理解其背后的原因，作者给出了一份出色的答案</p>
+</blockquote>
+<h1 id="外科手术团队">外科手术团队</h1>
+<p>精英程序员组成的小团队的生产效率高到吓人，但是对于开发大型系统来说，这种团队的总生产率是不够的，因此必须想一个组合团队的方案</p>
+<p>作者建议的方案：</p>
+<ul>
+<li>外科医生（首席程序员）：定义功能和性能技术说明书，设计程序， 编制源代码，测试以及书写技术文档</li>
+<li>副手：外科医生的后备，与外科医生沟通</li>
+<li>管理员：老板，决定人员、薪水。此外，还需要控制财务、人员、工作地点安排和机器的专业管理人员，充当与其他管理机构的接口</li>
+<li>编辑：外科医生编写了文档，但通常只是草稿，编辑需要分析和重新组织，统一对内部描述和外部描述</li>
+<li>两个秘书：管理员和编辑都需要</li>
+<li>程序职员：维护编程产品库中所有团队的技术记录</li>
+<li>工具维护人员：承担团队所需要的特殊工具的构建、维护和升级责任，会开发一些实用程序和库</li>
+<li>测试：外科医生的设计的死对头和调试的助手</li>
+<li>语言专家：寻找一种简洁、有效的使用语言的方法来解决复杂、晦涩或者棘手的问题（大概是公司内部的技术大佬）</li>
+</ul>
+<blockquote>
+<p>人越多，效率越低这种道理我在大学生小组作业的时候就深有感触</p>
+<p>尝试通过划分问题，将不同问题分包给每个队员是最常见的分工方法，但是事实证明，这种方法并不好。我以为这样的原因是我们的小组是一个草台班子，现在看来，世界是一个巨大的草台班子</p>
+<p>观察两种方案，之前是以问题为中心分工的，而现在是以人为中心分工的，或许更为合理，但这对人员的要求更高了</p>
+</blockquote>
+<h1 id="贵族专制、民主政治和系统设计">贵族专制、民主政治和系统设计</h1>
+<p>尽管计算机系统开发的时间很短，但展现出了极大的概念差异，原因是设计被分成了由若干人完成的若干任务</p>
+<p>因此，在系统设计中，<strong>概念完整性</strong> 是最重要的考虑因素</p>
+<p><strong>功能与理解的复杂程度的比值</strong> 是系统设计的检测标准，如果只是一味地添加功能，那么花在学习、记忆和搜索手册的时间只会越来越多，最终这些功能的收益只会越来越低</p>
+<p>描述的语言应该追求 <strong>简洁</strong> 和 <strong>直白</strong>，而这两点又来自于概念完整性，语法上使用同一的术语，语义上使用同一的概念</p>
+<p>概念的完整性要求设计必须由一个人来完成，但是进度压力却要求很多人员来开发系统，因此要区分设计方法和具体实现</p>
+<p>系统的 <strong>体系结构 Architecture</strong> 指的是完整和详细的用户接口说明，即各种手册</p>
+<p>架构师是 <strong>用户</strong> 的代理人，而不是维护销售人员所鼓吹的利益</p>
+<p>很多人就会开始鼓吹各工种有高低贵贱之分，甚至把问题上升到“贵族专制”和“民主政治”的高度（可能是西方人喜欢凡事上升到政治？），但这并不正确。因为那些所谓的“贵族”，其实是在为用户服务，这两种工作只是性质不同而已。</p>
+<ul>
+<li>产品的易用性取决于架构师</li>
+<li>产品的成本性能比取决于程序员</li>
+</ul>
+<p>许多工作是可以并行的，如体系结构设计、设计实现、物理实现</p>
+<blockquote>
+<p>“概念完整性”是经常被人提起的一点，但也是最容易被忽视的一点，它如影随形，以至于我们往往直到出了事才会意识到它的存在。</p>
+<p>我以前也有一种迷信，认为一个系统应该功能越丰富越好，最好是直接 All in One，但忽视了用户理解起来的复杂程度</p>
+<p>我们的系统都应该是为了用户设计的，而不是为了吹嘘自己而设计的，因此才需要架构师作为用户的代理人</p>
+<p>事实上，大到整个复杂的系统，小到一个简单的函数，都应该重视易用性和成本性能比，当然，在开发的某个函数甚至某个模块的时候，由于一般只有自己一个人，所以往往会忽视易用性。事实上，每一个函数的设计都应该有易用性的思考。</p>
+</blockquote>
+<h1 id="画蛇添足">画蛇添足</h1>
+<p>面对估算过高的难题，结构师有两个选择：</p>
+<ul>
+<li>削减设计</li>
+<li>建议成本更低的实现方法——挑战估算的结果</li>
+</ul>
+<p>为了防止架构师越界到开发人员的领域，架构师必须牢记：</p>
+<ul>
+<li>架构师只能建议，不能支配</li>
+<li>建议一种实现方法，但也要能够接受其他方法</li>
+<li>随时做好放弃自己的建议的准备</li>
+</ul>
+<p>开发者对架构师的反对通常是对的</p>
+<p><strong>开发第二个系统所引起的后果（second-system effect）</strong>：第一个系统的成功会使得第二个系统的设计者过于自信，认为自己可以解决第一个系统的所有问题，因此会在第二个系统中加入过多的功能，导致第二个系统的失败</p>
+<ul>
+<li>架构师避免画蛇添足的方法：根据系统基本理念及目的变更，舍弃一些功能</li>
+<li>产品经理避免画蛇添足：保持对特殊诱惑的警觉</li>
+</ul>
+<blockquote>
+<p>画蛇添足这里像是之前的延伸，即功能并不是越多越好</p>
+</blockquote>
+<h1 id="贯彻执行">贯彻执行</h1>
+<p>如何确保每个人都能听从、理解架构师的设计？</p>
+<p>文档化的规格说明——手册：描述了 <strong>用户看得到</strong> 的每一个细节，因为可能会不断地修改，所以修改的阶段化非常重要，即在进度表上应该有带日期的版本信息</p>
+<p>注意不应该限定实现方式</p>
+<p>会议（周会和大会）：建议书提前分发，讨论一些新问题，尽可能达成共识，否则就由首席拍板</p>
+<p>产品测试：应当是独立的监督部门</p>
+<blockquote>
+<p>这一章强调了手册的重要性，但另一方面，如何让思想传达给每一个人，这是一个值得思考的问题。这里提出的方法包括阶段化，这样就不至于开发者因为改变地太快而无法跟上架构师。此外还有共识，这给开会的目标提供了一个新的思路，即所谓的开会是为了达成一个共识，而不是为了宣布某件决定或是解决某个问题。此外，把测试视为一个监督部门，重点在于监督开发是否正确落实了架构师的设计，这种看法非常有价值。</p>
+</blockquote>
+<h1 id="为什么巴别塔会失败">为什么巴别塔会失败</h1>
+<p>显然是因为语言的混乱，导致了无法沟通</p>
+<p>这里提出了一个需要的东西——<strong>工作手册</strong>，注意工作手册不是一篇文档，而是对项目必须产出的一系列文档进行组织的一种结构，包括：</p>
+<ul>
+<li>目的</li>
+<li>外部规格说明</li>
+<li>接口说明</li>
+<li>技术标准</li>
+<li>内部说明</li>
+<li>管理备忘录</li>
+</ul>
+<p>好处：</p>
+<ul>
+<li>保证文档结构规范</li>
+<li>控制信息发布，注意不是为了限制信息，而是为了确保信息能到达所有需要它的人的手中（怕的不是信息过少，而是信息过多）</li>
+<li>方便索引</li>
+</ul>
+<p>在组织时，减少交流的方法：</p>
+<ul>
+<li>人力划分</li>
+<li>限定职责范围</li>
+</ul>
+<p>树状组织架构的每棵子树都必须具备：</p>
+<ul>
+<li>任务</li>
+<li>产品负责人</li>
+<li>技术主管或者架构师</li>
+<li>进度</li>
+<li>人力的划分</li>
+<li>各部分之间的接口定义</li>
+</ul>
+<p>其中产品负责人组建团队，划分工作及制订进度表，即主要工作是与团队外部，向上和水平地沟通，确保进度目标的实现</p>
+<p>而技术主管对设计进行构思，识别系统的子部分，提供整个设计的一致性和概念完整性，控制系统的复杂程度</p>
+<p>三种场景：</p>
+<ul>
+<li>产品负责人和技术主管是同一人，一般出现在小型团队（小组作业++）</li>
+<li>产品负责人为总指挥，技术主管为左右手（大型项目，多跨团队跨公司的合作），注意产品负责人需帮助技术主管梳理威信，对技术主管的技术才能表现出尊重（技术 &gt; 营销）</li>
+<li>技术主管总指挥，产品负责人左右手（小型创业公司，沟通成本低，类似外科手术队伍）</li>
+</ul>
+<blockquote>
+<p>从这里还是能够看出外国人对技术的尊重，但是在中国并不缺有技术的人才，所以产品负责人通常会凌驾于技术主管之上</p>
+</blockquote>
+<h1 id="削足适履">削足适履</h1>
+<p>在开发时，总是面临着各种权衡，<strong>紧密的软硬件设计集成</strong> 与 <strong>软件系统规模</strong> 二者冲突</p>
+<p>规模控制：</p>
+<ul>
+<li>在工作推行时间分配的时候预留空间</li>
+<li>制定总体规模，避免拆分过重，模块过多</li>
+</ul>
+<p>空间技能：</p>
+<ul>
+<li>功能交换尺寸</li>
+<li>培训和技术积累</li>
+</ul>
+<p>战略上的突破：</p>
+<ul>
+<li><strong>数据或表的重新表达</strong> 是程序的核心</li>
+<li>往往是新的算法</li>
+</ul>
+<h1 id="提纲掣领">提纲掣领</h1>
+<p>文档先行，要求包括：</p>
+<ul>
+<li>目标：定义需要、目标、资源、约束、优先级</li>
+<li>技术说明：第一个产生，最后完成。手册和性能规格说明</li>
+<li>进度：
+<ul>
+<li>预算：不仅仅是约束，迫使制定技术决策</li>
+<li>组织架构图：工作空间的分配</li>
+<li>报价、预测、价格：三者互相牵制，决定项目成败</li>
+</ul>
+</li>
+</ul>
+<h1 id="未雨绸缪">未雨绸缪</h1>
+<p>用户的实际需求是会不断变化的，因此必须为舍弃而计划</p>
+<p>为变更设计系统（模块化，各种文档，接口设计等）</p>
+<p>为变更计划组织架构：通常是管理人员和技术人员互换，高级管理人员参与技术课程，高级技术人员需进行管理培训</p>
+<p>为什么 bug 不能彻底修复？bug 修复总会固定在 20% ~ 50% 的几率引入新的 bug，所以整个过程是前进两步，后退一步</p>
+<p>具体原因：</p>
+<ul>
+<li>bug 看似是局部的，实际上是系统级别的，修复时总是只修复了局部问题，而忽略更大范围的修复</li>
+<li>维护人员通常不是最初的编写人员，因此对代码不熟悉</li>
+</ul>
+<p>从前进两步，后退一步到前进一步，后退一步：</p>
+<ul>
+<li>系统软件开发是减少系统混乱度（减少熵）的过程，所以它本身是处于亚稳定的状态</li>
+<li>软件维护是提高混乱度（增加熵）的过程，所有的修改都倾向与破坏系统的架构，增加了系统的混乱度（熵），即使是最熟练的软件维护工作，也只是放缓了系统退化到非稳态的过程</li>
+</ul>
+<blockquote>
+<p>在我学习设计模式和学习重构之前，我在开发时也从来不会考虑后续的维护成本。在学习这些东西之后，我才领悟了编程时应该尽可能简洁和灵活，很多时候看起来多余的操作其实是为了后续更好地维护。作者的这一想法实在是超前</p>
+</blockquote>
+<h1 id="干将莫邪">干将莫邪</h1>
+<p>经过了这么多年的发展，软件开发的工具得到了很大的提高，作者当年需要的各种工具现在几乎全都非常普遍了，这是软件开发的进步</p>
+<h1 id="整体部分">整体部分</h1>
+<p>系统各个组成部分的开发者都会做出一些假设，而这些假设之间的 <strong>不匹配</strong>，是大多数致命和难以察觉的 bug 的主要来源。之前反复强调的概念完整性就是应对这个问题的，因此要有防范 bug 的定义</p>
+<p>不要让测试小组自己去猜，一定要把规格说明交给测试组</p>
+<p>自顶向下的设计：</p>
+<ul>
+<li>勾画出能得到主要结果，但比较粗略的任务定义和大概的解决方案</li>
+<li>对该定义和方案进行细致的检查，以判断结果与期望之间的差距</li>
+<li>同时将上述步骤的解决方案，在更细的步骤中进行分解，每一项任务定义的精化变成了解决方案中算法的精化，后者还可能伴随着数据表达方式的精化</li>
+</ul>
+<p>有一些好处：</p>
+<ul>
+<li>清晰的结构和表达方式更容易对需求和模块功能进行精确的描述</li>
+<li>模块分割和模块的独立性避免了系统级 bug</li>
+<li>细节的抑制使结构上的缺陷更加容易识别</li>
+<li>设计在每个精华步骤上都是可以测试的</li>
+</ul>
+<p>结构化编程：</p>
+<ul>
+<li>Dijkstra 的 “goto 有害论”</li>
+<li>这里作者给出的观点是：应该把系统的结构作为控制结构来考虑，而不是独立的跳转语句</li>
+</ul>
+<p>系统调试：</p>
+<ul>
+<li>使用调试过的组件</li>
+<li>建造足够多脚手架</li>
+<li>控制改变</li>
+<li>一次只添加一个组件</li>
+<li>量化更新：版本发布、紧急的打补丁解决</li>
+</ul>
+<blockquote>
+<p>又是一个相见恨晚的篇章。我曾经在开发的时候总是自底向上设计，先构造出一些能用的组件，然后再逐步向上开发，原因是这样比较。事实上这个应该是开发的顺序，在设计时，应该自顶向下，而且先不关心实现，只关心组件的可测试性。</p>
+<p>还有那句“一次添加一个组件”，说起来容易做起来难，原因正是他后面提到的在程序员中极为常见的懒惰和乐观。</p>
+</blockquote>
+<h1 id="祸起萧墙">祸起萧墙</h1>
+<p>由于之前所提到的各种问题，计划几乎是一定会偏离的。然而，项目进度经常以一种难以察觉，但是残酷无情的方式慢慢落后，每次只有一点点。</p>
+<p>最常见的就是制定进度表，进度表上的每一个事件都称为 <strong>里程碑</strong>，里程碑必须是具体的、特定的、可度量的事件，一些反面教材：</p>
+<ul>
+<li>完成 90% 代码（在代码编写时间达到一半的时候就已经“90％完成”了）</li>
+<li>调试完成（调试在大多时候都是“99％完成”的）</li>
+<li>计划完毕（任何人只要愿意就可以声称）</li>
+</ul>
+<p>因此，里程碑必须是 100% 的事件，清晰划分那些比较模糊的阶段——计划、编码、调试</p>
+<p>如果里程碑定义得非常明确，以致于无法自欺欺人时，很少有人会就里程碑的进展弄虚作假</p>
+<p>尽管滞后并不一定会带来灾难，但还是需要考虑哪些偏离是关键的，作者这里推荐的是PERT</p>
+<h1 id="另外一面">另外一面</h1>
+<p>编码是从人传递到机器的一些信息，目的是将人的意图传达给机器</p>
+<p>但是程序还有其他的呈现面貌——向用户诉说自己的“故事”。即使是完全开发给自己使用的程序仍然是必要的，因为记忆的衰退会使自己失去对程序的了解。</p>
+<p>不同用户需要不同级别的文档：</p>
+<ul>
+<li>某些用户仅仅偶尔使用程序</li>
+<li>有些用户必须依赖程序</li>
+<li>还有一些用户必须根据环境和目的的变动对程序进行修改</li>
+</ul>
+<p>使用程序的文档一般包括：</p>
+<ol>
+<li><strong>目的</strong>。主要的功能是什么？开发程序的原因是什么？</li>
+<li><strong>环境</strong>。程序运行在什么样的机器、硬件配置和操作系统上？</li>
+<li><strong>范围</strong>。输入的有效范围是什么？允许显示的合法范围是什么？</li>
+<li><strong>实现功能和使用的算法</strong>。精确地阐述它做了什么。</li>
+<li><strong>输入－输出格式</strong>。必须是确切和完整的。</li>
+<li><strong>操作指令</strong>。包括控制台及输出内容中正常和异常结束的行为。</li>
+<li><strong>选项</strong>。用户的功能选项有哪些？如何在选项之间进行挑选？</li>
+<li><strong>运行时间</strong>。在指定的配置下，解决特定规模问题所需要的时间？</li>
+<li><strong>精度和校验</strong>。期望结果的精确程度？如何进行精度的检测？</li>
+</ol>
+<p>这份文档的绝大部分需要在程序编制之前书写</p>
+<p>验证程序：一些程序正确运行的证明来为用户提供信心——他拥有了一份可信赖的拷贝，并且正确地安装到了机器上</p>
+<p>此外还需要更加全面的测试用例，可以根据输入数据的范围划分成三个部分：</p>
+<ol>
+<li>常规数据和程序主要功能，是测试用例的主要组成部分</li>
+<li>数量相对较少的合法数据测试用例，对输入数据范围边界进行检查，确保最大可能值、最小可能值和其他有效特殊数据可以正常工作</li>
+<li>数量相对较少的非法数据测试用例，在边界外检查数据范围边界，确保无效的输入能有正确的数据诊断提示</li>
+</ol>
+<p>修改程序：</p>
+<ol>
+<li>流程图或子系统的结构图对所用算法的完整描述，或者是对文档中类似描述的引用</li>
+<li>对所有文件规划的解释</li>
+<li>数据流的概要描述——从磁盘或者磁带中，获取数据或程序处理的序列——以及在每个处理过程完成的操作</li>
+<li>初始设计中，对已预见修改的讨论；特性、功能回调的位置以及出口；原作者对可能会扩充的地方以及可能处理方案的一些意见。另外，对隐藏缺陷的观察也同样很有价值</li>
+</ol>
+<p>自我文档的程序（JavaDoc）</p>
+<blockquote>
+<p>信息从人类到计算机的传递过程就是编码，一直以来都深受重视。但是信息从程序传递到人类的过程关注的却不是很多。确实，程序必须学会自我解释，向用户解释自己。</p>
+<p>文档应该有层次结构这一点也是我之前没有考虑到的，还是那句话，现在没有人会怕信息太少，而是会怕信息太多。因此，文档应该有层次结构，用户可以根据自己的需求选择阅读的层次。</p>
+<p>三类文档我以前考虑到了，但是远没有这么有条理。例如修改程序，目的应该是让读者能够追踪作者的思路，但事实是在代码注释上，我经常会与使用文档混淆。</p>
+</blockquote>
+<h1 id="没有银弹－软件工程中的根本和次要问题">没有银弹－软件工程中的根本和次要问题</h1>
+<p>根本任务：打造构成抽象软件实体的复杂概念结构。</p>
+<p>次要任务：使用编程语言表达这些抽象实体，在空间和时间的限制下将他们映射成机器语言。</p>
+<p><strong>软件开发中困难的部分是规格化、设计和测试这些概念上的结构，而不是对概念进行表达和对实现逼真程度进行验证</strong></p>
+<p>现代软件系统无法避免的内在特性：</p>
+<p><strong>复杂度</strong>的成因：</p>
+<ul>
+<li>没有两个软件部分是相同的（否则会被合并为子函数），而在现实中创造某个实体的时候，往往存在着大量重复的部分</li>
+<li>同样，软件实体的扩展也不仅仅是相同元素重复添加，而必须是不同元素实体的添加，这些元素以非线性递增的方式交互，因此整个软件的复杂度以更大的非线性级数增长</li>
+</ul>
+<p>造成的问题：</p>
+<ul>
+<li>团队成员之间的沟通非常困难，导致了产品瑕疵、成本超支和进度延迟</li>
+<li>列举和理解所有可能的状态十分困难，影响了产品的可靠性</li>
+<li>函数的复杂度：函数调用变得困难，导致程序难以使用</li>
+<li>结构性复杂度：程序难以在不产生副作用的情况下用新函数扩充</li>
+</ul>
+<p>除了技术上，还有一些管理上的问题：</p>
+<ul>
+<li>全面理解问题困难，从而妨碍了概念上的完整性</li>
+<li>使所有离散出口难以寻找和控制</li>
+<li>引起了大量学习和理解上的负担，使开发慢慢演变成了一场灾难</li>
+</ul>
+<p><strong>一致性</strong>：</p>
+<ul>
+<li><strong>必须控制的很多复杂度是随心所欲、 毫无规则可言的，来自若干必须遵循的人为惯例和系统</strong></li>
+<li>复杂性引申出来的延伸，由于不同人开发，使得复杂度随心所欲，毫无规则可言</li>
+<li>很多复杂性来自保持与其他接口的一致性，对软件的任何再开发，再设计，都无法简化这些复杂的特性。这就使得软件的开发目标，很多情况是为了兼容性，必须遵循各种接口，这也就造成了复杂</li>
+</ul>
+<p><strong>可变性</strong>：<strong>软件产品扎根于文化的母体中，如各种应用、用户、自然及社会规律、计算 机硬件等等。后者持续不断地变化着，这些变化无情地强迫着软件随之变化</strong></p>
+<p><strong>不可见性</strong>：软件是不可见的和无法可视化的，客观存在不具有空间的形体特征</p>
+<p>一些过去的突破：（现在已经被广泛应用了）</p>
+<ul>
+<li>时间分享系统</li>
+<li>统一的编程环境</li>
+<li>面向对象编程</li>
+</ul>
+<p>以下几点似乎和现在的突破有关：</p>
+<p>AI：作者当时的 AI 主要是 CV 和 NLP 的发展，但现在是大模型时代了，因此作者的讨论完全无法放到现代。但有一点我觉得很重要，作者认为**开发软件最难的地方在于决定说什么，而不是把它说出来。**现在是 AI 时代，只需要把问题描述清楚，AI 就能帮我们解决问题，可是我们还是很难将问题描述清楚，因此 AI 确实只是带给了我们边缘收益，所谓成倍提高开发效率都是扯淡。</p>
+<p>专家系统：</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></div><div class="post_share"><div class="social-share" data-image="/gallery/cover/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://unpkg.com/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/4602f03b.html" title="GAMES101：现代计算机图形学入门"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/GAMES101%EF%BC%9A%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%85%A5%E9%97%A8.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">GAMES101：现代计算机图形学入门</div></div></a></div><div class="next-post pull-right"><a href="/posts/f366bb7b.html" title="C++杂项"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/C++%E6%9D%82%E9%A1%B9.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C++杂项</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="iconfont icon-tuijian"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/784dd132.html" title="Test"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Test.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-11</div><div class="title">Test</div></div></a></div><div><a href="/posts/af8b09ba.html" title="UML"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/UML.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-29</div><div class="title">UML</div></div></a></div><div><a href="/posts/141bc1eb.html" title="重构：改善既有代码的设计"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E9%87%8D%E6%9E%84.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-25</div><div class="title">重构：改善既有代码的设计</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Aefrivern</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">155</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">211</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="GitHub"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="QQ邮箱"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="Steam"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"></use></svg></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-mulu"></use></svg></a><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%84%A6%E6%B2%B9%E5%9D%91"><span class="toc-number">1.</span> <span class="toc-text">焦油坑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D"><span class="toc-number">2.</span> <span class="toc-text">人月神话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%96%E7%A7%91%E6%89%8B%E6%9C%AF%E5%9B%A2%E9%98%9F"><span class="toc-number">3.</span> <span class="toc-text">外科手术团队</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%B5%E6%97%8F%E4%B8%93%E5%88%B6%E3%80%81%E6%B0%91%E4%B8%BB%E6%94%BF%E6%B2%BB%E5%92%8C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="toc-number">4.</span> <span class="toc-text">贵族专制、民主政治和系统设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%BB%E8%9B%87%E6%B7%BB%E8%B6%B3"><span class="toc-number">5.</span> <span class="toc-text">画蛇添足</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%AF%E5%BD%BB%E6%89%A7%E8%A1%8C"><span class="toc-number">6.</span> <span class="toc-text">贯彻执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B7%B4%E5%88%AB%E5%A1%94%E4%BC%9A%E5%A4%B1%E8%B4%A5"><span class="toc-number">7.</span> <span class="toc-text">为什么巴别塔会失败</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8A%E8%B6%B3%E9%80%82%E5%B1%A5"><span class="toc-number">8.</span> <span class="toc-text">削足适履</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E7%BA%B2%E6%8E%A3%E9%A2%86"><span class="toc-number">9.</span> <span class="toc-text">提纲掣领</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AA%E9%9B%A8%E7%BB%B8%E7%BC%AA"><span class="toc-number">10.</span> <span class="toc-text">未雨绸缪</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B9%B2%E5%B0%86%E8%8E%AB%E9%82%AA"><span class="toc-number">11.</span> <span class="toc-text">干将莫邪</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E9%83%A8%E5%88%86"><span class="toc-number">12.</span> <span class="toc-text">整体部分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A5%B8%E8%B5%B7%E8%90%A7%E5%A2%99"><span class="toc-number">13.</span> <span class="toc-text">祸起萧墙</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%A6%E5%A4%96%E4%B8%80%E9%9D%A2"><span class="toc-number">14.</span> <span class="toc-text">另外一面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89%E9%93%B6%E5%BC%B9%EF%BC%8D%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%A0%B9%E6%9C%AC%E5%92%8C%E6%AC%A1%E8%A6%81%E9%97%AE%E9%A2%98"><span class="toc-number">15.</span> <span class="toc-text">没有银弹－软件工程中的根本和次要问题</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>安得广厦千万间，大庇天下寒士俱欢颜，风雨不动安如山。</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2024 By Aefrivern</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://unpkg.com/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.js"></script><script src="https://unpkg.com/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://unpkg.com/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script async src="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.js"></script><link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://unpkg.com/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://unpkg.com/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://unpkg.com/algoliasearch@4.22.0/dist/algoliasearch-lite.umd.js"></script><script src="https://unpkg.com/instantsearch.js@4.63.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.12.0"></script></div></div></html>
