@@ -18,25 +18,11 @@ svg.icon {
 
 /* ------- */
 /* 个人信息卡片背景图 */
-[data-theme="light"] #aside-content > .card-widget.card-info {
+[data-theme='light'] #aside-content > .card-widget.card-info {
   background-image: url(/illustration/草原.webp);
   background-repeat: no-repeat;
   background-attachment: inherit;
   background-size: 100%;
-}
-/* ------- */
-
-/* ------- */
-/* 自定义字体为JetBrains Mono和XHei */
-@font-face {
-  font-family: "JetBrains Mono";
-  font-display: block;
-  src: url("/fonts/JetBrainsMono-Regular.woff2") format("truetype");
-}
-@font-face {
-  font-family: "XHei";
-  font-display: block;
-  src: url("/fonts/XHei.woff2") format("truetype");
 }
 /* ------- */
 
@@ -119,7 +105,6 @@ svg.icon {
   padding: 20px 20px;
 }
 /* ------- */
-
 
 /* ------- */
 /* 文章页H1-H6图标样式效果 */
@@ -236,16 +221,16 @@ h6::before {
   background: rgba(255, 255, 255, 0.75);
 }
 
-[data-theme="dark"] #page-header.nav-fixed #nav {
+[data-theme='dark'] #page-header.nav-fixed #nav {
   background: rgba(0, 0, 0, 0.7) !important;
 }
 
 /* 夜间模式遮罩 */
-[data-theme="dark"] #recent-posts > .recent-post-item,
-[data-theme="dark"] #aside-content .card-widget,
-[data-theme="dark"] div#post,
-[data-theme="dark"] div#archive,
-[data-theme="dark"] div#page {
+[data-theme='dark'] #recent-posts > .recent-post-item,
+[data-theme='dark'] #aside-content .card-widget,
+[data-theme='dark'] div#post,
+[data-theme='dark'] div#archive,
+[data-theme='dark'] div#page {
   background: var(--trans-dark);
 }
 
@@ -267,10 +252,10 @@ h6::before {
 }
 
 /* 夜间模式页脚页头遮罩透明 */
-[data-theme="dark"] #footer::before {
+[data-theme='dark'] #footer::before {
   background: transparent !important;
 }
-[data-theme="dark"] #page-header::before {
+[data-theme='dark'] #page-header::before {
   background: transparent !important;
 }
 /* ------- */
