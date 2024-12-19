@@ -1,31 +1,117 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Aefrivernの小屋 - 欢迎来到Aefrivernの小屋作客</title><meta name="author" content="Aefrivern"><meta name="copyright" content="Aefrivern"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MyBlog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Aefrivernの小屋">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Aefrivern的小屋 - 欢迎来到Aefrivern的小屋作客</title><meta name="author" content="Aefrivern"><meta name="copyright" content="Aefrivern"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Aefrivern的小屋">
 <meta property="og:url" content="https://aefrivern.github.io/page/6/index.html">
-<meta property="og:site_name" content="Aefrivernの小屋">
-<meta property="og:description" content="MyBlog">
+<meta property="og:site_name" content="Aefrivern的小屋">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://aefrivern.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp">
 <meta property="article:author" content="Aefrivern">
-<meta property="article:tag" content="ACG Computer Life">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://aefrivern.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://aefrivern.github.io/page/6/index.html"><link rel="preconnect" href="//unpkg.com"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://aefrivern.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://aefrivern.github.io/page/6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
-  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hitsPerPage":6,"languages":{"input_placeholder":"搜索文章","hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，耗时 ${time} 毫秒"}},
   localSearch: undefined,
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
     homepage: true,
     post: false
   },
-  runtime: '天',
+  runtime: '',
   dateSuffix: {
     just: '刚刚',
     min: '分钟前',
@@ -37,7 +123,7 @@
   lightbox: 'fancybox',
   Snackbar: undefined,
   infinitegrid: {
-    js: 'https://unpkg.com/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
     buttonText: '加载更多'
   },
   isPhotoFigcaption: true,
@@ -49,435 +135,151 @@
   },
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Aefrivernの小屋',
+  title: 'Aefrivern的小屋',
   isPost: false,
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-12-19 09:23:00'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
-<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
-  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
-<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/hexo-butterfly-article-double-row.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
   restartOnPushState: false
 }
 
-document.addEventListener('pjax:send', () => {
+btf.addGlobalFn('pjaxSend', () => {
   Pace.restart()
-})
-</script><link rel="stylesheet" href="https://unpkg.com/pace-js@1.2.4/themes/blue/pace-theme-minimal.css"/><script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">169</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">225</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-shouye-01"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guidang"></use></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-a-16-01-01"></use></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-wenjianjia"></use></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-zhifeiji"></use></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-xiangce"></use></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guanyu"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-tongjichaxun"></use></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-liuyan"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-suiji"></use></svg><span> 随便逛逛</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Aefrivernの小屋"><span class="site-name">Aefrivernの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"></use></svg><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-shouye-01"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guidang"></use></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-a-16-01-01"></use></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-wenjianjia"></use></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-zhifeiji"></use></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-xiangce"></use></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guanyu"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-tongjichaxun"></use></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-liuyan"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-suiji"></use></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Aefrivernの小屋</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon faa-parent animated-hover" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="GitHub"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="QQ邮箱"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="Steam"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"></use></svg></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/posts/6441a1ac.html" title="Makefile"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Makefile.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Makefile"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/6441a1ac.html" title="Makefile">Makefile</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T06:59:51.000Z" title="发表于 2024-04-10 14:59:51">2024-04-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:34.000Z" title="更新于 2024-11-23 11:48:34">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%BC%96%E8%AF%91/">编译</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Makefile/">Makefile</a></span></div><div class="content">介绍
-Makefile 的基本规则：
-target ... : prerequisites ...    recipe    ...    ...
+}, 'pace_restart')
 
-target：可以是一个 object file（目标文件），也可以是一个可执行文件，还可以是一个标签（label）
-prerequisites：生成该 target 所依赖的文件和/或 target
-recipe：该 target 要执行的命令（任意的 shell 命令）
-
-简单来说就是指定了一个依赖关系
-输入 make 命令时，是这么工作的：
-
-make 会在当前目录下找名字叫 Makefile 或 makefile 的文件
-如果找到，它会找文件中的第一个目标文件（target），并把这个文件作为最终的目标文件
-如果该文件不存在，或其所依赖的后面的 .o 文件的文件修改时间要比这个文件新，则执行后面所定义的命令来生成这个文件
-如果所依赖的 .o 文件也不存在，那么 make 会在当前文件中找目标为 .o 文件的依赖性，如果找到则再根据那一个规则生成 .o 文件
-最后用 .o 文件生成可执行文件
-
-在 Makefile 中可以声明变量并 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/2069534c.html" title="打倒孔家店，救出孔夫子"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%AD%94%E5%AD%90.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="打倒孔家店，救出孔夫子"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/2069534c.html" title="打倒孔家店，救出孔夫子">打倒孔家店，救出孔夫子</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T05:07:32.000Z" title="发表于 2024-04-10 13:07:32">2024-04-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T05:38:01.000Z" title="更新于 2024-11-23 13:38:01">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E8%AE%BA%E8%AF%AD/">论语</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%AD%94%E5%AD%90/">孔子</a></span></div><div class="content">~~抡语~~
-    
-既来之，则安之。
-
-既然来到了这里，那么就安葬在这里吧。
-
-子不语怪、力、乱、神。
-
-夫子不想说话，施展起怪力将人打的神志不清。
-
-朝闻道，夕死可矣。
-
-早上听到我来了，今晚你就得死。
-
-三人行，必有我师焉。
-
-有三个人，只要其中有一个是我，战力就相当于一个师。
-
-父母在，不远游，游必有方。
-
-你父母在我手里，你跑不了的，就算你跑了，我也有办法把你抓回来！
-
-论语
-我小时候认为孔子说的话很有道理，也不管究竟是不是他说过的话，一律奉为圭臬。长大后有了独立思考的能力，并了解了一些历史，觉得孔子的话根本就不对。其之所以流行，只是迎合了统治阶级的需要，是用来麻痹老百姓的。再后来读了《论语》，理性思考之下，才发现我以前对孔子有很多的误解。他的很多思想直到现在都闪烁着光芒。数千年来，他为董仲舒所用、为朱熹所用、为陈独秀所用，他从一个“山东大汉”成为了一个“文弱书生”，是时候为他正名了，打倒那些人粉饰过后的“孔家店”，救出真正的那个“孔夫子”。
-
-以德报怨，何以报德？以直报怨，以德报德。
-要断章取义 —— 节选自《不要断章取义》
-
-孔子的这句话无疑是被曲解最严重的，以至于“以 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/60d11614.html" title="VS Code"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/VS%20Code.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VS Code"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/60d11614.html" title="VS Code">VS Code</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-06T00:21:22.000Z" title="发表于 2024-04-06 08:21:22">2024-04-06</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-12T07:22:07.000Z" title="更新于 2024-12-12 15:22:07">2024-12-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/IDE/">IDE</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/VS-Code/">VS Code</a></span></div><div class="content">VS Code 是流行的代码编辑器，可以通过插件支持各种语句的高亮、调试、编译等
-设置
-字体喜欢使用 JetBrains Mono，字号设为 14，并开启连字
-快捷键
-
-
-
-功能
-快捷键
-功能
-快捷键
-
-
-
-
-移动行
-alt + up / down
-查找文件
-ctrl + p
-
-
-显示相关插件的命令
-ctrl + shift + p 或 F1
-多行同时添加内容（光标）
-ctrl + alt + up / down
-
-
-光标跳到下一个单词
-ctrl+ left / RIGHT
-行增加/减少缩进
-ctrl + [ / ]
-
-
-隐藏底部控制面板
-ctrl + j
-显示/隐藏左侧目录栏
-ctrl + b
-
-
-
-扩展推荐
-主题
-Atom One Light Theme
-
-个人比较喜欢白色主题，可能是通常在白天编程养成的
-深色主题推荐两个：
-
-Dracula Official：德古拉主题，紫色和粉色为主，优雅
-One Dark Pro：深灰色主题，不错
-
-Material Icon Theme
-
-
-图标库
-功能强化
-Chinese (Simplified) (简体中文) Language Pack ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/f8060ffb.html" title="C++ 入门（上）"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/C++%20%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%8A%EF%BC%89.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++ 入门（上）"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/f8060ffb.html" title="C++ 入门（上）">C++ 入门（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-05T08:24:19.000Z" title="发表于 2024-04-05 16:24:19">2024-04-05</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T05:58:48.000Z" title="更新于 2024-11-23 13:58:48">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/C/">C++</a></span></div><div class="content">基于 C++ Primer Fifth 编写
-不愧是 C++，这才只是入门，只到 C++ 11
-开始 Getting Started
-万恶之源：
-##include &lt;iostream&gt;int main() &#123;    std::cout &lt;&lt; &quot;Hello, world!&quot; &lt;&lt; std::endl;    return 0;&#125;
-文件的后缀名有很多，最常见的应该是 .cc 和 .cpp
-编译器也有很多，如使用 g++ 编译：
-g++ -o prog1 prog1.cc
-
-添加支持 c++ 11 标准：-std=c++11
--Wall 生成更多警告信息
-
-输入输出：
-
-这里使用了 iostream 库中的标准输入流和标准输出流，该库中还有标准错误流 cerr 和 clog
-&lt;&lt; 是输出操作符，&gt;&gt; 是输入操作符
-endl 是一种 控制符 manipulator，有结束当前行和刷新缓冲区的作用
-
-std:: 表示使用 命名空间 namespace 的函数等，用于区分
-一个读入的例子：
-std ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/17492bb9.html" title="CMU 15-445：数据库系统"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/CMU%2015-445%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CMU 15-445：数据库系统"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/17492bb9.html" title="CMU 15-445：数据库系统">CMU 15-445：数据库系统</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-30T10:04:32.000Z" title="发表于 2024-03-30 18:04:32">2024-03-30</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:24:27.000Z" title="更新于 2024-11-23 14:24:27">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/CMU/">CMU</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="content">关系模型与关系代数 Relation Model &amp; Relation Algebra
-数据库管理系统 Database Management System（DBMS） 允许应用程序存储和分析数据库中的信息的软件，通常支持根据某种数据模型定义、创建、查询、更新、管理数据库
-数据模型 data model 是描述数据库中的数据的概念的集合
-模式 schema 是使用给定数据模型，对特定数据集合的描述
-关系型数据库的发明者——Codd
-关系 relation 是包括了表示实体的属性关系的无序集合
-元组 tuple 是关系中属性值的集合，类似于行
-主键 primary key 唯一地指定了一个 tuple
-数据操作语言 Data Manipulation Languages（DML）：从数据库中存取信息的方法，有程序性的（关系代数）和非程序性的
-关系代数 relational algebra：
-
-σpredicate(R)\sigma_{predicate}(R)σpredicate​(R)：类似于过滤器
-πA1,…,An(R)\pi_{A1,\dots, An}(R)πA1,…,A ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/a541262a.html" title="Spring Boot"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Spring%20Boot.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Boot"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/a541262a.html" title="Spring Boot">Spring Boot</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-17T04:20:02.000Z" title="发表于 2024-03-17 12:20:02">2024-03-17</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:09:13.000Z" title="更新于 2024-11-23 14:09:13">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Java/">Java</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/web/">web</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Spring-Boot/">Spring Boot</a></span></div><div class="content">Maven
-Maven 可以用于管理 Java 项目的依赖
-在 pom.xml 文件中指定了 Maven 坐标，其构成如下：
-
-groupId：通常是域名反写
-artifactId：通常是模块名称
-version：版本号
-
-引入依赖：在 &lt;dependencies&gt; 标签下，使用 &lt;dependency&gt; 引入标签，并定义 Maven 坐标
-依赖有传递性，可以使用 &lt;exclusion&gt; 手动排除依赖的资源
-使用 &lt;scope&gt; 设置其作用范围，通常使用默认的和 &lt;test&gt;
-Maven 有 3 套独立的生命周期：
-
-clean
-default：编译、测试、打包、部署等
-site：生成报告、发布站点
-
-可以手动执行其中的若干个生命周期
-请求与响应
-Tomcat 是一个轻量级的 web 服务器，支持 Servlet 规范
-几种请求参数：
-简单参数：名字一致，也可以使用一个对象接收多个参数
-GET http://localhost:8080/simpleParam?name=Tome@RequestMapping(&quot;/s ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/828c2ccd.html" title="这一切值得吗"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%86%B0%E6%B1%BD%E6%97%B6%E4%BB%A3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="这一切值得吗"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/828c2ccd.html" title="这一切值得吗">这一切值得吗</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-15T01:00:00.000Z" title="发表于 2024-03-15 09:00:00">2024-03-15</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:33.000Z" title="更新于 2024-11-23 11:48:33">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%86%B0%E6%B1%BD%E6%97%B6%E4%BB%A3/">冰汽时代</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%9C%AB%E6%97%A5%E6%B1%82%E7%94%9F/">末日求生</a></span></div><div class="content">
-城市没有消亡，但这一切值得吗？
-这是这款游戏引起争议的很重要的一点，人们纷纷给它贴上了“白左”的标签。的确，末日到来了，老子辛辛苦苦把这么多人救了下来，居然还这样居高临下地问我值不值得，难怪被喷得体无完肤。
-但是，当我真正地深入了解这款游戏之后，才发现这完全是很多不良媒体的断章取义导致的。上述所谓的“越界”结局并不是一定会触发的，而且“越界”的条件也不是“童工”、“木屑餐”、“加班”等“自由民主”的西方“人权”口号，而是选择成为了一个独裁者或新教皇。事实上，这些被称为“越界法典”的法典并不会增加生产效率，其目的只是维护自己的统治。要知道，当不满拉满或者希望归零时失败的是玩家，是玩家被赶了出去，然后会有一个新的人被选出来成为新的领导者（就是“冬日之家”中玩家扮演的角色），所以说，玩家失败了，城市就会消亡吗？这并不一定。
-不过游戏做的也不好。越界法典和普通法典没有什么不同，导致很多玩家都以为这个和科技树一样一直点到头就行了，谁知道有些法典是不能点的。如果都像“最后的秋天”中的法典一样写着令人毛骨悚然的“每天都有一个人被处死”，大概就不会有这么多人毫不犹豫地点开这个法典了。还有游戏的剧情和 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/353e70c9.html" title="人类的赞歌就是勇气的赞歌"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E6%9A%97%E9%BB%91%E5%9C%B0%E7%89%A2.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="人类的赞歌就是勇气的赞歌"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/353e70c9.html" title="人类的赞歌就是勇气的赞歌">人类的赞歌就是勇气的赞歌</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-06T00:17:22.000Z" title="发表于 2024-03-06 08:17:22">2024-03-06</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:32.000Z" title="更新于 2024-11-23 11:48:32">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%9A%97%E9%BB%91%E5%9C%B0%E7%89%A2/">暗黑地牢</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%85%8B%E8%8B%8F%E9%B2%81/">克苏鲁</a></span></div><div class="content">下去四个，疯了五个
-早就听说过这款游戏的大名，同时也早就准备好了不当人的准备，但当我看到辛辛苦苦培养出的高级英雄就这样被全灭了的时候，还是有种想要重开的准备。当然，相比这部游戏的世界观，这还不算残酷，毕竟是克苏鲁世界。
-这游戏入门的第一个标准就是要不做人，那些英雄并不是我的伙伴，只是一个个工具人而已，只有高级的建筑和饰品才是我最重要的宝贝。当然，他们也不是什么好东西，有杀人的强盗，有光明神偷十字军，还有盗墓贼等等，除了麻风以外都是无可救药的罪犯。当我要指望他们绝地反击的时候，总是 miss，或者是暴击 0 + 流血，没太大的能力还总是高傲地不愿意下低级本提携后辈。
-人类的赞歌
-虽然嘴上这么说，但当东征成功的麻风吟诵起诗歌来时，当圣矛刺穿邪恶的后配敌人时，当三四个角色绝望中一个人爆美德逆转了战局时，我不由得感叹——人类的赞歌就是勇气的赞歌。畏惧、自私都不是他们的错，他们以普通的人类之躯，却挺身对抗古神，这一切无不体现了他们的伟大，还有人类的伟大。面对死亡，有人大无畏地说“不洁的邪恶，我要和你同归于尽”，有人英雄般地说“饶了其他人，我已经准备好了”，还有人大喊“人人为我，我为人人”，无不让 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/7f92999e.html" title="潜行大师康师傅"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%EF%BC%9A%E5%BA%B7%E7%BA%B3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="潜行大师康师傅"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/7f92999e.html" title="潜行大师康师傅">潜行大师康师傅</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-03T00:17:22.000Z" title="发表于 2024-03-03 08:17:22">2024-03-03</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:52:02.000Z" title="更新于 2024-11-23 14:52:02">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1/">刺客信条</a></span></div><div class="content">
-A   S   S   A   S   S   I   N  ’ SC   R   E   E   D
-     Nothing is true, everything is permitted.  
-    当其他人盲目追寻真相的时候，记住——万物皆虚。
-当其他人受到法律或道德束缚的时候，记住——万事皆允。  
-我们服侍光明却耕耘于黑暗——我们是刺客
-
-潜行大师
-玩了这一作之后我终于知道为什么康师傅被称为“潜行大师”了，不是开起无双来是多么容易，而是这一作的潜行太难了。我不就顺手杀了一个守卫嘛，一瞬间就整座城的守卫来围攻我了，害得我只好收起袖剑，拔出我的战斧开无双了。这一作的守卫就不会像二代一样睁一只眼闭一只眼，这样就能明哲保身了嘛。
-
-时代的洪流
-从剧情的深刻程度上来说，这一作比前作更优秀。从完美同步的条件来看，康纳毫无疑问是更强的刺客，但他面对的敌人也更加强大。更何况，他几乎没有队友，自己的族人不信任他，他帮助的华盛顿等人背叛了他，阿基里斯已经老了，且实在不够睿智，他的父亲也因为信仰的不同站在他的对立面……
-
-你挥剑像个战士，想法却像个孩子。
-
-尽管康纳的战斧可以以一人之力单挑 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/fda4520e.html" title="为美好的世界献上祝福"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E4%B8%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8C%AE%E4%B8%8A%E7%A5%9D%E7%A6%8F.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="为美好的世界献上祝福"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/fda4520e.html" title="为美好的世界献上祝福">为美好的世界献上祝福</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-29T00:17:22.000Z" title="发表于 2024-02-29 08:17:22">2024-02-29</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T07:11:19.000Z" title="更新于 2024-11-23 15:11:19">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/ACG%E6%9D%82%E8%B0%88/">ACG杂谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%BC%82%E4%B8%96%E7%95%8C/">异世界</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%90%9E%E7%AC%91/">搞笑</a></span></div><div class="content">
-美好世界
-能够让人眼前一亮的异世界作品，如果要深究起整个故事的背景，或许是比较灰暗的，敌人异常地强大。但是这部作品并没有像普通的异世界作品那样集中笔墨于异世界的冒险故事，人设、后宫、背景、搞笑都只是陪衬，目的是突出这种已经被用烂了的冒险桥段。而是别出心裁，着重刻画主人公们在异世界的打打闹闹的生活（搬砖、piaochang），还有异世界的风土人情（红魔族和阿库西斯教团），还有那些善良而有趣的“NPC”（道具店老板），而所谓的“冒险”和对抗魔王只是顺手做的事情。
-正如这两季的 ed 中所表现出来的安逸、和谐、平静的田园生活，还有共同奋斗的伙伴和友善的居民，这一切才组成了最令人向往的异世界生活。
-还是那句话，异世界最重要的是“世界”
-explosion
-关于惠惠的外传看了，确实很不错，但感觉和正篇还是差了许多。三分逗七分捧，红魔族都是犯傻的天才，但是没有和真这样的吐槽役，乐趣就少了许多。
-总结
-这支队伍可以算是完美的组合了，有人偷胖次，有人被偷胖次，有人想被偷胖次，还有人没有胖次
-最后送出我衷心的祝福：
-
-祝你拥有水之女神阿库娅般的智慧，拥有贵族大小姐拉拉蒂娜·福特·达斯缇妮斯的气质，拥有 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/df2849ec.html" title="Java"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Java.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/df2849ec.html" title="Java">Java</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-26T00:17:22.000Z" title="发表于 2024-02-26 08:17:22">2024-02-26</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:03:38.000Z" title="更新于 2024-11-23 14:03:38">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">面向对象编程</a></span></div><div class="content">基于 Bruce Eckel 的 On Java 8 编写
-什么是对象 What is an Object?
-面向对象编程的特点：
-
-任何东西都是对象
-程序是一堆通过发消息告诉彼此的对象（调用对象的方法）
-每个对象有由其它对象组成的内存
-每个对象都有一个类型（类是一个实例）
-一个特定的类型的所有对象可以收到相同的信息
-
-也可以说：对象有声明（内部数据）、表现（方法）和身份（唯一的内存地址）
-对象有接口
-对象通过方法提供服务
-隐藏的实现——封装
-重复利用实现——继承
-是和像的关系
-对象的生命周期——有垃圾收集器
-到处都是对象 Objects Everywhere
-使用引用操作对象
-原始类型，特别的，有“类包装”，如 Character
-有方便的数组
-注释常见每一行开头有一个 *，尽管是不必要的
-有作用域，无需手动销毁对象
-创建新的数据类型：class
-域中的原始成员数据默认值为 0，但局部变量随机
-Java 中防止名称重复的方法是反向使用域名，如域名为 MindviewInc.com 中的 foibles utility 则包名称为 com.mindviewinc.utility.foi ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/e5d89884.html" title="全栈公开课（第二部分）"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%85%A8%E6%A0%88%E5%85%AC%E5%BC%80%E8%AF%BE%EF%BC%88%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%89.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="全栈公开课（第二部分）"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/e5d89884.html" title="全栈公开课（第二部分）">全栈公开课（第二部分）</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-03T00:17:22.000Z" title="发表于 2024-01-03 08:17:22">2024-01-03</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:15:40.000Z" title="更新于 2024-11-23 14:15:40">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E8%B5%AB%E5%B0%94%E8%BE%9B%E5%9F%BA%E5%A4%A7%E5%AD%A6/">赫尔辛基大学</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/web/">web</a></span></div><div class="content">React router、自定义 hook，利用 CSS 和 webpack 给 app 添加样式
-React-router
-使用 React Router 库生成导航栏：
-import &#123; BrowserRouter as Router, Routes, Route, Link &#125; from &#x27;react-router-dom&#x27;;const App = () =&gt; &#123;  const padding = &#123;    padding: 5,  &#125;;  return (    &lt;Router&gt;      &lt;div&gt;        &lt;Link style=&#123;padding&#125; to=&#x27;/&#x27;&gt;          home        &lt;/Link&gt;        &lt;Link style=&#123;padding&#125; to=&#x27;/notes&#x27;&gt;          notes        &lt; ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/5/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/#content-inner">15</a><a class="extend next" rel="next" href="/page/7/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Aefrivern</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">169</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">225</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="GitHub"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="QQ邮箱"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="Steam"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"></use></svg></a></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
-            <i class="iconfont icon-wenjianjia"></i>
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(url(/gallery/wallpaper/wallpaper.webp));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">170</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">226</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><span> 二次元</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><span> 随便逛逛</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Aefrivern的小屋</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><span> 二次元</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Aefrivern的小屋</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="icon-github"><i class="GitHub"></i></a><a class="social-icon" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="icon-youxiang"><i class="QQ邮箱"></i></a><a class="social-icon" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="icon-steam"><i class="Steam"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc masonry" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover"><a href="/posts/8724ba9a.html" title="C++ 入门（下）"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/C++%20%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%8B%EF%BC%89.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++ 入门（下）"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/8724ba9a.html" title="C++ 入门（下）">C++ 入门（下）</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T08:24:19.000Z" title="发表于 2024-04-10 16:24:19">2024-04-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T05:54:13.000Z" title="更新于 2024-11-23 13:54:13">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/C/">C++</a></span></div><div class="content">关联型容器 Associative Containers 关联型容器通常需要键满足 &lt;，否则可以自定义一个： bool compareIsbn(const Sales_data &amp;lhs, const Sales_data &amp;rhs) &#123;    return lhs.isbn() &lt; rhs.isbn();&#125;multiset&lt;Sales_data, decltype(compareIsbn)*&gt; bookstore(compareIsbn); 关联性容器定义了三种类型：  key_type mapped_type value_type  set：key_type map：pair&lt;const key_type, mapped_type&gt;    set 的迭代器都是 const_iterator .lower_bound() &gt;=，.upper_bound() &gt;，.equal_range() 除此之外，还有键可以重复的 multiset 和 multimap unordered_set 和...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/6441a1ac.html" title="Makefile"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Makefile.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Makefile"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/6441a1ac.html" title="Makefile">Makefile</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T06:59:51.000Z" title="发表于 2024-04-10 14:59:51">2024-04-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:34.000Z" title="更新于 2024-11-23 11:48:34">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%BC%96%E8%AF%91/">编译</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Makefile/">Makefile</a></span></div><div class="content">介绍 Makefile 的基本规则： target ... : prerequisites ...    recipe    ...    ...  target：可以是一个 object file（目标文件），也可以是一个可执行文件，还可以是一个标签（label） prerequisites：生成该 target 所依赖的文件和/或 target recipe：该 target 要执行的命令（任意的 shell 命令）  简单来说就是指定了一个依赖关系 输入 make 命令时，是这么工作的：  make 会在当前目录下找名字叫 Makefile 或 makefile 的文件 如果找到，它会找文件中的第一个目标文件（target），并把这个文件作为最终的目标文件 如果该文件不存在，或其所依赖的后面的 .o 文件的文件修改时间要比这个文件新，则执行后面所定义的命令来生成这个文件 如果所依赖的 .o 文件也不存在，那么 make 会在当前文件中找目标为 .o 文件的依赖性，如果找到则再根据那一个规则生成 .o 文件 最后用 .o 文件生成可执行文件  在 Makefile...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/2069534c.html" title="打倒孔家店，救出孔夫子"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%AD%94%E5%AD%90.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="打倒孔家店，救出孔夫子"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/2069534c.html" title="打倒孔家店，救出孔夫子">打倒孔家店，救出孔夫子</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T05:07:32.000Z" title="发表于 2024-04-10 13:07:32">2024-04-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T05:38:01.000Z" title="更新于 2024-11-23 13:38:01">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E8%AE%BA%E8%AF%AD/">论语</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%AD%94%E5%AD%90/">孔子</a></span></div><div class="content">~~抡语~~      既来之，则安之。  既然来到了这里，那么就安葬在这里吧。  子不语怪、力、乱、神。  夫子不想说话，施展起怪力将人打的神志不清。  朝闻道，夕死可矣。  早上听到我来了，今晚你就得死。  三人行，必有我师焉。  有三个人，只要其中有一个是我，战力就相当于一个师。  父母在，不远游，游必有方。  你父母在我手里，你跑不了的，就算你跑了，我也有办法把你抓回来！  论语 我小时候认为孔子说的话很有道理，也不管究竟是不是他说过的话，一律奉为圭臬。长大后有了独立思考的能力，并了解了一些历史，觉得孔子的话根本就不对。其之所以流行，只是迎合了统治阶级的需要，是用来麻痹老百姓的。再后来读了《论语》，理性思考之下，才发现我以前对孔子有很多的误解。他的很多思想直到现在都闪烁着光芒。数千年来，他为董仲舒所用、为朱熹所用、为陈独秀所用，他从一个“山东大汉”成为了一个“文弱书生”，是时候为他正名了，打倒那些人粉饰过后的“孔家店”，救出真正的那个“孔夫子”。  以德报怨，何以报德？以直报怨，以德报德。 要断章取义 ——...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/60d11614.html" title="VS Code"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/VS%20Code.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VS Code"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/60d11614.html" title="VS Code">VS Code</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-06T00:21:22.000Z" title="发表于 2024-04-06 08:21:22">2024-04-06</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-12T07:22:07.000Z" title="更新于 2024-12-12 15:22:07">2024-12-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/IDE/">IDE</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/VS-Code/">VS Code</a></span></div><div class="content">VS Code 是流行的代码编辑器，可以通过插件支持各种语句的高亮、调试、编译等 设置 字体喜欢使用 JetBrains Mono，字号设为 14，并开启连字 快捷键    功能 快捷键 功能 快捷键     移动行 alt + up / down 查找文件 ctrl + p   显示相关插件的命令 ctrl + shift + p 或 F1 多行同时添加内容（光标） ctrl + alt + up / down   光标跳到下一个单词 ctrl+ left / RIGHT 行增加/减少缩进 ctrl + [ / ]   隐藏底部控制面板 ctrl + j 显示/隐藏左侧目录栏 ctrl + b    扩展推荐 主题 Atom One Light Theme  个人比较喜欢白色主题，可能是通常在白天编程养成的 深色主题推荐两个：  Dracula Official：德古拉主题，紫色和粉色为主，优雅 One Dark Pro：深灰色主题，不错  Material Icon Theme   图标库 功能强化 Chinese (Simplified) (简体中文) Language...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/f8060ffb.html" title="C++ 入门（上）"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/C++%20%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%8A%EF%BC%89.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++ 入门（上）"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/f8060ffb.html" title="C++ 入门（上）">C++ 入门（上）</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-05T08:24:19.000Z" title="发表于 2024-04-05 16:24:19">2024-04-05</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T05:58:48.000Z" title="更新于 2024-11-23 13:58:48">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/C/">C++</a></span></div><div class="content">基于 C++ Primer Fifth 编写 不愧是 C++，这才只是入门，只到 C++ 11 开始 Getting Started 万恶之源： ##include &lt;iostream&gt;int main() &#123;    std::cout &lt;&lt; &quot;Hello, world!&quot; &lt;&lt; std::endl;    return 0;&#125; 文件的后缀名有很多，最常见的应该是 .cc 和 .cpp 编译器也有很多，如使用 g++ 编译： g++ -o prog1 prog1.cc  添加支持 c++ 11 标准：-std=c++11 -Wall 生成更多警告信息  输入输出：  这里使用了 iostream 库中的标准输入流和标准输出流，该库中还有标准错误流 cerr 和 clog &lt;&lt; 是输出操作符，&gt;&gt; 是输入操作符 endl 是一种 控制符 manipulator，有结束当前行和刷新缓冲区的作用  std:: 表示使用 命名空间 namespace...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/17492bb9.html" title="CMU 15-445：数据库系统"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/CMU%2015-445%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CMU 15-445：数据库系统"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/17492bb9.html" title="CMU 15-445：数据库系统">CMU 15-445：数据库系统</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-30T10:04:32.000Z" title="发表于 2024-03-30 18:04:32">2024-03-30</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:24:27.000Z" title="更新于 2024-11-23 14:24:27">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/CMU/">CMU</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="content">关系模型与关系代数 Relation Model &amp; Relation Algebra 数据库管理系统 Database Management System（DBMS） 允许应用程序存储和分析数据库中的信息的软件，通常支持根据某种数据模型定义、创建、查询、更新、管理数据库 数据模型 data model 是描述数据库中的数据的概念的集合 模式 schema 是使用给定数据模型，对特定数据集合的描述 关系型数据库的发明者——Codd 关系 relation 是包括了表示实体的属性关系的无序集合 元组 tuple 是关系中属性值的集合，类似于行 主键 primary key 唯一地指定了一个 tuple 数据操作语言 Data Manipulation Languages（DML）：从数据库中存取信息的方法，有程序性的（关系代数）和非程序性的 关系代数 relational algebra：  σpredicate(R)\sigma_{predicate}(R)σpredicate​(R)：类似于过滤器 πA1,…,An(R)\pi_{A1,\dots,...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/a541262a.html" title="Spring Boot"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Spring%20Boot.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Boot"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/a541262a.html" title="Spring Boot">Spring Boot</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-17T04:20:02.000Z" title="发表于 2024-03-17 12:20:02">2024-03-17</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:09:13.000Z" title="更新于 2024-11-23 14:09:13">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Java/">Java</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/web/">web</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Spring-Boot/">Spring Boot</a></span></div><div class="content">Maven Maven 可以用于管理 Java 项目的依赖 在 pom.xml 文件中指定了 Maven 坐标，其构成如下：  groupId：通常是域名反写 artifactId：通常是模块名称 version：版本号  引入依赖：在 &lt;dependencies&gt; 标签下，使用 &lt;dependency&gt; 引入标签，并定义 Maven 坐标 依赖有传递性，可以使用 &lt;exclusion&gt; 手动排除依赖的资源 使用 &lt;scope&gt; 设置其作用范围，通常使用默认的和 &lt;test&gt; Maven 有 3 套独立的生命周期：  clean default：编译、测试、打包、部署等 site：生成报告、发布站点  可以手动执行其中的若干个生命周期 请求与响应 Tomcat 是一个轻量级的 web 服务器，支持 Servlet 规范 几种请求参数： 简单参数：名字一致，也可以使用一个对象接收多个参数 GET...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/828c2ccd.html" title="这一切值得吗"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%86%B0%E6%B1%BD%E6%97%B6%E4%BB%A3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="这一切值得吗"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/828c2ccd.html" title="这一切值得吗">这一切值得吗</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-15T01:00:00.000Z" title="发表于 2024-03-15 09:00:00">2024-03-15</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:33.000Z" title="更新于 2024-11-23 11:48:33">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%86%B0%E6%B1%BD%E6%97%B6%E4%BB%A3/">冰汽时代</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%9C%AB%E6%97%A5%E6%B1%82%E7%94%9F/">末日求生</a></span></div><div class="content">...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/353e70c9.html" title="人类的赞歌就是勇气的赞歌"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E6%9A%97%E9%BB%91%E5%9C%B0%E7%89%A2.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="人类的赞歌就是勇气的赞歌"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/353e70c9.html" title="人类的赞歌就是勇气的赞歌">人类的赞歌就是勇气的赞歌</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-06T00:17:22.000Z" title="发表于 2024-03-06 08:17:22">2024-03-06</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:32.000Z" title="更新于 2024-11-23 11:48:32">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%9A%97%E9%BB%91%E5%9C%B0%E7%89%A2/">暗黑地牢</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%85%8B%E8%8B%8F%E9%B2%81/">克苏鲁</a></span></div><div class="content">下去四个，疯了五个 早就听说过这款游戏的大名，同时也早就准备好了不当人的准备，但当我看到辛辛苦苦培养出的高级英雄就这样被全灭了的时候，还是有种想要重开的准备。当然，相比这部游戏的世界观，这还不算残酷，毕竟是克苏鲁世界。 这游戏入门的第一个标准就是要不做人，那些英雄并不是我的伙伴，只是一个个工具人而已，只有高级的建筑和饰品才是我最重要的宝贝。当然，他们也不是什么好东西，有杀人的强盗，有光明神偷十字军，还有盗墓贼等等，除了麻风以外都是无可救药的罪犯。当我要指望他们绝地反击的时候，总是 miss，或者是暴击 0 +...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/7f92999e.html" title="潜行大师康师傅"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1%EF%BC%9A%E5%BA%B7%E7%BA%B3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="潜行大师康师傅"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/7f92999e.html" title="潜行大师康师傅">潜行大师康师傅</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-03T00:17:22.000Z" title="发表于 2024-03-03 08:17:22">2024-03-03</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:52:02.000Z" title="更新于 2024-11-23 14:52:02">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%88%BA%E5%AE%A2%E4%BF%A1%E6%9D%A1/">刺客信条</a></span></div><div class="content"> A   S   S   A   S   S   I   N  ’ SC   R   E   E   D      Nothing is true, everything is permitted.       当其他人盲目追寻真相的时候，记住——万物皆虚。 当其他人受到法律或道德束缚的时候，记住——万事皆允。 ...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/fda4520e.html" title="为美好的世界献上祝福"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E4%B8%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8C%AE%E4%B8%8A%E7%A5%9D%E7%A6%8F.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="为美好的世界献上祝福"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/fda4520e.html" title="为美好的世界献上祝福">为美好的世界献上祝福</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-29T00:17:22.000Z" title="发表于 2024-02-29 08:17:22">2024-02-29</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T07:11:19.000Z" title="更新于 2024-11-23 15:11:19">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/ACG%E6%9D%82%E8%B0%88/">ACG杂谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%BC%82%E4%B8%96%E7%95%8C/">异世界</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%90%9E%E7%AC%91/">搞笑</a></span></div><div class="content"> 美好世界 能够让人眼前一亮的异世界作品，如果要深究起整个故事的背景，或许是比较灰暗的，敌人异常地强大。但是这部作品并没有像普通的异世界作品那样集中笔墨于异世界的冒险故事，人设、后宫、背景、搞笑都只是陪衬，目的是突出这种已经被用烂了的冒险桥段。而是别出心裁，着重刻画主人公们在异世界的打打闹闹的生活（搬砖、piaochang），还有异世界的风土人情（红魔族和阿库西斯教团），还有那些善良而有趣的“NPC”（道具店老板），而所谓的“冒险”和对抗魔王只是顺手做的事情。 正如这两季的 ed...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/df2849ec.html" title="Java"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Java.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/df2849ec.html" title="Java">Java</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-26T00:17:22.000Z" title="发表于 2024-02-26 08:17:22">2024-02-26</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:03:38.000Z" title="更新于 2024-11-23 14:03:38">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">面向对象编程</a></span></div><div class="content">基于 Bruce Eckel 的 On Java 8 编写 什么是对象 What is an Object? 面向对象编程的特点：  任何东西都是对象 程序是一堆通过发消息告诉彼此的对象（调用对象的方法） 每个对象有由其它对象组成的内存 每个对象都有一个类型（类是一个实例） 一个特定的类型的所有对象可以收到相同的信息  也可以说：对象有声明（内部数据）、表现（方法）和身份（唯一的内存地址） 对象有接口 对象通过方法提供服务 隐藏的实现——封装 重复利用实现——继承 是和像的关系 对象的生命周期——有垃圾收集器 到处都是对象 Objects Everywhere 使用引用操作对象 原始类型，特别的，有“类包装”，如 Character 有方便的数组 注释常见每一行开头有一个 *，尽管是不必要的 有作用域，无需手动销毁对象 创建新的数据类型：class 域中的原始成员数据默认值为 0，但局部变量随机 Java 中防止名称重复的方法是反向使用域名，如域名为 MindviewInc.com 中的 foibles utility 则包名称为...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/5/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/#content-inner">15</a><a class="extend next" rel="next" href="/page/7/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Aefrivern</div><div class="author-info-description">我一定会回来的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">170</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">226</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="icon-github"><i class="GitHub"></i></a><a class="social-icon" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="icon-youxiang"><i class="QQ邮箱"></i></a><a class="social-icon" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="icon-steam"><i class="Steam"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACG%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">ACG杂谈</span><span class="card-category-list-count">32</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">42</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">48</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">游戏人生</span><span class="card-category-list-count">20</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">读书笔记</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"><span class="card-category-list-name">闲言碎语</span><span class="card-category-list-count">2</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><a class="faa-parent animated-hover"></a><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-biaoqian1"></use></svg><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/CMU/" style="font-size: 1.24em; color: rgb(181, 183, 90)">CMU</a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.24em; color: rgb(138, 0, 10)">数据库</a><a href="/tags/Princeton/" style="font-size: 1.19em; color: rgb(188, 130, 44)">Princeton</a><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 1.19em; color: rgb(10, 57, 145)">数据结构与算法</a><a href="/tags/Java/" style="font-size: 1.32em; color: rgb(198, 179, 171)">Java</a><a href="/tags/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/" style="font-size: 1.15em; color: rgb(179, 78, 110)">并行计算</a><a href="/tags/%E5%B8%8C%E4%BC%AF%E6%9D%A5%E5%A4%A7%E5%AD%A6/" style="font-size: 1.15em; color: rgb(184, 39, 198)">希伯来大学</a><a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="font-size: 1.24em; color: rgb(101, 38, 130)">体系结构</a><a href="/tags/Stanford/" style="font-size: 1.28em; color: rgb(172, 7, 141)">Stanford</a><a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 1.24em; color: rgb(151, 193, 136)">人工智能</a><a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.15em; color: rgb(192, 183, 14)">深度学习</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" style="font-size: 1.15em; color: rgb(45, 83, 173)">计算机系统</a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.15em; color: rgb(79, 65, 139)">机器学习</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" style="font-size: 1.32em; color: rgb(183, 34, 66)">计算机科学</a><a href="/tags/ETH-Zurich/" style="font-size: 1.15em; color: rgb(72, 151, 7)">ETH Zurich</a><a href="/tags/University-of-Helsinki/" style="font-size: 1.19em; color: rgb(83, 129, 3)">University of Helsinki</a><a href="/tags/Haskell/" style="font-size: 1.19em; color: rgb(191, 124, 176)">Haskell</a><a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" style="font-size: 1.19em; color: rgb(153, 36, 0)">函数式编程</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 1.15em; color: rgb(143, 98, 171)">计算机图形学</a><a href="/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" style="font-size: 1.15em; color: rgb(42, 122, 42)">微分方程</a><a href="/tags/MIT/" style="font-size: 1.45em; color: rgb(52, 11, 111)">MIT</a><a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 1.28em; color: rgb(34, 70, 187)">微积分</a><a href="/tags/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/" style="font-size: 1.15em; color: rgb(101, 64, 108)">信号与系统</a><a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 1.24em; color: rgb(83, 20, 153)">概率论</a><a href="/tags/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/" style="font-size: 1.15em; color: rgb(135, 70, 1)">复变函数</a><a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 1.15em; color: rgb(162, 123, 106)">离散数学</a><a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" style="font-size: 1.15em; color: rgb(142, 164, 185)">线性代数</a><a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 1.19em; color: rgb(189, 66, 66)">信息论</a><a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.15em; color: rgb(121, 122, 110)">操作系统</a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" style="font-size: 1.19em; color: rgb(138, 105, 185)">分布式系统</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 1.15em; color: rgb(127, 200, 75)">计算机网络</a><a href="/tags/UC-Berkeley/" style="font-size: 1.36em; color: rgb(102, 169, 129)">UC Berkeley</a><a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 1.15em; color: rgb(59, 15, 113)">安全</a><a href="/tags/C/" style="font-size: 1.41em; color: rgb(102, 52, 136)">C++</a><a href="/tags/Python/" style="font-size: 1.24em; color: rgb(30, 48, 132)">Python</a><a href="/tags/Scheme/" style="font-size: 1.15em; color: rgb(162, 106, 116)">Scheme</a><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.15em; color: rgb(176, 128, 39)">数据结构</a><a href="/tags/RISC-V/" style="font-size: 1.15em; color: rgb(111, 94, 8)">RISC-V</a><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 1.32em; color: rgb(34, 2, 23)">软件工程</a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1.15em; color: rgb(61, 52, 105)">网络</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="iconfont icon-archives"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="iconfont icon-youjiantou"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">16</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">13</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-shuju"></use></svg></a><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">169</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-10-31T12:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">46.8w</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-19T01:22:58.612Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>安得广厦千万间，大庇天下寒士俱欢颜，风雨不动安如山。</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2024 By Aefrivern</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://unpkg.com/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.js"></script><script src="https://unpkg.com/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://unpkg.com/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
-  init: (str) => {
-    window.typed = new Typed('#subtitle', Object.assign({
-      strings: str,
-      startDelay: 300,
-      typeSpeed: 150,
-      loop: true,
-      backSpeed: 50,
-    }, null))
-  },
-  run: (subtitleType) => {
-    if (false) {
-      if (typeof Typed === 'function') {
-        subtitleType()
-      } else {
-        getScript('https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
-      }
-    } else {
-      subtitleType()
-    }
-  }
-}
-</script><script>function subtitleType () {
-  if (false) {
-    typedJSFn.init(["欢迎来到Aefrivernの小屋作客"])
-  } else {
-    document.getElementById("subtitle").textContent = "欢迎来到Aefrivernの小屋作客"
-  }
-}
-typedJSFn.run(subtitleType)</script></div><script async src="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.js"></script><link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://unpkg.com/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://unpkg.com/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
-
-var pjax = new Pjax({
-  elements: 'a:not([target="_blank"])',
-  selectors: pjaxSelectors,
-  cacheBust: false,
-  analytics: false,
-  scrollRestoration: false
-})
-
-document.addEventListener('pjax:send', function () {
-
-  // removeEventListener
-  btf.removeGlobalFnEvent('pjax')
-  btf.removeGlobalFnEvent('themeChange')
-
-  document.getElementById('rightside').classList.remove('rightside-show')
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACG%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">ACG杂谈</span><span class="card-category-list-count">32</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">43</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">48</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">游戏人生</span><span class="card-category-list-count">20</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">读书笔记</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"><span class="card-category-list-name">闲言碎语</span><span class="card-category-list-count">2</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AIR/" style="font-size: 1.15em; color: rgb(50, 122, 82);">AIR</a><a href="/tags/%E6%B2%BB%E6%84%88/" style="font-size: 1.45em; color: rgb(50, 158, 144);">治愈</a><a href="/tags/key/" style="font-size: 1.21em; color: rgb(123, 53, 120);">key</a><a href="/tags/%E4%BA%AC%E9%83%BD%E5%8A%A8%E7%94%BB/" style="font-size: 1.21em; color: rgb(163, 50, 50);">京都动画</a><a href="/tags/CLANNAD/" style="font-size: 1.15em; color: rgb(174, 50, 50);">CLANNAD</a><a href="/tags/%E5%BC%82%E4%B8%96%E7%95%8C/" style="font-size: 1.33em; color: rgb(50, 197, 80);">异世界</a><a href="/tags/%E6%90%9E%E7%AC%91/" style="font-size: 1.21em; color: rgb(70, 50, 133);">搞笑</a><a href="/tags/%E5%90%89%E5%8D%9C%E5%8A%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4/" style="font-size: 1.27em; color: rgb(68, 173, 50);">吉卜力工作室</a><a href="/tags/%E5%85%B0%E6%96%AF/" style="font-size: 1.15em; color: rgb(186, 127, 50);">兰斯</a><a href="/tags/%E5%86%92%E9%99%A9/" style="font-size: 1.15em; color: rgb(50, 89, 186);">冒险</a><a href="/tags/AliceSoft/" style="font-size: 1.15em; color: rgb(199, 199, 77);">AliceSoft</a><a href="/tags/R18/" style="font-size: 1.21em; color: rgb(129, 69, 177);">R18</a><a href="/tags/%E5%85%B3%E4%BA%8E%E6%88%91%E8%BD%AC%E7%94%9F%E5%8F%98%E6%88%90%E5%8F%B2%E8%8E%B1%E5%A7%86%E8%BF%99%E6%A1%A3%E4%BA%8B/" style="font-size: 1.15em; color: rgb(71, 50, 108);">关于我转生变成史莱姆这档事</a><a href="/tags/%E7%A7%8D%E7%94%B0%E6%B5%81/" style="font-size: 1.15em; color: rgb(50, 175, 55);">种田流</a><a href="/tags/%E7%AB%A5%E5%B9%B4/" style="font-size: 1.39em; color: rgb(139, 110, 152);">童年</a><a href="/tags/%E5%90%8D%E4%BE%A6%E6%8E%A2%E6%9F%AF%E5%8D%97/" style="font-size: 1.15em; color: rgb(126, 81, 50);">名侦探柯南</a><a href="/tags/%E6%9C%89%E7%94%9F%E4%B9%8B%E5%B9%B4/" style="font-size: 1.15em; color: rgb(50, 65, 89);">有生之年</a><a href="/tags/%E5%92%92%E6%9C%AF%E5%9B%9E%E6%88%98/" style="font-size: 1.15em; color: rgb(192, 153, 130);">咒术回战</a><a href="/tags/%E7%83%AD%E8%A1%80/" style="font-size: 1.21em; color: rgb(50, 173, 195);">热血</a><a href="/tags/%E7%83%82%E5%B0%BE/" style="font-size: 1.27em; color: rgb(50, 174, 50);">烂尾</a><a href="/tags/%E5%93%86%E5%95%A6A%E6%A2%A6/" style="font-size: 1.15em; color: rgb(98, 79, 50);">哆啦A梦</a><a href="/tags/%E8%8B%B1%E9%9B%84/" style="font-size: 1.15em; color: rgb(98, 183, 50);">英雄</a><a href="/tags/%E5%96%9C%E7%BE%8A%E7%BE%8A%E4%B8%8E%E7%81%B0%E5%A4%AA%E7%8B%BC/" style="font-size: 1.15em; color: rgb(80, 142, 193);">喜羊羊与灰太狼</a><a href="/tags/Eushully/" style="font-size: 1.15em; color: rgb(188, 112, 197);">Eushully</a><a href="/tags/%E5%AD%A6%E5%9B%AD%E9%BB%98%E7%A4%BA%E5%BD%95/" style="font-size: 1.15em; color: rgb(146, 50, 190);">学园默示录</a><a href="/tags/%E5%8D%96%E8%82%89/" style="font-size: 1.27em; color: rgb(50, 50, 154);">卖肉</a><a href="/tags/%E4%B8%A7%E5%B0%B8/" style="font-size: 1.15em; color: rgb(109, 50, 199);">丧尸</a><a href="/tags/ACG/" style="font-size: 1.15em; color: rgb(107, 119, 97);">ACG</a><a href="/tags/%E8%BF%90%E5%8A%A8/" style="font-size: 1.15em; color: rgb(129, 50, 121);">运动</a><a href="/tags/%E4%BA%AC%E9%98%BF%E5%B0%BC/" style="font-size: 1.33em; color: rgb(96, 50, 165);">京阿尼</a><a href="/tags/%E6%97%A0%E5%BD%A9%E9%99%90%E7%9A%84%E6%80%AA%E7%81%B5%E4%B8%96%E7%95%8C/" style="font-size: 1.15em; color: rgb(194, 192, 50);">无彩限的怪灵世界</a><a href="/tags/%E9%BB%91%E6%9A%97/" style="font-size: 1.15em; color: rgb(175, 92, 50);">黑暗</a><a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 1.15em; color: rgb(50, 135, 116);">旅行</a><a href="/tags/%E7%A5%9E%E8%AF%9D/" style="font-size: 1.15em; color: rgb(153, 156, 50);">神话</a><a href="/tags/%E7%8E%89%E5%AD%90%E5%B8%82%E5%9C%BA/" style="font-size: 1.15em; color: rgb(94, 119, 50);">玉子市场</a><a href="/tags/%E7%8E%89%E5%AD%90%E7%88%B1%E6%83%85%E6%95%85%E4%BA%8B/" style="font-size: 1.15em; color: rgb(168, 88, 88);">玉子爱情故事</a><a href="/tags/%E7%94%98%E5%9F%8E%E5%85%89%E8%BE%89%E6%B8%B8%E4%B9%90%E5%9B%AD/" style="font-size: 1.15em; color: rgb(53, 175, 50);">甘城光辉游乐园</a><a href="/tags/%E7%B4%AB%E7%BD%97%E5%85%B0%E6%B0%B8%E6%81%92%E8%8A%B1%E5%9B%AD/" style="font-size: 1.15em; color: rgb(96, 96, 136);">紫罗兰永恒花园</a><a href="/tags/%E6%A0%A1%E5%9B%AD/" style="font-size: 1.15em; color: rgb(50, 160, 139);">校园</a><a href="/tags/%E6%81%8B%E7%88%B1/" style="font-size: 1.15em; color: rgb(130, 154, 185);">恋爱</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
   
-  if (window.aplayers) {
-    for (let i = 0; i < window.aplayers.length; i++) {
-      if (!window.aplayers[i].options.fixed) {
-        window.aplayers[i].destroy()
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/12/">
+          <span class="card-archive-list-date">十二月 2024</span>
+          <span class="card-archive-list-count">7</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">16</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/10/">
+          <span class="card-archive-list-date">十月 2024</span>
+          <span class="card-archive-list-count">7</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/09/">
+          <span class="card-archive-list-date">九月 2024</span>
+          <span class="card-archive-list-count">6</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/08/">
+          <span class="card-archive-list-date">八月 2024</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/06/">
+          <span class="card-archive-list-date">六月 2024</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/05/">
+          <span class="card-archive-list-date">五月 2024</span>
+          <span class="card-archive-list-count">8</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/04/">
+          <span class="card-archive-list-date">四月 2024</span>
+          <span class="card-archive-list-count">13</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">170</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">46.9w</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-19T11:08:00.080Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Aefrivern</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script async src="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
       }
     }
   }
 
-  typeof typed === 'object' && typed.destroy()
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
 
-  //reset readmode
-  const $bodyClassList = document.body.classList
-  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
 
-  typeof disqusjs === 'object' && disqusjs.destroy()
-})
-
-document.addEventListener('pjax:complete', function () {
-  window.refreshFn()
-
-  document.querySelectorAll('script[data-pjax]').forEach(item => {
-    const newScript = document.createElement('script')
-    const content = item.text || item.textContent || item.innerHTML || ""
-    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
-    newScript.appendChild(document.createTextNode(content))
-    item.parentNode.replaceChild(newScript, item)
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
   })
 
-  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
-
-  typeof panguInit === 'function' && panguInit()
-
-  // google analytics
-  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
-
-  // baidu analytics
-  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
-
-  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
-
-  // prismjs
-  typeof Prism === 'object' && Prism.highlightAll()
-})
-
-document.addEventListener('pjax:error', e => {
-  if (e.request.status === 404) {
-    pjax.loadUrl('/404.html')
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
   }
-})</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://unpkg.com/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script><script src="https://unpkg.com/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></html>
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/lite/builds/browser.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body></html>

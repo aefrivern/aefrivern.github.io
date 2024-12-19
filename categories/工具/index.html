@@ -1,31 +1,117 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>分类: 工具 | Aefrivernの小屋</title><meta name="author" content="Aefrivern"><meta name="copyright" content="Aefrivern"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MyBlog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Aefrivernの小屋">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>分类: 工具 | Aefrivern的小屋</title><meta name="author" content="Aefrivern"><meta name="copyright" content="Aefrivern"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Aefrivern的小屋">
 <meta property="og:url" content="https://aefrivern.github.io/categories/%E5%B7%A5%E5%85%B7/index.html">
-<meta property="og:site_name" content="Aefrivernの小屋">
-<meta property="og:description" content="MyBlog">
+<meta property="og:site_name" content="Aefrivern的小屋">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://aefrivern.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp">
 <meta property="article:author" content="Aefrivern">
-<meta property="article:tag" content="ACG Computer Life">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://aefrivern.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://aefrivern.github.io/categories/%E5%B7%A5%E5%85%B7/index.html"><link rel="preconnect" href="//unpkg.com"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://aefrivern.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://aefrivern.github.io/categories/%E5%B7%A5%E5%85%B7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
-  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hitsPerPage":6,"languages":{"input_placeholder":"搜索文章","hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，耗时 ${time} 毫秒"}},
   localSearch: undefined,
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
     homepage: true,
     post: false
   },
-  runtime: '天',
+  runtime: '',
   dateSuffix: {
     just: '刚刚',
     min: '分钟前',
@@ -37,7 +123,7 @@
   lightbox: 'fancybox',
   Snackbar: undefined,
   infinitegrid: {
-    js: 'https://unpkg.com/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
     buttonText: '加载更多'
   },
   isPhotoFigcaption: true,
@@ -54,185 +140,146 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-12-19 09:23:01'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
-<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
-  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
-<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/hexo-butterfly-article-double-row.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
   restartOnPushState: false
 }
 
-document.addEventListener('pjax:send', () => {
+btf.addGlobalFn('pjaxSend', () => {
   Pace.restart()
-})
-</script><link rel="stylesheet" href="https://unpkg.com/pace-js@1.2.4/themes/blue/pace-theme-minimal.css"/><script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">169</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">225</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-shouye-01"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guidang"></use></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-a-16-01-01"></use></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-wenjianjia"></use></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-zhifeiji"></use></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-xiangce"></use></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guanyu"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-tongjichaxun"></use></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-liuyan"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-suiji"></use></svg><span> 随便逛逛</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Aefrivernの小屋"><span class="site-name">Aefrivernの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"></use></svg><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-shouye-01"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guidang"></use></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-a-16-01-01"></use></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-wenjianjia"></use></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-zhifeiji"></use></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-xiangce"></use></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guanyu"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-tongjichaxun"></use></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-liuyan"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-suiji"></use></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">工具</h1></div></header><main class="layout" id="content-inner"><div id="category"><div class="article-sort-title">分类 - 工具</div><div class="article-sort"><div class="article-sort-item year">2024</div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/f6ba9b41.html" title="代码大全"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" alt="代码大全" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-12-13T11:49:00.000Z" title="发表于 2024-12-13 19:49:00">2024-12-13</time></div><a class="article-sort-item-title" href="/posts/f6ba9b41.html" title="代码大全">代码大全</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/dac3150c.html" title="实用软件"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%AE%9E%E7%94%A8%E8%BD%AF%E4%BB%B6.webp" alt="实用软件" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-12-11T06:12:22.000Z" title="发表于 2024-12-11 14:12:22">2024-12-11</time></div><a class="article-sort-item-title" href="/posts/dac3150c.html" title="实用软件">实用软件</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/2450b1e7.html" title="TOML"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/TOML.webp" alt="TOML" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-12-10T12:11:15.000Z" title="发表于 2024-12-10 20:11:15">2024-12-10</time></div><a class="article-sort-item-title" href="/posts/2450b1e7.html" title="TOML">TOML</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/be927463.html" title="Python包"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Python%E5%8C%85.webp" alt="Python包" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-12-05T07:19:22.000Z" title="发表于 2024-12-05 15:19:22">2024-12-05</time></div><a class="article-sort-item-title" href="/posts/be927463.html" title="Python包">Python包</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/167d1402.html" title="Go风格指南"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Go%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97.webp" alt="Go风格指南" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-11-28T01:07:47.000Z" title="发表于 2024-11-28 09:07:47">2024-11-28</time></div><a class="article-sort-item-title" href="/posts/167d1402.html" title="Go风格指南">Go风格指南</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/e57bd50f.html" title="开源协议"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE.webp" alt="开源协议" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-11-23T11:37:00.000Z" title="发表于 2024-11-23 19:37:00">2024-11-23</time></div><a class="article-sort-item-title" href="/posts/e57bd50f.html" title="开源协议">开源协议</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/afabe8e5.html" title="“工具”板块序言"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E2%80%9C%E5%B7%A5%E5%85%B7%E2%80%9D%E6%9D%BF%E5%9D%97%E5%BA%8F%E8%A8%80.webp" alt="“工具”板块序言" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-11-20T06:24:22.000Z" title="发表于 2024-11-20 14:24:22">2024-11-20</time></div><a class="article-sort-item-title" href="/posts/afabe8e5.html" title="“工具”板块序言">“工具”板块序言</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/70855dc9.html" title="人月神话"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D.webp" alt="人月神话" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-11-07T01:51:00.000Z" title="发表于 2024-11-07 09:51:00">2024-11-07</time></div><a class="article-sort-item-title" href="/posts/70855dc9.html" title="人月神话">人月神话</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/f366bb7b.html" title="C++杂项"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/C++%E6%9D%82%E9%A1%B9.webp" alt="C++杂项" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-11-01T04:57:19.000Z" title="发表于 2024-11-01 12:57:19">2024-11-01</time></div><a class="article-sort-item-title" href="/posts/f366bb7b.html" title="C++杂项">C++杂项</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/51f33067.html" title="C++20"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/C++20.webp" alt="C++20" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-11-01T04:49:19.000Z" title="发表于 2024-11-01 12:49:19">2024-11-01</time></div><a class="article-sort-item-title" href="/posts/51f33067.html" title="C++20">C++20</a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/categories/%E5%B7%A5%E5%85%B7/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/categories/%E5%B7%A5%E5%85%B7/page/5/">5</a><a class="extend next" rel="next" href="/categories/%E5%B7%A5%E5%85%B7/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Aefrivern</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">169</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">225</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="GitHub"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="QQ邮箱"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="Steam"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"></use></svg></a></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
-            <i class="iconfont icon-wenjianjia"></i>
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(url(/gallery/wallpaper/wallpaper.webp));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">170</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">226</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><span> 二次元</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><span> 随便逛逛</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Aefrivern的小屋</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><span> 二次元</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">工具</h1></div></header><main class="layout" id="content-inner"><div class="recent-posts nc masonry" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover"><a href="/posts/9cc64e7f.html" title="Clean Code"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Clean%20Code.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Clean Code"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/9cc64e7f.html" title="Clean Code">Clean Code</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-19T03:03:00.000Z" title="发表于 2024-12-19 11:03:00">2024-12-19</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-19T08:43:45.000Z" title="更新于 2024-12-19 16:43:45">2024-12-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E4%BB%A3%E7%A0%81/">代码</a></span></div><div class="content">基于 Clean Code 编写 有意义的名字 使用揭示意图的名字 避免虚假信息 做有意义的区分 使用能发音的名字（方便交流） 方便搜索 避免编码（多余的前缀或后缀） 每个单词只用在一个概念上 一个概念只使用一个名字 使用解决域的名字便于快速理解意图 但通常没有现成的解决域，不要新造术语，改为使用问题域的名字 名字的出现一定伴随着上下文，要添加有意义的上下文 函数 小，通常是让程序员一页能放得下 只做一件事 每个函数中调用的过程都处于同一层抽象上 描述性名字 函数参数尽量不要多，越少越好 将有副作用和没有副作用的函数分开，做出明显的标识 尽量避免输出参数 查询和命令分离 倾向异常而不是返回错误码  提取 try/catch 块，因为错误处理已经是一件事了  不要重复自己 结构化编程 注释 注释无法装扮坏代码，应该在代码中解释 好的注释：  法律注释 告知性注释 解释意图 澄清 警告后果 TODO 放大容易被忽略的重要点 公共 API 的...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/dac3150c.html" title="实用软件"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%AE%9E%E7%94%A8%E8%BD%AF%E4%BB%B6.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实用软件"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/dac3150c.html" title="实用软件">实用软件</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-11T06:12:22.000Z" title="发表于 2024-12-11 14:12:22">2024-12-11</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-19T01:11:05.000Z" title="更新于 2024-12-19 09:11:05">2024-12-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Windows/">Windows</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Android/">Android</a></span></div><div class="content">这里包含了一些我认为比较实用的软件，包括 Windows 和 Android 平台。 Windows 美化 在我看来，Windows 的桌面是用来欣赏的，而不是用来摆放各种杂物的，因此我的桌面总是空无一物。毕竟谁也不想整天盯着那一堆乱七八糟的杂物，没事可以看一下桌面，闲来换个壁纸，放松一下心情。 TranslucentTB 是一个可以让任务栏透明的工具，简单的软件能够极大地增强 Windows 桌面的美感 Wallpaper Engine 是最著名的动态壁纸软件，是 Steam 上最值得购买的游戏。没错，我真的只是拿来放壁纸的 一般来说都会订阅非常多的壁纸，因此这里面的文件夹分类就非常重要，但是文件夹分类没有云同步，因此需要手动同步：复制应用目录下的 config.json 文件  这个文件中包含了 wallpaper engine 的安装目录，需要根据自己的情况修改 第三行是当前用户的用户名，也要更新 底下还有创意工坊的下载目录，也要修改  耦合度这么高，怪不得没有云同步，不是作者不想做，而是实在做不到啊 文件可以整齐地放在文件夹内，但是软件放在哪里呢？Windows 10...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/2450b1e7.html" title="TOML"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/TOML.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TOML"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/2450b1e7.html" title="TOML">TOML</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-10T12:11:15.000Z" title="发表于 2024-12-10 20:11:15">2024-12-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-19T01:11:16.000Z" title="更新于 2024-12-19 09:11:16">2024-12-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/TOML/">TOML</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">配置文件</a></span></div><div class="content">配置文件的格式一直是大问题，一直都没有一个很好的格式：  xml 太复杂，罗里吧嗦，成功做到了人类和机器的可读性都很差 json 不能注释，而且在解析时支持末尾的逗号会死吗？ ini 不能嵌套 yaml 大概率是游标卡尺制造商发明的，和 Python 是绝配  目前来看，toml Tom's Obvious, Minimal Language 是最好、最利于人类阅读的。就连理应是 yaml 的忠实支持者的 Python 也在使用这一格式 一个例子： # 这是一个 TOML 文档title = &quot;TOML 示例&quot;[owner]name = &quot;Tom Preston-Werner&quot;dob = 1979-05-27T07:32:00-08:00[database]enabled = trueports = [ 8000, 8001, 8002 ]data = [ [&quot;delta&quot;, &quot;phi&quot;], [3.14] ] # 数组temp_targets = &#123; cpu = 79.5, case =...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/be927463.html" title="Python包"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Python%E5%8C%85.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python包"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/be927463.html" title="Python包">Python包</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-05T07:19:22.000Z" title="发表于 2024-12-05 15:19:22">2024-12-05</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-19T01:13:38.000Z" title="更新于 2024-12-19 09:13:38">2024-12-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Python/">Python</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a></span></div><div class="content">Python 在我看来和 JavaScript 类似，是典型的“胶水语言”，因此好用之处离不开各种各样的包和插件。尤其是在数据科学领域，Python 凭借其丰富的包，立于不败之地。 VSCode 插件 Python：官方维护的 Python 语言扩展，同时包括了两个插件：  Pylance：微软做的 Python 静态类型检查工具 Python Debugger：顾名思义，一个 Python 调试器  ruff ruff 是一个高性能的 Python Linter 和 formatter 在 VSCode 中有对应的扩展：Ruff NumPy 简介 NumPy 的官方指导手册一定是最好的老师 Numpy 相当于增强版的 array，使用时往往先以简称引入： import numpy as np 基础 属性 Numpy 数组的类是 ndarray，有以下属性：    名称 解释     ndarray.ndim 数组的维度   size 数组的元素数量，即 shape 的各元素乘积   shape 返回一个 tuple，如对于 n 行 m 列的矩阵，返回 (n,...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/167d1402.html" title="Go风格指南"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Go%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Go风格指南"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/167d1402.html" title="Go风格指南">Go风格指南</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-28T01:07:47.000Z" title="发表于 2024-11-28 09:07:47">2024-11-28</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-19T01:13:46.000Z" title="更新于 2024-12-19 09:13:46">2024-12-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Go/">Go</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">代码规范</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Google/">Google</a></span></div><div class="content">基于 Google Go Style 编写 命名 命名：  包名全小写 测试、基准测试文件名以 _test 结尾  接受者变量一般只有 1-2 个字符，通常是该类型的缩写，并保持一致： func (t Tray) 均使用驼峰命名法，导出符号首字母大写，因此对于导出的常量写法是这样的： const MaxPacketSize = 512 一些本身包含大小写的专有名词，如  XML：  导出：XML 非导出：xml   iOS：  导出：IOS 非导出：iOS    不使用 get 前缀，直接调用函数名即可。如果是需要计算等消耗时间的获取，使用 Compute和 Fetch 前缀 变量名：作用域越大，命名越详细，但注意不要重复该作用域 在命名时，不要重复该符号的   上下文   类型   参数和返回值   例外：需要通过参数或返回值来区分，如   func ParseInt(input string) (int, error) func ParseInt64(input string) (int64, error) - 接受者如果被测试的包名是 `foo`，则测试文件名应该是...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/e57bd50f.html" title="开源协议"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="开源协议"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/e57bd50f.html" title="开源协议">开源协议</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-23T11:37:00.000Z" title="发表于 2024-11-23 19:37:00">2024-11-23</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-19T01:13:28.000Z" title="更新于 2024-12-19 09:13:28">2024-12-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%BC%80%E6%BA%90/">开源</a></span></div><div class="content">最近某知名 up 主因为违反了开源协议，擅自删除源代码的版权说明，并声称是自己写的，受到了各吃瓜群众的强烈谴责。国外也不是什么世外桃源，开源社区同样出了一些事情，甚至更过分，直接开地图炮删除了该地区的所有贡献者的名字。大家都知道“开源已死”，只是由于仍然存在一些人坚持奉献，这种脆弱的生态才得以维持。所以在整个圈子崩溃之前，先介绍一下一些常见的开源许可证吧 Apache License Apache 软件基金会发布的一个自由软件许可证，允许源代码修改和再发布，但必须保留源代码中的版权说明和协议等 如果再发布的产品中包含一个 Notice 文件，则在 Notice 文件中需要带有 Apache Licence 允许闭源或商用，授权不可撤销 BSD 伯克利软件发行版，自由度很大，可以使用、修改源代码，也可以将修改后的代码作为开源或者专有软件再发布 源代码中必须带有原来代码中的 BSD 协议；如果再发布的是软件，则需要在文档和版权声明中包含原来代码中的 BSD 协议 MIT 比 BSD...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/afabe8e5.html" title="“工具”板块序言"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E2%80%9C%E5%B7%A5%E5%85%B7%E2%80%9D%E6%9D%BF%E5%9D%97%E5%BA%8F%E8%A8%80.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="“工具”板块序言"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/afabe8e5.html" title="“工具”板块序言">“工具”板块序言</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-20T06:24:22.000Z" title="发表于 2024-11-20 14:24:22">2024-11-20</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-10T12:54:26.000Z" title="更新于 2024-12-10 20:54:26">2024-12-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%BA%8F%E8%A8%80/">序言</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">工欲善其事，必先利其器 作为整个博客网站最早的分类，某种意义上的“梦开始的地方”，文章数量最多的分类之一，居然没有一篇总览全局的序言。这当然是因为实在没什么好说的，“工欲善其事，必先利其器”的道理所有人都知道，工具本身的定义，甚至定位，都非常明确，不存在歧义，因此不需要有另外的说法。不过，随着东西越来越多，划分的界限也越来越模糊，所以有必要说两句。 人类社会的发展离不开两样东西——知识的传承和工具的传递。前者是抽象的，无形的；后者是具体的，有形的。这个分类讨论的就是后者。工具可以是别人制造出来的，也可以是自己制造出来的，最终被自己所用，这一点非常重要。正如那句“君子生非异也，善假于物也”，人类其中一个最厉害的地方就在于能够制造和使用工具。 这个分类特别的地方在于是博客最大的屎山来源，包罗万象也杂乱无章。而且，工具本身快速的更新换代又导致里面的内容非常容易过时，然后我可能会去更新其中的内容（神说要有...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/70855dc9.html" title="人月神话"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="人月神话"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/70855dc9.html" title="人月神话">人月神话</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-07T01:51:00.000Z" title="发表于 2024-11-07 09:51:00">2024-11-07</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-26T12:03:51.000Z" title="更新于 2024-11-26 20:03:51">2024-11-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></span></div><div class="content">焦油坑   程序：自身完整，可运行在开发平台上 产品：可以被任何人运行、测试、维护的程序 系统：在功能上能相互协作的程序集合，具有规范的格式，可以进行交互，并可以用来组装和搭建整个系统 系统产品：成本高达 9 倍，但这才是真正有用的产品  乐：  创造 有用 解谜 学习  苦：  必须完美 依赖他人 找 bug 好不容易做出来了，却已经过时了   “焦油坑”这个比喻有点奇特，不过后面的苦乐分析实在是过于真实了  人月神话 项目滞后：缺乏合理的时间进度  不重视估计技术 把进度和工作混淆，错误地认为人和月可以互换 对估算的不信任 不追踪进度 当进度落后时，下意识地选择增加人力，但其实是火上浇油  程序员通常是乐观主义者，他们坚信自己的程序没有...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/f366bb7b.html" title="C++杂项"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/C++%E6%9D%82%E9%A1%B9.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++杂项"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/f366bb7b.html" title="C++杂项">C++杂项</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-01T04:57:19.000Z" title="发表于 2024-11-01 12:57:19">2024-11-01</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-07T11:39:54.000Z" title="更新于 2024-12-07 19:39:54">2024-12-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/C/">C++</a></span></div><div class="content">安装 C++ 编译器 对于 Windows 用户，这里推荐 WinLibs，里面同时包含了 GCC 和 Clang，以及一些在开发中常用的工具，如 CMake、GNU Make、Ninja、Nasm、Doxygen、cppcheck 等。 将下载的压缩包解压到某个目录，然后将该目录添加到环境变量 PATH 中 配置 VS Code 安装如下插件  clangd：比微软官方的 C/C++ 插件 更好用 CodeLLDB：调试插件 CMake 和 CMake Tools：cmake 是目前看来 c++ 项目中最好的构建工具  配置 clangd // Clangd 运行参数(终端输入 clangd --help-list-hidden 可查看更多)&quot;clangd.arguments&quot;: [  // 允许从项目的 .clangd 文件中读取配置  &quot;--enable-config&quot;,  // compelie_commands.json 文件的目录位置(由于 CMake 生成的该文件默认在 build 文件夹中，故设置为 build) ...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/51f33067.html" title="C++20"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/C++20.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++20"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/51f33067.html" title="C++20">C++20</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-01T04:49:19.000Z" title="发表于 2024-11-01 12:49:19">2024-11-01</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:35.000Z" title="更新于 2024-11-23 11:48:35">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/C/">C++</a></span></div><div class="content">C++20 带来了不亚于 C++11 的重大改变，其中最重要的就是概念、协程、range、模块 Concepts concepts 有多种使用方法： // 使用 requirestemplate&lt;typename T&gt;requires std::integral&lt;T&gt;void f(T t) &#123;&#125;// 直接在模板参数列表中使用template&lt;std::integral T&gt;void f(T t) &#123;&#125;// 在 auto 中使用auto f(std::integral auto t) &#123;&#125; 除了限定参数，也可以限定返回值，类模板，泛型成员函数 支持重载、特化模板 多个 concept 用 &amp;&amp; 连接 有许多预先定义好的 concept，详见 cppreference 定义 concept 的语法： template&lt;typename T&gt;concept MyConcept = requires(T t) &#123;  &#123; t.foo()...</div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/categories/%E5%B7%A5%E5%85%B7/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/categories/%E5%B7%A5%E5%85%B7/page/5/">5</a><a class="extend next" rel="next" href="/categories/%E5%B7%A5%E5%85%B7/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Aefrivern</div><div class="author-info-description">我一定会回来的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">170</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">226</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="icon-github"><i class="GitHub"></i></a><a class="social-icon" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="icon-youxiang"><i class="QQ邮箱"></i></a><a class="social-icon" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="icon-steam"><i class="Steam"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACG%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">ACG杂谈</span><span class="card-category-list-count">32</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">42</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">48</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">游戏人生</span><span class="card-category-list-count">20</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">读书笔记</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"><span class="card-category-list-name">闲言碎语</span><span class="card-category-list-count">2</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><a class="faa-parent animated-hover"></a><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-biaoqian1"></use></svg><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/CMU/" style="font-size: 1.24em; color: rgb(181, 183, 90)">CMU</a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.24em; color: rgb(138, 0, 10)">数据库</a><a href="/tags/Princeton/" style="font-size: 1.19em; color: rgb(188, 130, 44)">Princeton</a><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 1.19em; color: rgb(10, 57, 145)">数据结构与算法</a><a href="/tags/Java/" style="font-size: 1.32em; color: rgb(198, 179, 171)">Java</a><a href="/tags/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/" style="font-size: 1.15em; color: rgb(179, 78, 110)">并行计算</a><a href="/tags/%E5%B8%8C%E4%BC%AF%E6%9D%A5%E5%A4%A7%E5%AD%A6/" style="font-size: 1.15em; color: rgb(184, 39, 198)">希伯来大学</a><a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="font-size: 1.24em; color: rgb(101, 38, 130)">体系结构</a><a href="/tags/Stanford/" style="font-size: 1.28em; color: rgb(172, 7, 141)">Stanford</a><a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 1.24em; color: rgb(151, 193, 136)">人工智能</a><a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.15em; color: rgb(192, 183, 14)">深度学习</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" style="font-size: 1.15em; color: rgb(45, 83, 173)">计算机系统</a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.15em; color: rgb(79, 65, 139)">机器学习</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" style="font-size: 1.32em; color: rgb(183, 34, 66)">计算机科学</a><a href="/tags/ETH-Zurich/" style="font-size: 1.15em; color: rgb(72, 151, 7)">ETH Zurich</a><a href="/tags/University-of-Helsinki/" style="font-size: 1.19em; color: rgb(83, 129, 3)">University of Helsinki</a><a href="/tags/Haskell/" style="font-size: 1.19em; color: rgb(191, 124, 176)">Haskell</a><a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" style="font-size: 1.19em; color: rgb(153, 36, 0)">函数式编程</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 1.15em; color: rgb(143, 98, 171)">计算机图形学</a><a href="/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" style="font-size: 1.15em; color: rgb(42, 122, 42)">微分方程</a><a href="/tags/MIT/" style="font-size: 1.45em; color: rgb(52, 11, 111)">MIT</a><a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 1.28em; color: rgb(34, 70, 187)">微积分</a><a href="/tags/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/" style="font-size: 1.15em; color: rgb(101, 64, 108)">信号与系统</a><a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 1.24em; color: rgb(83, 20, 153)">概率论</a><a href="/tags/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/" style="font-size: 1.15em; color: rgb(135, 70, 1)">复变函数</a><a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 1.15em; color: rgb(162, 123, 106)">离散数学</a><a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" style="font-size: 1.15em; color: rgb(142, 164, 185)">线性代数</a><a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 1.19em; color: rgb(189, 66, 66)">信息论</a><a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.15em; color: rgb(121, 122, 110)">操作系统</a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" style="font-size: 1.19em; color: rgb(138, 105, 185)">分布式系统</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 1.15em; color: rgb(127, 200, 75)">计算机网络</a><a href="/tags/UC-Berkeley/" style="font-size: 1.36em; color: rgb(102, 169, 129)">UC Berkeley</a><a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 1.15em; color: rgb(59, 15, 113)">安全</a><a href="/tags/C/" style="font-size: 1.41em; color: rgb(102, 52, 136)">C++</a><a href="/tags/Python/" style="font-size: 1.24em; color: rgb(30, 48, 132)">Python</a><a href="/tags/Scheme/" style="font-size: 1.15em; color: rgb(162, 106, 116)">Scheme</a><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.15em; color: rgb(176, 128, 39)">数据结构</a><a href="/tags/RISC-V/" style="font-size: 1.15em; color: rgb(111, 94, 8)">RISC-V</a><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 1.32em; color: rgb(34, 2, 23)">软件工程</a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1.15em; color: rgb(61, 52, 105)">网络</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="iconfont icon-archives"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="iconfont icon-youjiantou"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">16</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">13</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-shuju"></use></svg></a><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">169</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-10-31T12:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">46.8w</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-19T01:22:58.612Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>安得广厦千万间，大庇天下寒士俱欢颜，风雨不动安如山。</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2024 By Aefrivern</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://unpkg.com/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.js"></script><script src="https://unpkg.com/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://unpkg.com/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script async src="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.js"></script><link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://unpkg.com/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://unpkg.com/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
-
-var pjax = new Pjax({
-  elements: 'a:not([target="_blank"])',
-  selectors: pjaxSelectors,
-  cacheBust: false,
-  analytics: false,
-  scrollRestoration: false
-})
-
-document.addEventListener('pjax:send', function () {
-
-  // removeEventListener
-  btf.removeGlobalFnEvent('pjax')
-  btf.removeGlobalFnEvent('themeChange')
-
-  document.getElementById('rightside').classList.remove('rightside-show')
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACG%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">ACG杂谈</span><span class="card-category-list-count">32</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">43</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">48</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">游戏人生</span><span class="card-category-list-count">20</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">读书笔记</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"><span class="card-category-list-name">闲言碎语</span><span class="card-category-list-count">2</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AIR/" style="font-size: 1.15em; color: rgb(50, 122, 82);">AIR</a><a href="/tags/%E6%B2%BB%E6%84%88/" style="font-size: 1.45em; color: rgb(50, 158, 144);">治愈</a><a href="/tags/key/" style="font-size: 1.21em; color: rgb(123, 53, 120);">key</a><a href="/tags/%E4%BA%AC%E9%83%BD%E5%8A%A8%E7%94%BB/" style="font-size: 1.21em; color: rgb(163, 50, 50);">京都动画</a><a href="/tags/CLANNAD/" style="font-size: 1.15em; color: rgb(174, 50, 50);">CLANNAD</a><a href="/tags/%E5%BC%82%E4%B8%96%E7%95%8C/" style="font-size: 1.33em; color: rgb(50, 197, 80);">异世界</a><a href="/tags/%E6%90%9E%E7%AC%91/" style="font-size: 1.21em; color: rgb(70, 50, 133);">搞笑</a><a href="/tags/%E5%90%89%E5%8D%9C%E5%8A%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4/" style="font-size: 1.27em; color: rgb(68, 173, 50);">吉卜力工作室</a><a href="/tags/%E5%85%B0%E6%96%AF/" style="font-size: 1.15em; color: rgb(186, 127, 50);">兰斯</a><a href="/tags/%E5%86%92%E9%99%A9/" style="font-size: 1.15em; color: rgb(50, 89, 186);">冒险</a><a href="/tags/AliceSoft/" style="font-size: 1.15em; color: rgb(199, 199, 77);">AliceSoft</a><a href="/tags/R18/" style="font-size: 1.21em; color: rgb(129, 69, 177);">R18</a><a href="/tags/%E5%85%B3%E4%BA%8E%E6%88%91%E8%BD%AC%E7%94%9F%E5%8F%98%E6%88%90%E5%8F%B2%E8%8E%B1%E5%A7%86%E8%BF%99%E6%A1%A3%E4%BA%8B/" style="font-size: 1.15em; color: rgb(71, 50, 108);">关于我转生变成史莱姆这档事</a><a href="/tags/%E7%A7%8D%E7%94%B0%E6%B5%81/" style="font-size: 1.15em; color: rgb(50, 175, 55);">种田流</a><a href="/tags/%E7%AB%A5%E5%B9%B4/" style="font-size: 1.39em; color: rgb(139, 110, 152);">童年</a><a href="/tags/%E5%90%8D%E4%BE%A6%E6%8E%A2%E6%9F%AF%E5%8D%97/" style="font-size: 1.15em; color: rgb(126, 81, 50);">名侦探柯南</a><a href="/tags/%E6%9C%89%E7%94%9F%E4%B9%8B%E5%B9%B4/" style="font-size: 1.15em; color: rgb(50, 65, 89);">有生之年</a><a href="/tags/%E5%92%92%E6%9C%AF%E5%9B%9E%E6%88%98/" style="font-size: 1.15em; color: rgb(192, 153, 130);">咒术回战</a><a href="/tags/%E7%83%AD%E8%A1%80/" style="font-size: 1.21em; color: rgb(50, 173, 195);">热血</a><a href="/tags/%E7%83%82%E5%B0%BE/" style="font-size: 1.27em; color: rgb(50, 174, 50);">烂尾</a><a href="/tags/%E5%93%86%E5%95%A6A%E6%A2%A6/" style="font-size: 1.15em; color: rgb(98, 79, 50);">哆啦A梦</a><a href="/tags/%E8%8B%B1%E9%9B%84/" style="font-size: 1.15em; color: rgb(98, 183, 50);">英雄</a><a href="/tags/%E5%96%9C%E7%BE%8A%E7%BE%8A%E4%B8%8E%E7%81%B0%E5%A4%AA%E7%8B%BC/" style="font-size: 1.15em; color: rgb(80, 142, 193);">喜羊羊与灰太狼</a><a href="/tags/Eushully/" style="font-size: 1.15em; color: rgb(188, 112, 197);">Eushully</a><a href="/tags/%E5%AD%A6%E5%9B%AD%E9%BB%98%E7%A4%BA%E5%BD%95/" style="font-size: 1.15em; color: rgb(146, 50, 190);">学园默示录</a><a href="/tags/%E5%8D%96%E8%82%89/" style="font-size: 1.27em; color: rgb(50, 50, 154);">卖肉</a><a href="/tags/%E4%B8%A7%E5%B0%B8/" style="font-size: 1.15em; color: rgb(109, 50, 199);">丧尸</a><a href="/tags/ACG/" style="font-size: 1.15em; color: rgb(107, 119, 97);">ACG</a><a href="/tags/%E8%BF%90%E5%8A%A8/" style="font-size: 1.15em; color: rgb(129, 50, 121);">运动</a><a href="/tags/%E4%BA%AC%E9%98%BF%E5%B0%BC/" style="font-size: 1.33em; color: rgb(96, 50, 165);">京阿尼</a><a href="/tags/%E6%97%A0%E5%BD%A9%E9%99%90%E7%9A%84%E6%80%AA%E7%81%B5%E4%B8%96%E7%95%8C/" style="font-size: 1.15em; color: rgb(194, 192, 50);">无彩限的怪灵世界</a><a href="/tags/%E9%BB%91%E6%9A%97/" style="font-size: 1.15em; color: rgb(175, 92, 50);">黑暗</a><a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 1.15em; color: rgb(50, 135, 116);">旅行</a><a href="/tags/%E7%A5%9E%E8%AF%9D/" style="font-size: 1.15em; color: rgb(153, 156, 50);">神话</a><a href="/tags/%E7%8E%89%E5%AD%90%E5%B8%82%E5%9C%BA/" style="font-size: 1.15em; color: rgb(94, 119, 50);">玉子市场</a><a href="/tags/%E7%8E%89%E5%AD%90%E7%88%B1%E6%83%85%E6%95%85%E4%BA%8B/" style="font-size: 1.15em; color: rgb(168, 88, 88);">玉子爱情故事</a><a href="/tags/%E7%94%98%E5%9F%8E%E5%85%89%E8%BE%89%E6%B8%B8%E4%B9%90%E5%9B%AD/" style="font-size: 1.15em; color: rgb(53, 175, 50);">甘城光辉游乐园</a><a href="/tags/%E7%B4%AB%E7%BD%97%E5%85%B0%E6%B0%B8%E6%81%92%E8%8A%B1%E5%9B%AD/" style="font-size: 1.15em; color: rgb(96, 96, 136);">紫罗兰永恒花园</a><a href="/tags/%E6%A0%A1%E5%9B%AD/" style="font-size: 1.15em; color: rgb(50, 160, 139);">校园</a><a href="/tags/%E6%81%8B%E7%88%B1/" style="font-size: 1.15em; color: rgb(130, 154, 185);">恋爱</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
   
-  if (window.aplayers) {
-    for (let i = 0; i < window.aplayers.length; i++) {
-      if (!window.aplayers[i].options.fixed) {
-        window.aplayers[i].destroy()
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/12/">
+          <span class="card-archive-list-date">十二月 2024</span>
+          <span class="card-archive-list-count">7</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">16</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/10/">
+          <span class="card-archive-list-date">十月 2024</span>
+          <span class="card-archive-list-count">7</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/09/">
+          <span class="card-archive-list-date">九月 2024</span>
+          <span class="card-archive-list-count">6</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/08/">
+          <span class="card-archive-list-date">八月 2024</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/06/">
+          <span class="card-archive-list-date">六月 2024</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/05/">
+          <span class="card-archive-list-date">五月 2024</span>
+          <span class="card-archive-list-count">8</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/04/">
+          <span class="card-archive-list-date">四月 2024</span>
+          <span class="card-archive-list-count">13</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">170</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">46.9w</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-19T11:08:00.080Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Aefrivern</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script async src="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
       }
     }
   }
 
-  typeof typed === 'object' && typed.destroy()
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
 
-  //reset readmode
-  const $bodyClassList = document.body.classList
-  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
 
-  typeof disqusjs === 'object' && disqusjs.destroy()
-})
-
-document.addEventListener('pjax:complete', function () {
-  window.refreshFn()
-
-  document.querySelectorAll('script[data-pjax]').forEach(item => {
-    const newScript = document.createElement('script')
-    const content = item.text || item.textContent || item.innerHTML || ""
-    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
-    newScript.appendChild(document.createTextNode(content))
-    item.parentNode.replaceChild(newScript, item)
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
   })
 
-  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
-
-  typeof panguInit === 'function' && panguInit()
-
-  // google analytics
-  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
-
-  // baidu analytics
-  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
-
-  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
-
-  // prismjs
-  typeof Prism === 'object' && Prism.highlightAll()
-})
-
-document.addEventListener('pjax:error', e => {
-  if (e.request.status === 404) {
-    pjax.loadUrl('/404.html')
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
   }
-})</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://unpkg.com/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script><script src="https://unpkg.com/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></html>
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/lite/builds/browser.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body></html>

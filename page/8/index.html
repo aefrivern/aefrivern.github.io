@@ -1,31 +1,117 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Aefrivernの小屋 - 欢迎来到Aefrivernの小屋作客</title><meta name="author" content="Aefrivern"><meta name="copyright" content="Aefrivern"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MyBlog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Aefrivernの小屋">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Aefrivern的小屋 - 欢迎来到Aefrivern的小屋作客</title><meta name="author" content="Aefrivern"><meta name="copyright" content="Aefrivern"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Aefrivern的小屋">
 <meta property="og:url" content="https://aefrivern.github.io/page/8/index.html">
-<meta property="og:site_name" content="Aefrivernの小屋">
-<meta property="og:description" content="MyBlog">
+<meta property="og:site_name" content="Aefrivern的小屋">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://aefrivern.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp">
 <meta property="article:author" content="Aefrivern">
-<meta property="article:tag" content="ACG Computer Life">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://aefrivern.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://aefrivern.github.io/page/8/index.html"><link rel="preconnect" href="//unpkg.com"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://aefrivern.github.io/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp"><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://aefrivern.github.io/page/8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
-  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hitsPerPage":6,"languages":{"input_placeholder":"搜索文章","hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，耗时 ${time} 毫秒"}},
   localSearch: undefined,
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
     homepage: true,
     post: false
   },
-  runtime: '天',
+  runtime: '',
   dateSuffix: {
     just: '刚刚',
     min: '分钟前',
@@ -37,7 +123,7 @@
   lightbox: 'fancybox',
   Snackbar: undefined,
   infinitegrid: {
-    js: 'https://unpkg.com/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
     buttonText: '加载更多'
   },
   isPhotoFigcaption: true,
@@ -49,473 +135,151 @@
   },
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Aefrivernの小屋',
+  title: 'Aefrivern的小屋',
   isPost: false,
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-12-19 09:23:01'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
-<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
-  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
-<link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/hexo-butterfly-article-double-row.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
   restartOnPushState: false
 }
 
-document.addEventListener('pjax:send', () => {
+btf.addGlobalFn('pjaxSend', () => {
   Pace.restart()
-})
-</script><link rel="stylesheet" href="https://unpkg.com/pace-js@1.2.4/themes/blue/pace-theme-minimal.css"/><script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">169</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">225</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-shouye-01"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guidang"></use></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-a-16-01-01"></use></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-wenjianjia"></use></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-zhifeiji"></use></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-xiangce"></use></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guanyu"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-tongjichaxun"></use></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-liuyan"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-suiji"></use></svg><span> 随便逛逛</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Aefrivernの小屋"><span class="site-name">Aefrivernの小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"></use></svg><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-shouye-01"></use></svg><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guidang"></use></svg><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-a-16-01-01"></use></svg><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-wenjianjia"></use></svg><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-zhifeiji"></use></svg><span> 二次元</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-xiangce"></use></svg><span> 画廊</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-guanyu"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-tongjichaxun"></use></svg><span> 统计</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-liuyan"></use></svg><span> 留言板</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#iconfont icon-suiji"></use></svg><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Aefrivernの小屋</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon faa-parent animated-hover" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="GitHub"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="QQ邮箱"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="Steam"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"></use></svg></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/posts/21f18fd2.html" title="当之无愧的鬼畜王"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%85%B0%E6%96%AF.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="当之无愧的鬼畜王"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/21f18fd2.html" title="当之无愧的鬼畜王">当之无愧的鬼畜王</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-07T00:17:22.000Z" title="发表于 2023-10-07 08:17:22">2023-10-07</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:35.000Z" title="更新于 2024-11-23 11:48:35">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/ACG%E6%9D%82%E8%B0%88/">ACG杂谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%85%B0%E6%96%AF/">兰斯</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%86%92%E9%99%A9/">冒险</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/AliceSoft/">AliceSoft</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/R18/">R18</a></span></div><div class="content">光（鬼）辉（畜）事迹
-你的恶行从魔王城到 Japan 无人不知无人不晓
-寻找小光
-万恶之源，无厘头的开始。女战士尤兰确实不错，还有利萨斯王女莉亚被教训后变成了一位不虐待少女的好女王，都像是戏剧一般。
-反叛的少女们
-兰斯结识了四个魔女，分别是魔想志津香、艾蕾诺亚·岚、米露·尤库斯、玛利亚·卡斯塔多，还有战士巴特，这部作品的重制较早，画风和玩法都比较老了。
-利萨斯陷落
-又是倒霉的莉亚王女，这次她遇上了魔人和赫尔曼军队的突然入侵，派出加奈美请求兰斯帮忙。从这里开始，忍者加奈美已经完全变成了搞笑担当的，尤其是在恶魔回廊中的各种 play，还有在旅行中的吐槽，为她的人物形象增添了一份风趣。
-玛利亚的戏份还是一如既往地多，但我喜欢不上来，值得庆幸我和哈尼是不一样的
-利萨斯的几位将军都有非常杰出的表现，“我们队伍里不需要男人”-&gt;没有男人能抵挡里克的魅力
-还有几处笑话颇有讽刺的意味，引入深思
-</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/4db1a52a.html" title="王道的感动"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%A4%A9%E7%BB%93Castle%20Meister.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="王道的感动"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/4db1a52a.html" title="王道的感动">王道的感动</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-07T00:17:22.000Z" title="发表于 2023-10-07 08:17:22">2023-10-07</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:36.000Z" title="更新于 2024-11-23 11:48:36">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/ACG%E6%9D%82%E8%B0%88/">ACG杂谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/R18/">R18</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Eushully/">Eushully</a></span></div><div class="content">羁绊的故事
-一个平平无奇的半精灵矿工，挖掘遗迹时碰到了被封印在水晶中的女子，把她救出来后自称是女神，想要去禁地，自己莫名其妙的成为了她的使徒，一路上保护着、陪伴着她前往那里。这的确是一个平平无奇的故事，除了那些在多个游戏中终于塑造出来的广阔的世界观外没有什么特别的地方。人物也很常见——元气满满的女神、白猫和黑猫、哈姆雷特般的龙女、得意的领主、被诅咒的魔术师、长翅膀的天使、四大精灵手下、师父、坏蛋商人、心狠手辣的王子，都是很常见的角色形象。但是，本作最难能可贵的一点是巧妙地通过“结缘”把这些形形色色的人物吸引到一起，而不是通过强迫等。
-菲娅元气满满的精神和声音鼓舞着每一个不知道前方是什么的人，或许就是因为这个，人们才愿意跟着她前往不知为何物的圣地，帮助她对抗强大的敌人。
-</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/b1168675.html" title="孤独是致死的疾病"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E7%8B%BC%E4%B8%8E%E9%A6%99%E8%BE%9B%E6%96%99.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="孤独是致死的疾病"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/b1168675.html" title="孤独是致死的疾病">孤独是致死的疾病</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-22T00:17:22.000Z" title="发表于 2023-09-22 08:17:22">2023-09-22</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T07:10:40.000Z" title="更新于 2024-11-23 15:10:40">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/ACG%E6%9D%82%E8%B0%88/">ACG杂谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E7%A5%9E%E8%AF%9D/">神话</a></span></div><div class="content">
-金色的麦田
-这部作品满满的中世纪风格，乡村、城镇、教会、远征、神话，这些无不透露出中世纪的感觉，以至于我几乎都忘了这是一部“异世界”番。还有这里面非常丰富的经济学与货币知识，是毫无疑问的《金融市场基础知识》
-赫萝的人设也非常讨喜，神秘、调皮、妩媚、知性，在人物形象普遍扁平化的二次元女性角色中非常独特，让我认为她似乎不是一个二次元角色，而是一个完完全全的民间传说中的人物。
-还有男主，作为一个商人，他拥有标准的商人品质：贪婪、大胆。他四处旅行经商，为的是能有一家自己的店铺，能够安定下来。这实在是太贴近我们普通人了，没有人天生喜欢流浪，我们四处奔波，只是为了梦想和安宁。
-旅行唯有出发前最愉快
-这部番的主题基调是欢乐的，无论是旅行中两人的打情骂俏，还是经商时的坑蒙拐骗，甚至是一次次的死里逃生，无不流露出快乐。但是，我总觉得美好的日常中似乎隐藏着孤独的气息，似乎是因为灰蒙蒙的画面，但更多的也许是因为他们彼此心知肚明却不忍提起的未来。
-因为少年的请求，赫萝在约伊兹守护了麦田数百年，后来随着科技的提高，村民们不再需要她的帮助了，她的朋友们早已远去，这么多年来，她一直是一个人。所以她萌生了重返故乡的 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/b6d66f1b.html" title="UCB Data100：数据科学原理与技术"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/UCB%20Data100%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%8E%9F%E7%90%86%E4%B8%8E%E6%8A%80%E6%9C%AF.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UCB Data100：数据科学原理与技术"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/b6d66f1b.html" title="UCB Data100：数据科学原理与技术">UCB Data100：数据科学原理与技术</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-16T00:17:22.000Z" title="发表于 2023-09-16 08:17:22">2023-09-16</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T05:25:51.000Z" title="更新于 2024-11-23 13:25:51">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/UC-Berkeley/">UC Berkeley</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a></span></div><div class="content">课程概述 Course Overview
-在数据科学中有很多工具，但它们不会思考
+}, 'pace_restart')
 
-The purpose of computing is insight, not numbers.
-计算的目的是洞察，而不是数字
-——Hamming
-
-
-数据采样和概率 Data Sampling and Probability
-
-偏差：
-
-选择偏差：可能不包括或有利于特定的群体
-回应偏差：人们不会真实回答
-不回应偏差：人们不一定回答
-
-有替换的随机取样：避免一个人被选到两次
-简单随机取样：一个人可能被选到两次
-在样本总量很大时，两者表现相似
-二项式/多项式概率
-Pandas
-引入：
-import pandas as pd
-生成的是 DataFrame 类（类似于一张表）：
-elections = pd.read_csv(&quot;elections.csv&quot;)
-
-这个类有丰富的API，这里只介绍其中的一部分
-索引
-elections.head(5)：获取前五行；.tail 同理
-loc 通过标签 label 选择物品，有行标签和列标签
-loc 的参数可以是：
-
-列表：elections.l ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/e462ba83.html" title="ASCII码对照表"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/ASCII%E7%A0%81%E5%AF%B9%E7%85%A7%E8%A1%A8.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ASCII码对照表"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/e462ba83.html" title="ASCII码对照表">ASCII码对照表</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-16T00:17:22.000Z" title="发表于 2023-09-16 08:17:22">2023-09-16</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T05:50:51.000Z" title="更新于 2024-11-23 13:50:51">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%BC%96%E7%A0%81/">编码</a></span></div><div class="content">ASCII 码表（控制字符）
-
-
-
-十进制 DEC
-八进制 OCT
-十六进制 HEX
-二进制 BIN
-符号 Symbol
-HTML 实体编码
-中文解释 Description
-
-
-
-
-0
-000
-00
-00000000
-NUL
-&amp;#000;
-空字符
-
-
-1
-001
-01
-00000001
-SOH
-&amp;#001;
-标题开始
-
-
-2
-002
-02
-00000010
-STX
-&amp;#002;
-正文开始
-
-
-3
-003
-03
-00000011
-ETX
-&amp;#003;
-正文结束
-
-
-4
-004
-04
-00000100
-EOT
-&amp;#004;
-传输结束
-
-
-5
-005
-05
-00000101
-ENQ
-&amp;#005;
-询问
-
-
-6
-006
-06
-00000110
-ACK
-&amp;#006;
-收到通知
-
-
-7
-007
-07
-00000111
-BEL
-&amp;#007;
-铃
-
-
-8
-010
-08
-00001000
-BS
-&amp;#008;
-退格
-
-
-9
-011
-09
-00001001
-HT
-&amp;#009;
-水平制表符
-
-
-10
-012
-0A
-0000101 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/5dc45f0c.html" title="Jupyter Notebook 学习笔记"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Jupyter%20Notebook%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Jupyter Notebook 学习笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/5dc45f0c.html" title="Jupyter Notebook 学习笔记">Jupyter Notebook 学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-16T00:17:22.000Z" title="发表于 2023-09-16 08:17:22">2023-09-16</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:35.000Z" title="更新于 2024-11-23 11:48:35">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/web/">web</a></span></div><div class="content">什么是 Jupyter Notebook
-
-Jupyter Notebook 是基于网页的用于交互计算的应用程序。其可被应用于全过程计算：开发、文档编写、运行代码和展示结果。——Jupyter Notebook 官方介绍
-
-所以简单来说就是以网页形式打开，可以在其中直接编写并运行代码，代码的运行结果也会直接显示在代码块下，同时说明文档也可以直接编写在下面，支持 markdown增强版博客
-组成部分：
-
-网页应用
-文档
-
-安装和启动
-一般搭配 Anaconda 使用，一般来说安装后已经自动安装了 Jupyter Notebook 了。若没有，可以手动安装：
-conda install notebook
-运行：
-jupyter notebook
-该命令以默认端口（8888）启动，若被占用，则顺延至 8889 等。同时浏览器自动访问该网址
-注意：终端不要关闭，否则会断开与本地服务器的连接
-当然也可以用 --port xxxx 指定 xxxx 端口启动，也可以添加 --no-browser 参数不打开浏览器
-设置 Jupyter Notebook 文件存放位置
-生成配置文件：jupyter n ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/6a8518ce.html" title="NumPy 学习笔记"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/NumPy%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NumPy 学习笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/6a8518ce.html" title="NumPy 学习笔记">NumPy 学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-16T00:17:22.000Z" title="发表于 2023-09-16 08:17:22">2023-09-16</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-05T07:19:32.000Z" title="更新于 2024-12-05 15:19:32">2024-12-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Python/">Python</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a></span></div><div class="content">简介
-NumPy 的官方指导手册一定是最好的老师
-Numpy 相当于增强版的 array，使用时往往先以简称引入：
-import numpy as np
-基础
-属性
-Numpy 数组的类是 ndarray，有以下属性：
-
-
-
-名称
-解释
-
-
-
-
-ndarray.ndim
-数组的维度
-
-
-size
-数组的元素数量，即 shape 的各元素乘积
-
-
-shape
-返回一个 tuple，如对于 n 行 m 列的矩阵，返回 (n, m)
-
-
-
-创建数组
-使用列表和 np.array 创建：
-a = np.array([1, 2, 3, 4])
-使用 zeros 创建全是 0 的数组，使用 ones 创建全是 1 的数组，默认为浮点类型，可以使用 dtype 参数指定类型：
-&gt;&gt;&gt; np.zeros((3, 4))array([[0., 0., 0., 0.],       [0., 0., 0., 0.],       [0., 0., 0., 0.]])&gt;&gt;&gt; np.ones((3, 4), dtype=np.int16)array([[1, 1, 1, 1 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/175a8e1.html" title="一段灿烂的回忆"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Narcissu.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一段灿烂的回忆"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/175a8e1.html" title="一段灿烂的回忆">一段灿烂的回忆</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-10T00:17:22.000Z" title="发表于 2023-09-10 08:17:22">2023-09-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:32.000Z" title="更新于 2024-11-23 11:48:32">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%B0%B4%E4%BB%99/">水仙</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%AD%BB%E4%BA%A1/">死亡</a></span></div><div class="content">一个冬日的故事
-《水仙》是一部比较特别的游戏，忧伤的音乐、狭长的画面、灰白的字幕，仿佛我在看一部电影一样，而且全程没有任何选项，带给我一种无能为力的感觉。而这正是作者想要传达的，被宣判了死亡，到处都是绝望的气息。
-故事也非常简单，两个人相依为命，克服重重困难，逃出医院，最终看到水仙花的故事。未经他人苦，莫劝他人善，我并没有经历过他们的悲惨身世，也没有资格去评判他们的价值观，更不能指责他们缺乏勇气和希望。
-一段灿烂的回忆
-要说全作仅有的阳光的地方，只有两个人一起合照的那段。没有谁关心那层临终病房中的人，他们死了并没有什么奇怪的，可是这一场旅行却让他们留下了自己的痕迹。这段故事永远留在男主心中，还有屏幕前的所有人也一起见证了这一段故事。而不是开头所说的，濑津美只是上万人的统计数字中的一份子。
-也就是说，这并不是一个追求死亡的故事，而是一个向死而生的故事。濑津美对车辆和道路的了如指掌无不透露出她对外面世界的向往，还有第二部中姬子倔强地攀登山路，我当时以为她是要寻死，最终却是向神明献上最真诚的祈祷时，我被震撼到了，她们两个是一样的，她们都找到了生命的意义。
-你希望我拉住你吗？
-过程中濑津美曾多 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/106331b4.html" title="老顽固，在找我吗？"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%AF%BB%E6%89%BE%E5%A4%A9%E5%A0%82.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="老顽固，在找我吗？"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/106331b4.html" title="老顽固，在找我吗？">老顽固，在找我吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-10T00:17:22.000Z" title="发表于 2023-09-10 08:17:22">2023-09-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-07T00:17:22.000Z" title="更新于 2024-03-07 08:17:22">2024-03-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%B2%BB%E6%84%88/">治愈</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%AF%BB%E6%89%BE%E5%A4%A9%E5%A0%82/">寻找天堂</a></span></div><div class="content">相对于《去月球》留下的深深的遗憾，《寻找天堂》的结局可以说是相当的圆满了。主角经历了一个有遗憾而有幸福的人生，也就是一个平平淡淡的人生，他甚至根本不需要在临终前依靠修改记忆实现什么愿望，因为他一直都有一个陪伴着他的伙伴。
-哪个有孤独的童年的人没有幻想过自己有一个像 Faye 那样的伙伴呢，她会鼓励我、引导我、帮助我。让我感触最深的是在山顶告别的那一幕，或许这就是成长的代价，有些事物注定只能陪你到那儿，但是总有一天会再见面的。
-
-老顽固，在找我吗？
-
-</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/e9318100.html" title="但是她对谁都这样"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Find%20Love%20or%20Die%20Trying.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="但是她对谁都这样"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/e9318100.html" title="但是她对谁都这样">但是她对谁都这样</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-09T00:17:22.000Z" title="发表于 2023-09-09 08:17:22">2023-09-09</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:57:49.000Z" title="更新于 2024-11-23 14:57:49">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%BA%B5%E4%BD%BF%E6%89%8B%E6%AE%8B%E4%BB%8D%E5%A4%A7%E7%88%B1/">纵使手残仍大爱</a></span></div><div class="content">
-但是她对谁都这样
-可还有谁对你这样
-
-好了，此处已成艺术，无需多言。
-
-我一开始认为这只是粗制滥造的普通的游戏而已，通过每天选择不同的女孩，给每个人一个结局，而所谓的电视节目只不过是一个幌子罢了。
-但随着剧情的进行，我逐渐猜到了这是一场阴谋，也猜到了 Kat 是双面间谍。可是，当她举着枪对准我的时候，我还是被她深深地感动了。在最后的决战中，我义无反顾地选择了相信她。还有她最后躺在病床上流着泪的深情告白：
-
-我爱你。比你所知的，还要再多一百、一千、一万倍。这辈子，你走到哪，我就跟到哪。今时今日，我很确定我们的前路还有很长。我们还要一起创造更多回忆呢，Kat。
-
-擦了擦屏幕才发现流泪的是我。
-当然，这部游戏真正最出圈的地方还是那幅世界名画
-</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/e53204e6.html" title="与光为敌，向神挥刃"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E7%A9%BA%E6%B4%9E%E9%AA%91%E5%A3%AB.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="与光为敌，向神挥刃"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/e53204e6.html" title="与光为敌，向神挥刃">与光为敌，向神挥刃</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-09T00:17:22.000Z" title="发表于 2023-09-09 08:17:22">2023-09-09</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:52:28.000Z" title="更新于 2024-11-23 14:52:28">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E9%93%B6%E6%B2%B3%E6%88%98%E5%A3%AB%E6%81%B6%E9%AD%94%E5%9F%8E/">银河战士恶魔城</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E7%A9%BA%E6%B4%9E%E9%AA%91%E5%A3%AB/">空洞骑士</a></span></div><div class="content">
-
-我真幸运，刚打完空洞骑士就能玩到丝之歌了。 ——经典中的经典
-
-精巧的地图
-我一开始还认为《空洞骑士》只是一个比较小型的游戏，随着探索的一步步深入，和大量谜语人的对白，才发现这是一个广大的世界，我一周目时打的范围甚至不超过全图的十分之一。
-地图设计非常精巧，如很多关卡故意设计地需要获得特定的技能才能进入，这样毫无违和感地引导了玩家的路线。地图之间也不是随意排布的，例如泪水之城之所以一直都在下雨，是因为上方就是蓝湖。
-地图的音乐也非常不错。尤其是当我历经千辛万苦从哪个房间里出来，推开门看到广阔的泪城，听到那段苍凉的旋律时，真的有一种恍如隔世的感觉。还有那座高大的空洞骑士雕像，无一不显示出泪城当年的威严与壮观。还有各具特色的苍绿之径、水晶山、深巢、高塔、蜂巢、下水道、雪山、深渊等，无一不让我印象深刻。
-战斗
-战斗一定是这类游戏离不开的优势。尽管小骑士的技能非常少，却能够通过观察 BOSS 的战斗方式找出应对的方法，这正是这款游戏战斗的乐趣。
-让我印象最深刻的就是被誉为“新人杀手”的三螳螂了，画面设计非常有压迫感，战斗的节奏也非常紧张，但战斗胜利后三人一齐起立向小骑士鞠躬，同时也是向玩家 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/1743dad6.html" title="因为山就在那里"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E8%94%9A%E8%93%9D.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="因为山就在那里"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1743dad6.html" title="因为山就在那里">因为山就在那里</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-09T00:17:22.000Z" title="发表于 2023-09-09 08:17:22">2023-09-09</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:32.000Z" title="更新于 2024-11-23 11:48:32">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%BA%B5%E4%BD%BF%E6%89%8B%E6%AE%8B%E4%BB%8D%E5%A4%A7%E7%88%B1/">纵使手残仍大爱</a></span></div><div class="content">为什么要玩《蔚蓝》
-“为什么你要去爬珠穆朗玛峰？”“因为山就在那里。”这是一段几乎已经被用烂了的对话，但放在《蔚蓝》上竟莫名的合适。这是一款难度非常高的游戏，没有像《奥日》系列精美的画面，只有简陋而单调的像素；也没有像《空洞骑士》那样深刻的剧情和世界观，只有一个普通人不明所以的登山目标。
-就是这么一部单调、乏味的作品，却让无数人着迷，就是这么一段朴素的剧情，却让无数人流泪。因为倘若用心游玩了，就会发现这款游戏的设计非常精巧，每一个关卡的设计都恰到好处，搭配上音乐，带给人视听享受。
-迷茫的启程
-主角为什么要启程，她一开始并没有答案，事实上，登山之旅也是她寻找的过程。其实很多事情都是这样，我并不知道自己为什么要出发，但是当我醒来时，却发现自己已在路上。我只是觉得前方一定有什么在吸引着我，不知不觉想要前进，也像玩这款游戏的过程，我不知道登上山顶究竟意味着什么，但我知道一定会收获一些东西。所以，就在这启程的一刻，我就已经和主角融为一体了，我们都有相同的感受，所以该游戏很有代入感。
-折磨与摧残
-在一个地方死了不知多少遍已经无需多言，实力不够只能放过眼前的草莓的事也常有，仿佛象征着人生中的挫折与无 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/7/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#content-inner">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/#content-inner">15</a><a class="extend next" rel="next" href="/page/9/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Aefrivern</div><div class="author-info__description">我一定会回来的</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">169</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">225</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="GitHub"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-github"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="QQ邮箱"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="Steam"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-steam"></use></svg></a></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
-            <i class="iconfont icon-wenjianjia"></i>
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(url(/gallery/wallpaper/wallpaper.webp));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">170</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">226</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><span> 二次元</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><span> 随便逛逛</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Aefrivern的小屋</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><span> 二次元</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Aefrivern的小屋</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="icon-github"><i class="GitHub"></i></a><a class="social-icon" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="icon-youxiang"><i class="QQ邮箱"></i></a><a class="social-icon" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="icon-steam"><i class="Steam"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc masonry" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover"><a href="/posts/167c7c45.html" title="一场美丽奇幻的梦"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/GRIS.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一场美丽奇幻的梦"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/167c7c45.html" title="一场美丽奇幻的梦">一场美丽奇幻的梦</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-08T00:17:22.000Z" title="发表于 2023-10-08 08:17:22">2023-10-08</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-07T00:17:22.000Z" title="更新于 2024-03-07 08:17:22">2024-03-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/GRIS/">GRIS</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%AC%AC%E4%B9%9D%E8%89%BA%E6%9C%AF/">第九艺术</a></span></div><div class="content">这款游戏给我的第一感觉就是惊艳——颜色与几何图形勾画出满满的艺术风格，以及特定的颜色刻画出的氛围感与心理学理论。这些无不展现出这部游戏的神奇之处，然而我不懂心理学，所以对游戏魅力的理解将大打折扣。 当然，这并不影响其独特。因为玩这款游戏，不需要了解那些复杂的背景知识，只要全身心地沉浸在那种氛围中即可。白色的色调让人感到阴沉，蓝色的色调有忧郁的感觉，沙尘的红色代表着顽强，森林的绿色象征着希望。陪上符合场景的音乐，每个人都能有所感悟。 破碎的雕像，悠扬的歌声，突然出现的鳗鱼，这些东西都调动着我的感官，时而让我平静，时而让我紧张。 </div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/21f18fd2.html" title="当之无愧的鬼畜王"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%85%B0%E6%96%AF.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="当之无愧的鬼畜王"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/21f18fd2.html" title="当之无愧的鬼畜王">当之无愧的鬼畜王</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-07T00:17:22.000Z" title="发表于 2023-10-07 08:17:22">2023-10-07</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:35.000Z" title="更新于 2024-11-23 11:48:35">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/ACG%E6%9D%82%E8%B0%88/">ACG杂谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%85%B0%E6%96%AF/">兰斯</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%86%92%E9%99%A9/">冒险</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/AliceSoft/">AliceSoft</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/R18/">R18</a></span></div><div class="content">光（鬼）辉（畜）事迹 你的恶行从魔王城到 Japan 无人不知无人不晓 寻找小光 万恶之源，无厘头的开始。女战士尤兰确实不错，还有利萨斯王女莉亚被教训后变成了一位不虐待少女的好女王，都像是戏剧一般。 反叛的少女们 兰斯结识了四个魔女，分别是魔想志津香、艾蕾诺亚·岚、米露·尤库斯、玛利亚·卡斯塔多，还有战士巴特，这部作品的重制较早，画风和玩法都比较老了。 利萨斯陷落 又是倒霉的莉亚王女，这次她遇上了魔人和赫尔曼军队的突然入侵，派出加奈美请求兰斯帮忙。从这里开始，忍者加奈美已经完全变成了搞笑担当的，尤其是在恶魔回廊中的各种 play，还有在旅行中的吐槽，为她的人物形象增添了一份风趣。 玛利亚的戏份还是一如既往地多，但我喜欢不上来，值得庆幸我和哈尼是不一样的 利萨斯的几位将军都有非常杰出的表现，“我们队伍里不需要男人”-&gt;没有男人能抵挡里克的魅力 还有几处笑话颇有讽刺的意味，引入深思 </div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/4db1a52a.html" title="王道的感动"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%A4%A9%E7%BB%93Castle%20Meister.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="王道的感动"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/4db1a52a.html" title="王道的感动">王道的感动</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-07T00:17:22.000Z" title="发表于 2023-10-07 08:17:22">2023-10-07</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:36.000Z" title="更新于 2024-11-23 11:48:36">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/ACG%E6%9D%82%E8%B0%88/">ACG杂谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/R18/">R18</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Eushully/">Eushully</a></span></div><div class="content">羁绊的故事 一个平平无奇的半精灵矿工，挖掘遗迹时碰到了被封印在水晶中的女子，把她救出来后自称是女神，想要去禁地，自己莫名其妙的成为了她的使徒，一路上保护着、陪伴着她前往那里。这的确是一个平平无奇的故事，除了那些在多个游戏中终于塑造出来的广阔的世界观外没有什么特别的地方。人物也很常见——元气满满的女神、白猫和黑猫、哈姆雷特般的龙女、得意的领主、被诅咒的魔术师、长翅膀的天使、四大精灵手下、师父、坏蛋商人、心狠手辣的王子，都是很常见的角色形象。但是，本作最难能可贵的一点是巧妙地通过“结缘”把这些形形色色的人物吸引到一起，而不是通过强迫等。 菲娅元气满满的精神和声音鼓舞着每一个不知道前方是什么的人，或许就是因为这个，人们才愿意跟着她前往不知为何物的圣地，帮助她对抗强大的敌人。 </div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/b1168675.html" title="孤独是致死的疾病"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E7%8B%BC%E4%B8%8E%E9%A6%99%E8%BE%9B%E6%96%99.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="孤独是致死的疾病"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/b1168675.html" title="孤独是致死的疾病">孤独是致死的疾病</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-22T00:17:22.000Z" title="发表于 2023-09-22 08:17:22">2023-09-22</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T07:10:40.000Z" title="更新于 2024-11-23 15:10:40">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/ACG%E6%9D%82%E8%B0%88/">ACG杂谈</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%A5%9E%E8%AF%9D/">神话</a></span></div><div class="content">...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/b6d66f1b.html" title="UCB Data100：数据科学原理与技术"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/UCB%20Data100%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%8E%9F%E7%90%86%E4%B8%8E%E6%8A%80%E6%9C%AF.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UCB Data100：数据科学原理与技术"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/b6d66f1b.html" title="UCB Data100：数据科学原理与技术">UCB Data100：数据科学原理与技术</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-16T00:17:22.000Z" title="发表于 2023-09-16 08:17:22">2023-09-16</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T05:25:51.000Z" title="更新于 2024-11-23 13:25:51">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/UC-Berkeley/">UC Berkeley</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a></span></div><div class="content">课程概述 Course Overview 在数据科学中有很多工具，但它们不会思考  The purpose of computing is insight, not numbers. 计算的目的是洞察，而不是数字 ——Hamming   数据采样和概率 Data Sampling and Probability  偏差：  选择偏差：可能不包括或有利于特定的群体 回应偏差：人们不会真实回答 不回应偏差：人们不一定回答  有替换的随机取样：避免一个人被选到两次 简单随机取样：一个人可能被选到两次 在样本总量很大时，两者表现相似 二项式/多项式概率 Pandas 引入： import pandas as pd 生成的是 DataFrame 类（类似于一张表）： elections = pd.read_csv(&quot;elections.csv&quot;)  这个类有丰富的API，这里只介绍其中的一部分 索引 elections.head(5)：获取前五行；.tail 同理 loc 通过标签 label 选择物品，有行标签和列标签 loc...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/e462ba83.html" title="ASCII码对照表"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/ASCII%E7%A0%81%E5%AF%B9%E7%85%A7%E8%A1%A8.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ASCII码对照表"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/e462ba83.html" title="ASCII码对照表">ASCII码对照表</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-16T00:17:22.000Z" title="发表于 2023-09-16 08:17:22">2023-09-16</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T05:50:51.000Z" title="更新于 2024-11-23 13:50:51">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%BC%96%E7%A0%81/">编码</a></span></div><div class="content">ASCII 码表（控制字符）    十进制 DEC 八进制 OCT 十六进制 HEX 二进制 BIN 符号 Symbol HTML 实体编码 中文解释...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/5dc45f0c.html" title="Jupyter Notebook 学习笔记"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Jupyter%20Notebook%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Jupyter Notebook 学习笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/5dc45f0c.html" title="Jupyter Notebook 学习笔记">Jupyter Notebook 学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-16T00:17:22.000Z" title="发表于 2023-09-16 08:17:22">2023-09-16</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:35.000Z" title="更新于 2024-11-23 11:48:35">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/web/">web</a></span></div><div class="content">什么是 Jupyter Notebook  Jupyter Notebook 是基于网页的用于交互计算的应用程序。其可被应用于全过程计算：开发、文档编写、运行代码和展示结果。——Jupyter Notebook 官方介绍  所以简单来说就是以网页形式打开，可以在其中直接编写并运行代码，代码的运行结果也会直接显示在代码块下，同时说明文档也可以直接编写在下面，支持 markdown增强版博客 组成部分：  网页应用 文档  安装和启动 一般搭配 Anaconda 使用，一般来说安装后已经自动安装了 Jupyter Notebook 了。若没有，可以手动安装： conda install notebook 运行： jupyter notebook 该命令以默认端口（8888）启动，若被占用，则顺延至 8889 等。同时浏览器自动访问该网址 注意：终端不要关闭，否则会断开与本地服务器的连接 当然也可以用 --port xxxx 指定 xxxx 端口启动，也可以添加 --no-browser 参数不打开浏览器 设置 Jupyter Notebook...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/6a8518ce.html" title="NumPy 学习笔记"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/NumPy%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NumPy 学习笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/6a8518ce.html" title="NumPy 学习笔记">NumPy 学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-16T00:17:22.000Z" title="发表于 2023-09-16 08:17:22">2023-09-16</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-05T07:19:32.000Z" title="更新于 2024-12-05 15:19:32">2024-12-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/Python/">Python</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/">数据科学</a></span></div><div class="content">简介 NumPy 的官方指导手册一定是最好的老师 Numpy 相当于增强版的 array，使用时往往先以简称引入： import numpy as np 基础 属性 Numpy 数组的类是 ndarray，有以下属性：    名称 解释     ndarray.ndim 数组的维度   size 数组的元素数量，即 shape 的各元素乘积   shape 返回一个 tuple，如对于 n 行 m 列的矩阵，返回 (n, m)    创建数组 使用列表和 np.array 创建： a = np.array([1, 2, 3, 4]) 使用 zeros 创建全是 0 的数组，使用 ones 创建全是 1 的数组，默认为浮点类型，可以使用 dtype 参数指定类型： &gt;&gt;&gt; np.zeros((3, 4))array([[0., 0., 0., 0.],       [0., 0., 0., 0.],       [0., 0., 0., 0.]])&gt;&gt;&gt; np.ones((3, 4), dtype=np.int16)array([[1, 1,...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/175a8e1.html" title="一段灿烂的回忆"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Narcissu.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一段灿烂的回忆"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/175a8e1.html" title="一段灿烂的回忆">一段灿烂的回忆</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-10T00:17:22.000Z" title="发表于 2023-09-10 08:17:22">2023-09-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T03:48:32.000Z" title="更新于 2024-11-23 11:48:32">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%B0%B4%E4%BB%99/">水仙</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%AD%BB%E4%BA%A1/">死亡</a></span></div><div class="content">...</div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/106331b4.html" title="老顽固，在找我吗？"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%AF%BB%E6%89%BE%E5%A4%A9%E5%A0%82.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="老顽固，在找我吗？"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/106331b4.html" title="老顽固，在找我吗？">老顽固，在找我吗？</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-10T00:17:22.000Z" title="发表于 2023-09-10 08:17:22">2023-09-10</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-07T00:17:22.000Z" title="更新于 2024-03-07 08:17:22">2024-03-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E6%B2%BB%E6%84%88/">治愈</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E5%AF%BB%E6%89%BE%E5%A4%A9%E5%A0%82/">寻找天堂</a></span></div><div class="content">相对于《去月球》留下的深深的遗憾，《寻找天堂》的结局可以说是相当的圆满了。主角经历了一个有遗憾而有幸福的人生，也就是一个平平淡淡的人生，他甚至根本不需要在临终前依靠修改记忆实现什么愿望，因为他一直都有一个陪伴着他的伙伴。 哪个有孤独的童年的人没有幻想过自己有一个像 Faye 那样的伙伴呢，她会鼓励我、引导我、帮助我。让我感触最深的是在山顶告别的那一幕，或许这就是成长的代价，有些事物注定只能陪你到那儿，但是总有一天会再见面的。  老顽固，在找我吗？  </div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/e9318100.html" title="但是她对谁都这样"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/Find%20Love%20or%20Die%20Trying.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="但是她对谁都这样"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/e9318100.html" title="但是她对谁都这样">但是她对谁都这样</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-09T00:17:22.000Z" title="发表于 2023-09-09 08:17:22">2023-09-09</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:57:49.000Z" title="更新于 2024-11-23 14:57:49">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%BA%B5%E4%BD%BF%E6%89%8B%E6%AE%8B%E4%BB%8D%E5%A4%A7%E7%88%B1/">纵使手残仍大爱</a></span></div><div class="content"> 但是她对谁都这样 可还有谁对你这样  好了，此处已成艺术，无需多言。  我一开始认为这只是粗制滥造的普通的游戏而已，通过每天选择不同的女孩，给每个人一个结局，而所谓的电视节目只不过是一个幌子罢了。 但随着剧情的进行，我逐渐猜到了这是一场阴谋，也猜到了 Kat 是双面间谍。可是，当她举着枪对准我的时候，我还是被她深深地感动了。在最后的决战中，我义无反顾地选择了相信她。还有她最后躺在病床上流着泪的深情告白：  我爱你。比你所知的，还要再多一百、一千、一万倍。这辈子，你走到哪，我就跟到哪。今时今日，我很确定我们的前路还有很长。我们还要一起创造更多回忆呢，Kat。  擦了擦屏幕才发现流泪的是我。 当然，这部游戏真正最出圈的地方还是那幅世界名画 </div></div></div><div class="recent-post-item"><div class="post_cover"><a href="/posts/e53204e6.html" title="与光为敌，向神挥刃"><img class="post-bg" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E7%A9%BA%E6%B4%9E%E9%AA%91%E5%A3%AB.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="与光为敌，向神挥刃"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/e53204e6.html" title="与光为敌，向神挥刃">与光为敌，向神挥刃</a><div class="article-meta-wrap"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-09T00:17:22.000Z" title="发表于 2023-09-09 08:17:22">2023-09-09</time><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-23T06:52:28.000Z" title="更新于 2024-11-23 14:52:28">2024-11-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/">游戏人生</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E9%93%B6%E6%B2%B3%E6%88%98%E5%A3%AB%E6%81%B6%E9%AD%94%E5%9F%8E/">银河战士恶魔城</a><span class="article-meta-link">•</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-biaoqian1"></use></svg><a class="article-meta__tags" href="/tags/%E7%A9%BA%E6%B4%9E%E9%AA%91%E5%A3%AB/">空洞骑士</a></span></div><div class="content">  我真幸运，刚打完空洞骑士就能玩到丝之歌了。 ——经典中的经典  精巧的地图 我一开始还认为《空洞骑士》只是一个比较小型的游戏，随着探索的一步步深入，和大量谜语人的对白，才发现这是一个广大的世界，我一周目时打的范围甚至不超过全图的十分之一。 地图设计非常精巧，如很多关卡故意设计地需要获得特定的技能才能进入，这样毫无违和感地引导了玩家的路线。地图之间也不是随意排布的，例如泪水之城之所以一直都在下雨，是因为上方就是蓝湖。 地图的音乐也非常不错。尤其是当我历经千辛万苦从哪个房间里出来，推开门看到广阔的泪城，听到那段苍凉的旋律时，真的有一种恍如隔世的感觉。还有那座高大的空洞骑士雕像，无一不显示出泪城当年的威严与壮观。还有各具特色的苍绿之径、水晶山、深巢、高塔、蜂巢、下水道、雪山、深渊等，无一不让我印象深刻。 战斗 战斗一定是这类游戏离不开的优势。尽管小骑士的技能非常少，却能够通过观察 BOSS...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/7/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#content-inner">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/#content-inner">15</a><a class="extend next" rel="next" href="/page/9/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Aefrivern</div><div class="author-info-description">我一定会回来的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">170</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">226</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="icon-github"><i class="GitHub"></i></a><a class="social-icon" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="icon-youxiang"><i class="QQ邮箱"></i></a><a class="social-icon" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="icon-steam"><i class="Steam"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACG%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">ACG杂谈</span><span class="card-category-list-count">32</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">42</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">48</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">游戏人生</span><span class="card-category-list-count">20</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">读书笔记</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"><span class="card-category-list-name">闲言碎语</span><span class="card-category-list-count">2</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><a class="faa-parent animated-hover"></a><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-biaoqian1"></use></svg><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/CMU/" style="font-size: 1.24em; color: rgb(181, 183, 90)">CMU</a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.24em; color: rgb(138, 0, 10)">数据库</a><a href="/tags/Princeton/" style="font-size: 1.19em; color: rgb(188, 130, 44)">Princeton</a><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 1.19em; color: rgb(10, 57, 145)">数据结构与算法</a><a href="/tags/Java/" style="font-size: 1.32em; color: rgb(198, 179, 171)">Java</a><a href="/tags/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/" style="font-size: 1.15em; color: rgb(179, 78, 110)">并行计算</a><a href="/tags/%E5%B8%8C%E4%BC%AF%E6%9D%A5%E5%A4%A7%E5%AD%A6/" style="font-size: 1.15em; color: rgb(184, 39, 198)">希伯来大学</a><a href="/tags/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="font-size: 1.24em; color: rgb(101, 38, 130)">体系结构</a><a href="/tags/Stanford/" style="font-size: 1.28em; color: rgb(172, 7, 141)">Stanford</a><a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 1.24em; color: rgb(151, 193, 136)">人工智能</a><a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.15em; color: rgb(192, 183, 14)">深度学习</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" style="font-size: 1.15em; color: rgb(45, 83, 173)">计算机系统</a><a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.15em; color: rgb(79, 65, 139)">机器学习</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/" style="font-size: 1.32em; color: rgb(183, 34, 66)">计算机科学</a><a href="/tags/ETH-Zurich/" style="font-size: 1.15em; color: rgb(72, 151, 7)">ETH Zurich</a><a href="/tags/University-of-Helsinki/" style="font-size: 1.19em; color: rgb(83, 129, 3)">University of Helsinki</a><a href="/tags/Haskell/" style="font-size: 1.19em; color: rgb(191, 124, 176)">Haskell</a><a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" style="font-size: 1.19em; color: rgb(153, 36, 0)">函数式编程</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" style="font-size: 1.15em; color: rgb(143, 98, 171)">计算机图形学</a><a href="/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" style="font-size: 1.15em; color: rgb(42, 122, 42)">微分方程</a><a href="/tags/MIT/" style="font-size: 1.45em; color: rgb(52, 11, 111)">MIT</a><a href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" style="font-size: 1.28em; color: rgb(34, 70, 187)">微积分</a><a href="/tags/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F/" style="font-size: 1.15em; color: rgb(101, 64, 108)">信号与系统</a><a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" style="font-size: 1.24em; color: rgb(83, 20, 153)">概率论</a><a href="/tags/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/" style="font-size: 1.15em; color: rgb(135, 70, 1)">复变函数</a><a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 1.15em; color: rgb(162, 123, 106)">离散数学</a><a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" style="font-size: 1.15em; color: rgb(142, 164, 185)">线性代数</a><a href="/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" style="font-size: 1.19em; color: rgb(189, 66, 66)">信息论</a><a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.15em; color: rgb(121, 122, 110)">操作系统</a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" style="font-size: 1.19em; color: rgb(138, 105, 185)">分布式系统</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 1.15em; color: rgb(127, 200, 75)">计算机网络</a><a href="/tags/UC-Berkeley/" style="font-size: 1.36em; color: rgb(102, 169, 129)">UC Berkeley</a><a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 1.15em; color: rgb(59, 15, 113)">安全</a><a href="/tags/C/" style="font-size: 1.41em; color: rgb(102, 52, 136)">C++</a><a href="/tags/Python/" style="font-size: 1.24em; color: rgb(30, 48, 132)">Python</a><a href="/tags/Scheme/" style="font-size: 1.15em; color: rgb(162, 106, 116)">Scheme</a><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.15em; color: rgb(176, 128, 39)">数据结构</a><a href="/tags/RISC-V/" style="font-size: 1.15em; color: rgb(111, 94, 8)">RISC-V</a><a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 1.32em; color: rgb(34, 2, 23)">软件工程</a><a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 1.15em; color: rgb(61, 52, 105)">网络</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="iconfont icon-archives"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="iconfont icon-youjiantou"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">16</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">13</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-shuju"></use></svg></a><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">169</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-10-31T12:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">46.8w</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-19T01:22:58.612Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>安得广厦千万间，大庇天下寒士俱欢颜，风雨不动安如山。</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2024 By Aefrivern</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://unpkg.com/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.js"></script><script src="https://unpkg.com/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://unpkg.com/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
-  init: (str) => {
-    window.typed = new Typed('#subtitle', Object.assign({
-      strings: str,
-      startDelay: 300,
-      typeSpeed: 150,
-      loop: true,
-      backSpeed: 50,
-    }, null))
-  },
-  run: (subtitleType) => {
-    if (false) {
-      if (typeof Typed === 'function') {
-        subtitleType()
-      } else {
-        getScript('https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
-      }
-    } else {
-      subtitleType()
-    }
-  }
-}
-</script><script>function subtitleType () {
-  if (false) {
-    typedJSFn.init(["欢迎来到Aefrivernの小屋作客"])
-  } else {
-    document.getElementById("subtitle").textContent = "欢迎来到Aefrivernの小屋作客"
-  }
-}
-typedJSFn.run(subtitleType)</script></div><script async src="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.js"></script><link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://unpkg.com/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://unpkg.com/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
-
-var pjax = new Pjax({
-  elements: 'a:not([target="_blank"])',
-  selectors: pjaxSelectors,
-  cacheBust: false,
-  analytics: false,
-  scrollRestoration: false
-})
-
-document.addEventListener('pjax:send', function () {
-
-  // removeEventListener
-  btf.removeGlobalFnEvent('pjax')
-  btf.removeGlobalFnEvent('themeChange')
-
-  document.getElementById('rightside').classList.remove('rightside-show')
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ACG%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">ACG杂谈</span><span class="card-category-list-count">32</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">43</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="card-category-list-name">工具</span><span class="card-category-list-count">48</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E4%BA%BA%E7%94%9F/"><span class="card-category-list-name">游戏人生</span><span class="card-category-list-count">20</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">读书笔记</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/"><span class="card-category-list-name">闲言碎语</span><span class="card-category-list-count">2</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AIR/" style="font-size: 1.15em; color: rgb(50, 122, 82);">AIR</a><a href="/tags/%E6%B2%BB%E6%84%88/" style="font-size: 1.45em; color: rgb(50, 158, 144);">治愈</a><a href="/tags/key/" style="font-size: 1.21em; color: rgb(123, 53, 120);">key</a><a href="/tags/%E4%BA%AC%E9%83%BD%E5%8A%A8%E7%94%BB/" style="font-size: 1.21em; color: rgb(163, 50, 50);">京都动画</a><a href="/tags/CLANNAD/" style="font-size: 1.15em; color: rgb(174, 50, 50);">CLANNAD</a><a href="/tags/%E5%BC%82%E4%B8%96%E7%95%8C/" style="font-size: 1.33em; color: rgb(50, 197, 80);">异世界</a><a href="/tags/%E6%90%9E%E7%AC%91/" style="font-size: 1.21em; color: rgb(70, 50, 133);">搞笑</a><a href="/tags/%E5%90%89%E5%8D%9C%E5%8A%9B%E5%B7%A5%E4%BD%9C%E5%AE%A4/" style="font-size: 1.27em; color: rgb(68, 173, 50);">吉卜力工作室</a><a href="/tags/%E5%85%B0%E6%96%AF/" style="font-size: 1.15em; color: rgb(186, 127, 50);">兰斯</a><a href="/tags/%E5%86%92%E9%99%A9/" style="font-size: 1.15em; color: rgb(50, 89, 186);">冒险</a><a href="/tags/AliceSoft/" style="font-size: 1.15em; color: rgb(199, 199, 77);">AliceSoft</a><a href="/tags/R18/" style="font-size: 1.21em; color: rgb(129, 69, 177);">R18</a><a href="/tags/%E5%85%B3%E4%BA%8E%E6%88%91%E8%BD%AC%E7%94%9F%E5%8F%98%E6%88%90%E5%8F%B2%E8%8E%B1%E5%A7%86%E8%BF%99%E6%A1%A3%E4%BA%8B/" style="font-size: 1.15em; color: rgb(71, 50, 108);">关于我转生变成史莱姆这档事</a><a href="/tags/%E7%A7%8D%E7%94%B0%E6%B5%81/" style="font-size: 1.15em; color: rgb(50, 175, 55);">种田流</a><a href="/tags/%E7%AB%A5%E5%B9%B4/" style="font-size: 1.39em; color: rgb(139, 110, 152);">童年</a><a href="/tags/%E5%90%8D%E4%BE%A6%E6%8E%A2%E6%9F%AF%E5%8D%97/" style="font-size: 1.15em; color: rgb(126, 81, 50);">名侦探柯南</a><a href="/tags/%E6%9C%89%E7%94%9F%E4%B9%8B%E5%B9%B4/" style="font-size: 1.15em; color: rgb(50, 65, 89);">有生之年</a><a href="/tags/%E5%92%92%E6%9C%AF%E5%9B%9E%E6%88%98/" style="font-size: 1.15em; color: rgb(192, 153, 130);">咒术回战</a><a href="/tags/%E7%83%AD%E8%A1%80/" style="font-size: 1.21em; color: rgb(50, 173, 195);">热血</a><a href="/tags/%E7%83%82%E5%B0%BE/" style="font-size: 1.27em; color: rgb(50, 174, 50);">烂尾</a><a href="/tags/%E5%93%86%E5%95%A6A%E6%A2%A6/" style="font-size: 1.15em; color: rgb(98, 79, 50);">哆啦A梦</a><a href="/tags/%E8%8B%B1%E9%9B%84/" style="font-size: 1.15em; color: rgb(98, 183, 50);">英雄</a><a href="/tags/%E5%96%9C%E7%BE%8A%E7%BE%8A%E4%B8%8E%E7%81%B0%E5%A4%AA%E7%8B%BC/" style="font-size: 1.15em; color: rgb(80, 142, 193);">喜羊羊与灰太狼</a><a href="/tags/Eushully/" style="font-size: 1.15em; color: rgb(188, 112, 197);">Eushully</a><a href="/tags/%E5%AD%A6%E5%9B%AD%E9%BB%98%E7%A4%BA%E5%BD%95/" style="font-size: 1.15em; color: rgb(146, 50, 190);">学园默示录</a><a href="/tags/%E5%8D%96%E8%82%89/" style="font-size: 1.27em; color: rgb(50, 50, 154);">卖肉</a><a href="/tags/%E4%B8%A7%E5%B0%B8/" style="font-size: 1.15em; color: rgb(109, 50, 199);">丧尸</a><a href="/tags/ACG/" style="font-size: 1.15em; color: rgb(107, 119, 97);">ACG</a><a href="/tags/%E8%BF%90%E5%8A%A8/" style="font-size: 1.15em; color: rgb(129, 50, 121);">运动</a><a href="/tags/%E4%BA%AC%E9%98%BF%E5%B0%BC/" style="font-size: 1.33em; color: rgb(96, 50, 165);">京阿尼</a><a href="/tags/%E6%97%A0%E5%BD%A9%E9%99%90%E7%9A%84%E6%80%AA%E7%81%B5%E4%B8%96%E7%95%8C/" style="font-size: 1.15em; color: rgb(194, 192, 50);">无彩限的怪灵世界</a><a href="/tags/%E9%BB%91%E6%9A%97/" style="font-size: 1.15em; color: rgb(175, 92, 50);">黑暗</a><a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 1.15em; color: rgb(50, 135, 116);">旅行</a><a href="/tags/%E7%A5%9E%E8%AF%9D/" style="font-size: 1.15em; color: rgb(153, 156, 50);">神话</a><a href="/tags/%E7%8E%89%E5%AD%90%E5%B8%82%E5%9C%BA/" style="font-size: 1.15em; color: rgb(94, 119, 50);">玉子市场</a><a href="/tags/%E7%8E%89%E5%AD%90%E7%88%B1%E6%83%85%E6%95%85%E4%BA%8B/" style="font-size: 1.15em; color: rgb(168, 88, 88);">玉子爱情故事</a><a href="/tags/%E7%94%98%E5%9F%8E%E5%85%89%E8%BE%89%E6%B8%B8%E4%B9%90%E5%9B%AD/" style="font-size: 1.15em; color: rgb(53, 175, 50);">甘城光辉游乐园</a><a href="/tags/%E7%B4%AB%E7%BD%97%E5%85%B0%E6%B0%B8%E6%81%92%E8%8A%B1%E5%9B%AD/" style="font-size: 1.15em; color: rgb(96, 96, 136);">紫罗兰永恒花园</a><a href="/tags/%E6%A0%A1%E5%9B%AD/" style="font-size: 1.15em; color: rgb(50, 160, 139);">校园</a><a href="/tags/%E6%81%8B%E7%88%B1/" style="font-size: 1.15em; color: rgb(130, 154, 185);">恋爱</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
   
-  if (window.aplayers) {
-    for (let i = 0; i < window.aplayers.length; i++) {
-      if (!window.aplayers[i].options.fixed) {
-        window.aplayers[i].destroy()
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/12/">
+          <span class="card-archive-list-date">十二月 2024</span>
+          <span class="card-archive-list-count">7</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">16</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/10/">
+          <span class="card-archive-list-date">十月 2024</span>
+          <span class="card-archive-list-count">7</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/09/">
+          <span class="card-archive-list-date">九月 2024</span>
+          <span class="card-archive-list-count">6</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/08/">
+          <span class="card-archive-list-date">八月 2024</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/06/">
+          <span class="card-archive-list-date">六月 2024</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/05/">
+          <span class="card-archive-list-date">五月 2024</span>
+          <span class="card-archive-list-count">8</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/04/">
+          <span class="card-archive-list-date">四月 2024</span>
+          <span class="card-archive-list-count">13</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">170</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">46.9w</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-12-19T11:08:00.080Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Aefrivern</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script async src="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
       }
     }
   }
 
-  typeof typed === 'object' && typed.destroy()
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
 
-  //reset readmode
-  const $bodyClassList = document.body.classList
-  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
 
-  typeof disqusjs === 'object' && disqusjs.destroy()
-})
-
-document.addEventListener('pjax:complete', function () {
-  window.refreshFn()
-
-  document.querySelectorAll('script[data-pjax]').forEach(item => {
-    const newScript = document.createElement('script')
-    const content = item.text || item.textContent || item.innerHTML || ""
-    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
-    newScript.appendChild(document.createTextNode(content))
-    item.parentNode.replaceChild(newScript, item)
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
   })
 
-  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
-
-  typeof panguInit === 'function' && panguInit()
-
-  // google analytics
-  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
-
-  // baidu analytics
-  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
-
-  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
-
-  // prismjs
-  typeof Prism === 'object' && Prism.highlightAll()
-})
-
-document.addEventListener('pjax:error', e => {
-  if (e.request.status === 404) {
-    pjax.loadUrl('/404.html')
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
   }
-})</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://unpkg.com/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script><script src="https://unpkg.com/instantsearch.js@4.65.0/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div></html>
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/lite/builds/browser.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body></html>
