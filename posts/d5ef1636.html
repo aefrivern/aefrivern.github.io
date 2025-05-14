@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Android 开发 | Aefrivern的小屋</title><meta name="author" content="Aefrivern"><meta name="copyright" content="Aefrivern"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="基于 google 官方的安卓开发教程 Android 之 Compose 开发基础 编写 首个安卓应用 Jetpack Compose 是用于构建 Android 界面的新款工具包。它使用更少的代码、强大的工具和直观的 Kotlin API，可以帮助您简化并加快 Android 界面开发。 应用的界面 (UI) 就是您在屏幕上所看到的内容，包括文本、图片、按钮和许多其他类型的元素。 可组合函数是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 开发">
+<meta property="og:url" content="https://aefrivern.github.io/posts/d5ef1636.html">
+<meta property="og:site_name" content="Aefrivern的小屋">
+<meta property="og:description" content="基于 google 官方的安卓开发教程 Android 之 Compose 开发基础 编写 首个安卓应用 Jetpack Compose 是用于构建 Android 界面的新款工具包。它使用更少的代码、强大的工具和直观的 Kotlin API，可以帮助您简化并加快 Android 界面开发。 应用的界面 (UI) 就是您在屏幕上所看到的内容，包括文本、图片、按钮和许多其他类型的元素。 可组合函数是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aefrivern.github.io/gallery/cover/Android%20%E5%BC%80%E5%8F%91.webp">
+<meta property="article:published_time" content="2025-05-12T08:18:22.000Z">
+<meta property="article:modified_time" content="2025-05-14T02:50:21.000Z">
+<meta property="article:author" content="Aefrivern">
+<meta property="article:tag" content="Kotlin">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aefrivern.github.io/gallery/cover/Android%20%E5%BC%80%E5%8F%91.webp"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Android 开发",
+  "url": "https://aefrivern.github.io/posts/d5ef1636.html",
+  "image": "https://aefrivern.github.io/gallery/cover/Android%20%E5%BC%80%E5%8F%91.webp",
+  "datePublished": "2025-05-12T08:18:22.000Z",
+  "dateModified": "2025-05-14T02:50:21.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Aefrivern",
+      "url": "https://aefrivern.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/illustration/favicon.ico"><link rel="canonical" href="https://aefrivern.github.io/posts/d5ef1636.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"GY5EJYJ1FS","apiKey":"c443c952672ec7062840aac45536181e","indexName":"blog","hitsPerPage":6,"languages":{"input_placeholder":"搜索文章","hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，耗时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Android 开发',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/highlight.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/hexo-butterfly-article-double-row.css"><script src="/js/echarts.min.js"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@1.0.17/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(/gallery/wallpaper/wallpaper.webp);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">188</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">244</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><span> 二次元</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><span> 随便逛逛</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/gallery/cover/Android 开发.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Aefrivern的小屋</span></a><a class="nav-page-title" href="/"><span class="site-name">Android 开发</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-sousuo1"></use></svg><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye-01"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-a-16-01-01"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-wenjianjia"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/anime/"><i class="fa-fw iconfont icon-zhifeiji"></i><span> 二次元</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw iconfont icon-xiangce"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-guanyu"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/charts/"><i class="fa-fw iconfont icon-tongjichaxun"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw iconfont icon-liuyan"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/random/"><i class="fa-fw iconfont icon-suiji"></i><span> 随便逛逛</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Android 开发</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-rili"></use></svg><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-12T08:18:22.000Z" title="发表于 2025-05-12 16:18:22">2025-05-12</time><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-gengxin"></use></svg><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-14T02:50:21.000Z" title="更新于 2025-05-14 10:50:21">2025-05-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><a class="faa-parent animated-hover"></a><svg class="meta_icon post-ui-icon" style="width:13px;height:13px;position:relative;top:2px"><use xlink:href="#icon-fenlei"></use></svg><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-word"></use></svg><span class="post-meta-label">总字数:</span><span class="word-count">3047</span><span class="post-meta-separator">|</span><svg class="meta_icon post-ui-icon" style="width:16px;height:16px;position:relative;top:3px"><use xlink:href="#icon-shizhong"></use></svg><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>基于 google 官方的安卓开发教程 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.android.com/courses/android-basics-compose/course?hl=zh-cn">Android 之 Compose 开发基础</a> 编写</p>
+<h2 id="首个安卓应用">首个安卓应用</h2>
+<p>Jetpack Compose 是用于构建 Android 界面的新款工具包。它使用更少的代码、强大的工具和直观的 Kotlin API，可以帮助您简化并加快 Android 界面开发。</p>
+<p>应用的界面 (UI) 就是您在屏幕上所看到的内容，包括文本、图片、按钮和许多其他类型的元素。</p>
+<p>可组合函数是 Compose 的基本构建块。可组合函数是用于描述界面中某一部分的函数。</p>
+<p>可组合函数带有 <code>@Composable</code> 注解；此注解可告知 Compose 编译器：此函数用于将数据转换为界面。</p>
+<p>Compose 中的三个基本标准布局元素是 <code>Column</code>、<code>Row,</code> 和 <code>Box</code>。它们是接受可组合内容的可组合函数，因此您可以在其中放置项目。例如，<code>Row</code> 中的各个子项将彼此相邻地水平放置。</p>
+<p>向 Android 应用添加图片：</p>
+<ul>
+<li>Android Studio 中的 <strong>Resource Manager</strong> 标签页可帮助您添加和整理图片及其他资源。</li>
+<li><code>Image</code> 可组合项是用于在应用中显示图片的界面元素。</li>
+<li><code>Image</code> 可组合项应包含内容说明，以便提高应用的无障碍性。</li>
+<li>应将向用户显示的文本提取到字符串资源中，以便让应用更容易翻译成其他语言。</li>
+</ul>
+<h2 id="构建应用界面">构建应用界面</h2>
+<h3 id="为应用添加按钮">为应用添加按钮</h3>
+<p>定义可组合函数，使用组合创建布局。</p>
+<p>使用 <code>Button</code> 可组合函数创建按钮。</p>
+<p>导入 <code>drawable</code> 资源，使用 <code>Image</code> 可组合函数显示图片。</p>
+<p>使用可组合函数构建交互式界面。</p>
+<ul>
+<li>使用 <code>remember</code> 可组合函数将组合中的对象存储到内存中。</li>
+<li>使用 <code>mutableStateOf()</code> 函数刷新界面以创建可观察对象。</li>
+</ul>
+<h3 id="与界面和状态交互">与界面和状态交互</h3>
+<p>应用中的状态是指可以随时间变化的任何值。</p>
+<p>“组合”是对 Compose 在执行可组合项时所构建界面的描述。Compose 应用调用可组合函数，以将数据转换为界面。</p>
+<p>初始组合是指 Compose 会在首次执行可组合函数时创建界面。</p>
+<p>重组过程会再次运行相同的可组合项，以便在其数据发生变化时更新树。</p>
+<p>状态提升是一种将状态移到其调用方以使组件变为无状态的模式。</p>
+<h2 id="显示列表并使用-Material-Design">显示列表并使用 Material Design</h2>
+<h3 id="构建可滚动列表">构建可滚动列表</h3>
+<ul>
+<li>使用 <code>Card</code> 可组合项创建列表项。</li>
+<li>修改 <code>Card</code> 可组合项中包含的界面。</li>
+<li>使用 <code>LazyColumn</code> 可组合项创建可滚动列表。</li>
+<li>使用自定义列表项构建列表。</li>
+</ul>
+<p>更改应用图标：</p>
+<ul>
+<li>将应用图标文件放到 <code>mipmap</code> 资源目录中。</li>
+<li>针对各个密度级别（<code>mdpi</code>、<code>hdpi</code>、<code>xhdpi</code>、<code>xxhdpi</code>、<code>xxxhdpi</code>）提供不同版本的应用图标位图图片，以便向后兼容旧版 Android。</li>
+<li>向资源目录添加资源限定符，以指定应在具有特定配置的设备上使用的资源（<code>v24</code> 或 <code>v26</code>）。</li>
+<li>矢量可绘制对象是 Android 平台的矢量图形实现。它们使用 XML 以一组点、线条和曲线以及相关颜色信息的形式进行定义。矢量可绘制对象可针对任何密度进行缩放，而不会降低图片质量。</li>
+<li>自适应图标由符合特定要求的前景和背景图层组成，因此您的应用图标在采用不同 OEM 蒙版的各种设备上都能呈现出较高的质量。</li>
+<li>使用 Android Studio 中的 <strong>Image Asset Studio</strong> 为您的应用创建旧版图标和自适应图标。</li>
+</ul>
+<h3 id="构建精美应用">构建精美应用</h3>
+<p>使用 Jetpack Compose 实现 Material 主题设置：</p>
+<ul>
+<li>借助 Material 主题设置，您可以依据关于自定义颜色、排版和形状的指南，在应用中使用 Material Design。</li>
+<li>主题是在 <strong>Theme.kt</strong> 文件中通过名为 <code>[your app name]+Theme()</code> 的可组合项定义的。在该函数内，<code>MaterialTheme</code> 对象用于设置应用的 <code>color</code>、<code>typography</code>、<code>shapes</code> 和 <code>content</code>。</li>
+<li><strong>Color.kt</strong> 用于列出您在应用中使用的颜色。然后，在 <strong>Theme.kt</strong> 中，将 <code>LightColorPalette</code> 和 <code>DarkColorPalette</code> 中的颜色分配给特定槽。并非所有槽都需要分配。</li>
+<li>应用可以选择启用 Force Dark，这意味着系统会自动实现深色主题。不过，如果您实现深色主题，可为用户提供更好的体验，以便您能够完全控制应用主题。</li>
+<li><strong>Shape.kt</strong> 用于定义应用形状。形状尺寸有三种（小、中、大），您可以指定角的圆角程度。</li>
+<li>形状能够引导用户注意力、区别组件、传达状态以及呈现品牌风格。</li>
+<li><strong>Type.kt</strong> 用于初始化字体并为 Material Design 字型比例分配 <code>fontFamily</code>、<code>fontWeight</code> 和 <code>fontSize</code>。</li>
+</ul>
+<p>简单动画，通常是弹簧动画，如：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin">Column(<br>   modifier = Modifier<br>       .animateContentSize(<br>           animationSpec = spring(<br>               dampingRatio = Spring.DampingRatioNoBouncy,<br>               stiffness = Spring.StiffnessMedium<br>           )<br>       )<br>)<br></code></pre></td></tr></table></figure>
+<h2 id="导航和应用架构">导航和应用架构</h2>
+<h3 id="架构组件">架构组件</h3>
+<p>activity 生命周期：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/Android%20%E5%BC%80%E5%8F%91/activity%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.webp" alt="activity 生命周期"></p>
+<ul>
+<li>activity 生命周期是 activity 会转换的一组状态。activity 生命周期从 Android OS 首次创建 activity 时开始，在 Android OS 销毁 activity 时结束。</li>
+<li>当用户在 activity 之间以及应用内外导航时，每个 activity 会在 activity 生命周期中的状态之间切换。</li>
+<li>activity 生命周期中的每种状态都有一个对应的回调方法，您可以在 <code>Activity</code> 类中替换此类方法。如需添加要在 activity 转换为某种生命周期状态时发生的行为，请替换相应状态的回调方法。</li>
+</ul>
+<p>使用日志进行记录：</p>
+<ul>
+<li>Android 日志记录 API <code>Log</code> 类</li>
+<li>使用 <code>Log.d()</code> 可写入调试消息。此方法采用两个参数：日志标签（通常是类的名称）和日志消息（一个简短的字符串）。</li>
+<li>使用 Android Studio 中的 <strong>Logcat</strong> 窗口可查看系统日志，包括您写入的消息。</li>
+</ul>
+<p>配置变更</p>
+<ul>
+<li>当设备的状态发生了根本性改变，以至于系统解决改变的最简单方式就是销毁并重建 activity 时，就会发生配置变更。</li>
+<li>最常见的配置变更示例是用户将设备从竖屏模式旋转为横屏模式，或者从横屏模式旋转为竖屏模式。当设备语言发生变化或用户插入硬件键盘时，也可能会发生配置更改。</li>
+<li>当发生配置变更时，Android 会调用所有 activity 生命周期的关闭回调。然后，Android 会从头开始重启相应 activity，同时运行所有生命周期启动回调。</li>
+<li>当 Android 因配置变更而关闭某个应用时，它会使用 <code>onCreate()</code> 重启 activity。</li>
+<li>如需保存需要在配置更改后继续存在的值，请使用 <code>rememberSaveable</code> 声明其变量。</li>
+</ul>
+<p>一个 ViewModel 的示例：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">GameViewModel</span> : <span class="hljs-type">ViewModel</span>() &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> _uiState = MutableStateFlow(GameUiState())<br>    <span class="hljs-keyword">val</span> uiState: StateFlow&lt;GameUiState&gt; = _uiState.asStateFlow()<br><br>    <span class="hljs-keyword">var</span> userGuess <span class="hljs-keyword">by</span> mutableStateOf(<span class="hljs-string">&quot;&quot;</span>)<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">set</span><br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> usedWords: MutableSet&lt;String&gt; = mutableSetOf()<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">lateinit</span> <span class="hljs-keyword">var</span> currentWord: String<br><br>    <span class="hljs-keyword">init</span> &#123;<br>        resetGame()<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">resetGame</span><span class="hljs-params">()</span></span> &#123;<br>        usedWords.clear()<br>        _uiState.value = GameUiState(currentScrambledWord = pickRandomWordAndShuffle())<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">updateUserGuess</span><span class="hljs-params">(guessedWord: <span class="hljs-type">String</span>)</span></span>&#123;<br>        userGuess = guessedWord<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Jetpack-Compose-中的-Navigation">Jetpack Compose 中的 Navigation</h3>
+<p>Navigation 组件有三个主要部分：</p>
+<ul>
+<li><strong>NavController</strong>：负责在目标页面（即应用中的屏幕）之间导航。</li>
+<li><strong>NavGraph</strong>：用于映射要导航到的可组合项目标页面。</li>
+<li><strong>NavHost</strong>：此可组合项充当容器，用于显示 NavGraph 的当前目标页面。</li>
+</ul>
+<p>一个使用 <code>NavHost</code> 定义导航路线的例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin">NavHost(<br>    navController = navController,<br>    startDestination = CupcakeScreen.Start.name,<br>) &#123;<br>    composable(route = CupcakeScreen.Start.name) &#123;<br>        StartOrderScreen(...)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如需导航到其他路线，只需在 <code>NavHostController</code> 实例上调用 <code>navigate()</code> 方法即可。</p>
+<p>您可以通过调用 <code>popBackStack()</code> 方法来实现跳转至起始屏幕</p>
+<p>intent 将请求系统执行某项操作，通常用于呈现新的 activity，例如 <code>ACTION_SEND</code> 可以提供某些数据（例如字符串），并为这些数据提供适当的分享操作。</p>
+<p>设置 intent 的基本过程如下：</p>
+<ol>
+<li>创建一个 intent 对象并指定 intent，例如 <code>ACTION_SEND</code>。</li>
+<li>指定随 intent 一同发送的其他数据类型。对于简单的一段文本，您可以使用 <code>&quot;text/plain&quot;</code>，但也可以使用其他类型，例如 <code>&quot;image/*&quot;</code> 或 <code>&quot;video/*&quot;</code>。</li>
+<li>通过调用 <code>putExtra()</code> 方法，向 intent 传递任何其他数据，例如要分享的文本或图片。此 intent 将接受两个 extra：<code>EXTRA_SUBJECT</code> 和 <code>EXTRA_TEXT</code>。</li>
+<li>调用上下文的 <code>startActivity()</code> 方法，并传入从 intent 创建的 activity。</li>
+</ol>
+<p><code>navController</code> 的 <code>navigateUp()</code> 返回上一个屏幕，用于实现应用左上角的返回按钮</p>
+<h3 id="适应不同的屏幕尺寸">适应不同的屏幕尺寸</h3>
+<p><code>WindowSizeClass</code> 包括了三种尺寸：较小 <code>compact</code> 、中等 <code>medium</code> 和较大 <code>expanded</code></p>
+<p>需要依赖 <code>androidx.compose.material3:material3-window-size-class</code></p>
+<p>根据不同的屏幕尺寸设置导航栏类型：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> navigationType: ReplyNavigationType<br><span class="hljs-keyword">when</span> (windowSize) &#123;<br>    WindowWidthSizeClass.Compact -&gt; &#123;<br>        navigationType = ReplyNavigationType.BOTTOM_NAVIGATION<br>    &#125;<br>    WindowWidthSizeClass.Medium -&gt; &#123;<br>        navigationType = ReplyNavigationType.NAVIGATION_RAIL<br>    &#125;<br>    WindowWidthSizeClass.Expanded -&gt; &#123;<br>        navigationType = ReplyNavigationType.PERMANENT_NAVIGATION_DRAWER<br>    &#125;<br>    <span class="hljs-keyword">else</span> -&gt; &#123;<br>        navigationType = ReplyNavigationType.BOTTOM_NAVIGATION<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="连接到互联网">连接到互联网</h2>
+<h3 id="从互联网获取数据">从互联网获取数据</h3>
+<p>Android 中的协程：</p>
+<ul>
+<li>借助 <code>LaunchedEffect()</code> 可组合项，您可以安全地从可组合项调用挂起函数。</li>
+<li>当 <code>LaunchedEffect()</code> 函数进入组合时，它会启动一个协程，并将代码块作为参数传递。只要还在组合中，它就会运行提供的挂起函数。</li>
+<li>当 <code>LaunchedEffect()</code> 退出组合时，协程会被取消。</li>
+</ul>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://ktor.io/">Ktor</a> 既可以做服务端，也可以当客户端使用，这里将其当作客户端请求 HTTP</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Greeting</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> client = HttpClient()<br><br>    <span class="hljs-keyword">suspend</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">greeting</span><span class="hljs-params">()</span></span>: String &#123;<br>        <span class="hljs-keyword">val</span> response = client.<span class="hljs-keyword">get</span>(<span class="hljs-string">&quot;https://ktor.io/docs/&quot;</span>)<br>        <span class="hljs-keyword">return</span> response.bodyAsText()<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>要在协程中调用：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> : <span class="hljs-type">ComponentActivity</span>() &#123;<br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(savedInstanceState: <span class="hljs-type">Bundle</span>?)</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState)<br>        setContent &#123;<br>            MyApplicationTheme &#123;<br>                <span class="hljs-keyword">val</span> scope = rememberCoroutineScope()<br>                <span class="hljs-keyword">var</span> text <span class="hljs-keyword">by</span> remember &#123; mutableStateOf(<span class="hljs-string">&quot;Loading&quot;</span>) &#125;<br>                LaunchedEffect(<span class="hljs-literal">true</span>) &#123;<br>                    scope.launch &#123;<br>                        text = <span class="hljs-keyword">try</span> &#123;<br>                            Greeting().greeting()<br>                        &#125; <span class="hljs-keyword">catch</span> (e: Exception) &#123;<br>                            e.localizedMessage ?: <span class="hljs-string">&quot;error&quot;</span><br>                        &#125;<br>                    &#125;<br>                &#125;<br>                GreetingView(text)<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>要在 <code>AndroidManifest.xml</code> 中添加互联网权限：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+<p>使用 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a> 解析 JSON：</p>
+<ul>
+<li><code>@Serializable</code> 注解使类可序列化</li>
+<li>使用 <code>@SerialName(value = &quot;img_src&quot;)</code> 将该变量映射到 JSON 属性 <code>img_src</code></li>
+</ul>
+<h3 id="从互联网加载和显示图片">从互联网加载和显示图片</h3>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://insert-koin.io/">Koin</a> 可以用于实现 <strong>依赖注入</strong></p>
+<p>声明一个组件：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> appModule = module &#123;<br>    singleOf(::UserRepositoryImpl) &#123; bind&lt;UserRepository&gt;() &#125;<br>    viewModelOf(::UserViewModel)<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>使用依赖注入：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@Composable</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">MainScreen</span><span class="hljs-params">()</span></span> &#123;<br>    MaterialTheme &#123;<br>        <span class="hljs-keyword">val</span> userViewModel = koinViewModel&lt;UserViewModel&gt;()<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在应用中启用 Koin：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">App</span><span class="hljs-params">()</span></span> &#123;<br>    KoinApplication(<br>        application = &#123;<br>            modules(appModule)<br>        &#125;<br>    )<br>&#123;...&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://coil-kt.github.io/coil/">Coil</a> 用于显示图片：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@Composable</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">MarsPhotoCard</span><span class="hljs-params">(photo: <span class="hljs-type">MarsPhoto</span>, modifier: <span class="hljs-type">Modifier</span> = Modifier)</span></span> &#123;<br>    AsyncImage(<br>        model = ImageRequest.Builder(context = LocalContext.current)<br>            .<span class="hljs-keyword">data</span>(photo.imgSrc)<br>            .crossfade(<span class="hljs-literal">true</span>)<br>            .build(),<br>        error = painterResource(R.drawable.ic_broken_image),<br>        placeholder = painterResource(R.drawable.loading_img),<br>        contentDescription = stringResource(R.string.mars_photo),<br>        contentScale = ContentScale.Crop<br>    )<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>使用 <code>LazyVerticalGrid</code> 显示图片网格</p>
+<h2 id="数据持久性">数据持久性</h2>
+<h3 id="使用-Room-持久保留数据">使用 Room 持久保留数据</h3>
+<ul>
+<li>将表定义为带有 <code>@Entity</code> 注解的数据类。将带有 <code>@ColumnInfo</code> 注解的属性定义为表中的列。</li>
+<li>将数据访问对象 (DAO) 定义为带有 <code>@Dao</code> 注解的接口。DAO 用于将 Kotlin 函数映射到数据库查询。</li>
+<li>使用注解来定义 <code>@Insert</code>、<code>@Delete</code> 和 <code>@Update</code> 函数，这些函数都是 <code>suspend</code></li>
+<li>将 <code>@Query</code> 注解和作为参数的 SQLite 查询字符串用于所有其他查询，通常将返回封装为一个 <code>Flow</code> 订阅</li>
+</ul>
+<h3 id="通过对-DataStore-使用键来存储和访问数据">通过对 DataStore 使用键来存储和访问数据</h3>
+<p>写入：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">suspend</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">saveLayoutPreference</span><span class="hljs-params">(isLinearLayout: <span class="hljs-type">Boolean</span>)</span></span> &#123;<br>    dataStore.edit &#123; preferences -&gt;<br>        preferences[IS_LINEAR_LAYOUT] = isLinearLayout<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>读取：（注意处理 IO 异常和默认设置）</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> isLinearLayout: Flow&lt;<span class="hljs-built_in">Boolean</span>&gt; = dataStore.<span class="hljs-keyword">data</span><br>    .<span class="hljs-keyword">catch</span> &#123;<br>        <span class="hljs-keyword">if</span>(it <span class="hljs-keyword">is</span> IOException) &#123;<br>            Log.e(TAG, <span class="hljs-string">&quot;Error reading preferences.&quot;</span>, it)<br>            emit(emptyPreferences())<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">throw</span> it<br>        &#125;<br>    &#125;<br>    .map &#123; preferences -&gt;<br>        preferences[IS_LINEAR_LAYOUT] ?: <span class="hljs-literal">true</span><br>    &#125;<br></code></pre></td></tr></table></figure>
+<h2 id="WorkManager">WorkManager</h2>
+<h3 id="使用-WorkManager-调度任务">使用 WorkManager 调度任务</h3>
+<p>创建一个 worker：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">private</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">val</span> TAG = <span class="hljs-string">&quot;BlurWorker&quot;</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BlurWorker</span>(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params)<br><br><span class="hljs-keyword">override</span> <span class="hljs-keyword">suspend</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">doWork</span><span class="hljs-params">()</span></span>: Result &#123;<br>        makeStatusNotification(<br>        applicationContext.resources.getString(R.string.cleaning_up_files),<br>        applicationContext<br>    )<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>创建工作链：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 第一个工作</span><br><span class="hljs-keyword">var</span> continuation = workManager.beginWith(OneTimeWorkRequest.from(CleanupWorker::<span class="hljs-keyword">class</span>.java))<br><br><span class="hljs-comment">// 添加下一个工作</span><br><span class="hljs-keyword">val</span> blurBuilder = OneTimeWorkRequestBuilder&lt;BlurWorker&gt;()<br>continuation = continuation.then(blurBuilder.build())<br><br><span class="hljs-comment">// 开始工作</span><br>continuation.enqueue()<br></code></pre></td></tr></table></figure>
+<p>如果想要向工作添加输入参数，可以创建一个输入对象：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">createInputDataForWorkRequest</span><span class="hljs-params">(blurLevel: <span class="hljs-type">Int</span>, imageUri: <span class="hljs-type">Uri</span>)</span></span>: Data &#123;<br>    <span class="hljs-keyword">val</span> builder = Data.Builder()<br>    builder.putString(KEY_IMAGE_URI, imageUri.toString()).putInt(BLUR_LEVEL, blurLevel)<br>    <span class="hljs-keyword">return</span> builder.build()<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>然后 <code>Builder</code> 添加：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin">blurBuilder.setInputData(createInputDataForWorkRequest(blurLevel, imageUri))<br></code></pre></td></tr></table></figure>
+<p>在工作中访问输入数据：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> blurLevel = inputData.getInt(KEY_BLUR_LEVEL, <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+<p>相应的，也可以创建输出对象并返回：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> outputData = workDataOf(KEY_IMAGE_URI to outputUri.toString())<br>Result.success(outputData)<br></code></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Kotlin/">Kotlin</a><a class="post-meta__tags" href="/tags/Android/">Android</a></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/posts/ff42498b.html" title="年轻人不讲武德"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%B8%88%E7%88%B6.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">年轻人不讲武德</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="iconfont icon-tuijian"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/dac3150c.html" title="实用软件"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/gallery/cover/%E5%AE%9E%E7%94%A8%E8%BD%AF%E4%BB%B6.webp" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-11</div><div class="info-item-2">实用软件</div></div><div class="info-2"><div class="info-item-1">这里包含了一些我认为比较实用的软件，包括 Windows 和 Android 平台。 Windows 美化 在我看来，Windows 的桌面是用来欣赏的，而不是用来摆放各种杂物的，因此我的桌面总是空无一物。毕竟谁也不想整天盯着那一堆乱七八糟的杂物，没事可以看一下桌面，闲来换个壁纸，放松一下心情。 TranslucentTB 是一个可以让任务栏透明的工具，简单的软件能够极大地增强 Windows 桌面的美感 Wallpaper Engine 是最著名的动态壁纸软件，是 Steam 上最值得购买的游戏。没错，我真的只是拿来放壁纸的 一般来说都会订阅非常多的壁纸，因此这里面的文件夹分类就非常重要，但是文件夹分类没有云同步，因此需要手动同步：复制应用目录下的 config.json 文件  这个文件中包含了 wallpaper engine 的安装目录，需要根据自己的情况修改 第三行是当前用户的用户名，也要更新 底下还有创意工坊的下载目录，也要修改  耦合度这么高，怪不得没有云同步，不是作者不想做，而是实在做不到啊 文件可以整齐地放在文件夹内，但是软件放在哪里呢？Windows 10...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/illustration/%E5%A4%B4%E5%83%8F_%E7%81%B0%E5%A4%AA%E7%8B%BC.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Aefrivern</div><div class="author-info-description">我一定会回来的</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">188</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">244</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/aefrivern" rel="external nofollow noreferrer" target="_blank" title="icon-github"><i class="GitHub"></i></a><a class="social-icon" href="mailto:2771503468@qq.com" rel="external nofollow noreferrer" target="_blank" title="icon-youxiang"><i class="QQ邮箱"></i></a><a class="social-icon" href="https://steamcommunity.com/id/old_driver_zero" rel="external nofollow noreferrer" target="_blank" title="icon-steam"><i class="Steam"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><a class="faa-parent animated-hover"><svg class="faa-tada icon" style="height:25px;width:25px;fill:currentColor;position:relative;top:5px" aria-hidden="true"><use xlink:href="#icon-mulu"></use></svg></a><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E4%B8%AA%E5%AE%89%E5%8D%93%E5%BA%94%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">首个安卓应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E7%95%8C%E9%9D%A2"><span class="toc-number">2.</span> <span class="toc-text">构建应用界面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E6%8C%89%E9%92%AE"><span class="toc-number">2.1.</span> <span class="toc-text">为应用添加按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E%E7%95%8C%E9%9D%A2%E5%92%8C%E7%8A%B6%E6%80%81%E4%BA%A4%E4%BA%92"><span class="toc-number">2.2.</span> <span class="toc-text">与界面和状态交互</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%88%97%E8%A1%A8%E5%B9%B6%E4%BD%BF%E7%94%A8-Material-Design"><span class="toc-number">3.</span> <span class="toc-text">显示列表并使用 Material Design</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%8F%AF%E6%BB%9A%E5%8A%A8%E5%88%97%E8%A1%A8"><span class="toc-number">3.1.</span> <span class="toc-text">构建可滚动列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E7%B2%BE%E7%BE%8E%E5%BA%94%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">构建精美应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA%E5%92%8C%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text">导航和应用架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text">架构组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jetpack-Compose-%E4%B8%AD%E7%9A%84-Navigation"><span class="toc-number">4.2.</span> <span class="toc-text">Jetpack Compose 中的 Navigation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E5%BA%94%E4%B8%8D%E5%90%8C%E7%9A%84%E5%B1%8F%E5%B9%95%E5%B0%BA%E5%AF%B8"><span class="toc-number">4.3.</span> <span class="toc-text">适应不同的屏幕尺寸</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E5%88%B0%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-number">5.</span> <span class="toc-text">连接到互联网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E4%BA%92%E8%81%94%E7%BD%91%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">5.1.</span> <span class="toc-text">从互联网获取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E4%BA%92%E8%81%94%E7%BD%91%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87"><span class="toc-number">5.2.</span> <span class="toc-text">从互联网加载和显示图片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E6%80%A7"><span class="toc-number">6.</span> <span class="toc-text">数据持久性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Room-%E6%8C%81%E4%B9%85%E4%BF%9D%E7%95%99%E6%95%B0%E6%8D%AE"><span class="toc-number">6.1.</span> <span class="toc-text">使用 Room 持久保留数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%AF%B9-DataStore-%E4%BD%BF%E7%94%A8%E9%94%AE%E6%9D%A5%E5%AD%98%E5%82%A8%E5%92%8C%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE"><span class="toc-number">6.2.</span> <span class="toc-text">通过对 DataStore 使用键来存储和访问数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WorkManager"><span class="toc-number">7.</span> <span class="toc-text">WorkManager</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-WorkManager-%E8%B0%83%E5%BA%A6%E4%BB%BB%E5%8A%A1"><span class="toc-number">7.1.</span> <span class="toc-text">使用 WorkManager 调度任务</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>安得广厦千万间，大庇天下寒士俱欢颜，风雨不动安如山。</div></div></div><div class="t-t-r"><p class="ft-t t-l-t">猜你想看💡</p><ul class="ft-links"><li><a href="/comments/">留点什么</a><a href="/random/">随便逛逛</a></li><li><a href="/about/">关于</a><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a><a href="/tags/">文章标签</a></li><li><a href="/gallery/">我的画廊</a><a href="/charts/">网站统计</a></li></ul></div></div></div></div><div class="copyright">&copy;2022 - 2025 By Aefrivern</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script async src="//at.alicdn.com/t/c/font_4031045_1yiosqv4vch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      window.location.href = e.request.responseURL
+    }
+  })
+})()</script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/lite/builds/browser.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/c/font_4031045_izvon5l4fr8.js"></script><!-- hexo injector body_end end --></body></html>
